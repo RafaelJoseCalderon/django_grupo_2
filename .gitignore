@@ -1,5 +1,7 @@
 .venv
 virtualenv
+virtualtp
+
 *__pycache__*
 *.pyc
 
