@@ -8,7 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block titulo %} {% endblock %}</title>
 
-  <link rel="stylesheet" href="{% static 'planeadores_mdp.css' %}">
+  <link href="{% static 'css/planeadores_mdp.css' %}" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="#" />
+
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -19,37 +21,43 @@
 <body>
 
   <header>
-    {% block encabezado %} {% endblock %}
+    <nav class="navbar navbar-expand-lg navbar-light position-center">
+      <div class="container-fluid">
+
+        <a href="{% url 'home' %}">
+          <img class="logo" src="{% static 'img/logoclub.png' %}" alt="...">
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'escuela_de_vuelo' %}">Escuela de Vuelo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'vuelo_de_bautismo' %}">Vuelo de Bautismo</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'only_socios' %}">Exclusivo para Socios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </nav>
   </header>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light position-center">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Escuela de Vuelo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Vuelo de Bautismo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Exclusivo para Socios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Contacto</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <main>{% block content %}{% endblock %}</main>
 
   <footer class="bg-light text-center text-white">
     <!-- Grid container -->
@@ -57,16 +65,20 @@
       <!-- Section: Social media -->
       <section class="mb-4">
         <!-- Facebook -->
-        <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button"><i
-            class="fab fa-facebook-f"></i></a>
+        <a class="btn text-white btn-floating m-1" style="background-color: #3b5998;" href="#!" role="button">
+          <i class="fab fa-facebook-f"></i>
+        </a>
         <!-- Google -->
-        <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button"><i
-            class="fab fa-google"></i></a>
+        <a class="btn text-white btn-floating m-1" style="background-color: #dd4b39;" href="#!" role="button">
+          <i class="fab fa-google"></i>
+        </a>
         <!-- Instagram -->
-        <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button"><i
-            class="fab fa-instagram"></i></a>
+        <a class="btn text-white btn-floating m-1" style="background-color: #ac2bac;" href="#!" role="button">
+          <i class="fab fa-instagram"></i>
+        </a>
       </section>
     </div>
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2023 Copyright. Todos los derechos Reservados
