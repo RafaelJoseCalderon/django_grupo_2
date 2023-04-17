@@ -1,7 +1,7 @@
 .venv
 virtualenv
 virtualtp
-
+TP
 *__pycache__*
 *.pyc
 
