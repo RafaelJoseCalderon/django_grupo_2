@@ -4,18 +4,22 @@ def home(request):
     context = {}
     return render(request, 'home.html', context)
 
-def imagenes(request):
+def escuela_de_vuelo(request):
     context = {}
-    return render(request, 'imagenes.html', context)
+    return render(request, 'escuela_de_vuelo.html', context)
 
-def tarifas(request):
+def vuelo_de_bautismo(request):
     context = {}
-    return render(request, 'tarifas.html', context)
+    return render(request, 'vuelo_de_bautismo.html', context)
 
 def preguntasFrecuentes(request):
     context = {}
     return render(request, 'preguntas_frecuentes.html', context)
 
-def formularioContacto(request):
+def contacto(request):
     context = {}
-    return render(request, 'formulario_contacto.html', context)
+    return render(request, 'contacto.html', context)
+
+def only_socios(request):
+    context = {}
+    return render(request, 'only_socios.html', context)

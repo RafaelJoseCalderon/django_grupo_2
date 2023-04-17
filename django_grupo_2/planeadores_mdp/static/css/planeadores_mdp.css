@@ -1,0 +1,18 @@
+/* Estilo Home */
+
+
+/* Menu */
+
+.navbar {
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 50px; /* Altura del navbar */
+    background-color: #f2f2f2; /* Color de fondo del navbar */
+  }
+
+  .navbar a {
+    margin: 0 10px; /* Margen horizontal entre los enlaces */
+    text-decoration: none; /* Sin subrayado en los enlaces */
+    color: #000; /* Color del texto de los enlaces */
+  }
