@@ -17,20 +17,38 @@ main {
 
 /* Menu */
 .logo {
-  margin: 10px 0;
-  width: 45px;
-  height: 45px;
+  margin: 1px 0;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
   background-color: #e3f2fd !important;
 }
 
-.navbar a {
-  margin: 0 10px;
-  color: #000;
+/* Footer */
+.facebook-color {
+  background-color: #3b5998 !important;
+}
+
+.google-color {
+  background-color: #dd4b39 !important;
+}
+
+.instagram-color {
+  background-color: #ac2bac !important;
+}
+
+.copyright-color {
+  background-color: #00000033 !important;
+}
+
+/* carousel */
+.carousel_img {
+  display: block;
+  margin: 0 auto;
+
+  object-fit: cover;
+  aspect-ratio: 21/9;
+  width: 100%;
 }
