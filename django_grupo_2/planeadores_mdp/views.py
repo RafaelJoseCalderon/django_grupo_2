@@ -4,17 +4,17 @@ def home(request):
     context = {}
     return render(request, 'home.html', context)
 
-def escuela_de_vuelo(request):
+def aeronaves(request):
     context = {}
-    return render(request, 'escuela_de_vuelo.html', context)
+    return render(request, 'aeronaves.html', context)
 
-def vuelo_de_bautismo(request):
+def institucion(request):
     context = {}
-    return render(request, 'vuelo_de_bautismo.html', context)
+    return render(request, 'institucion.html', context)
 
-def preguntasFrecuentes(request):
-    context = {}
-    return render(request, 'preguntas_frecuentes.html', context)
+# def preguntasFrecuentes(request):
+#     context = {}
+#     return render(request, 'preguntas_frecuentes.html', context)
 
 def contacto(request):
     context = {}
