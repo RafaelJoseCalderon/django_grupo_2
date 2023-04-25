@@ -55,7 +55,7 @@ main {
 
 
 .contacto {
-  background-color: #ced4da;
+  background-color: #e8edf0;
 }
 
 .contacto-textarea {
@@ -64,12 +64,14 @@ main {
 }
 
 .form-control {
+  margin-top: 0.25rem !important;
+  border-radius: 0 !important;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .contacto-icono {
-  background-color: #0d6efd;
+  background-color: #2553b8;
   border-radius: 50%;
 
   width: 50px;
@@ -78,4 +80,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  margin: 10px auto;
+}
+
+.btn-primary {
+  background-color: #2553b8 !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #16326e !important;
+  color: white !important;
 }
