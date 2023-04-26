@@ -3,6 +3,7 @@ from django import forms
 
 class ContactoForm(forms.Form):
     nombre_completo = forms.CharField(
+        label = 'Nombre Completo', 
         max_length = 200,
         widget = forms.TextInput(
             attrs = {
