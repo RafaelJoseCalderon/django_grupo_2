@@ -1,0 +1,40 @@
+/* ------------- Estilo Contacto -------------- */
+.contacto {
+  background-color: #e8edf0;
+}
+
+.contacto-textarea {
+  resize: none;
+  height: 8em;
+}
+
+.form-control {
+  margin-top: 0.25rem !important;
+  border-radius: 0 !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.contacto-icono {
+  background-color: #2553b8;
+  border-radius: 50%;
+
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px auto;
+}
+
+.vh-50 {
+  min-height: 50vh !important
+}
+
+@media (min-width:992px) {
+  .vh-lg-none {
+    height: auto !important;
+  }
+}

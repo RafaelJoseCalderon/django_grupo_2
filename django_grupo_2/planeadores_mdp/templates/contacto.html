@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block titulo %} Contacto {% endblock %}
+{% block meta %}
+  <!-- Esto me llevara tiempo, y no quiero sacar una key -->
+  <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-someNonce'" /> -->
+{% endblock %}
 
-{% block content %}
+{% block css %}
+  <link href="{% static 'css/contacto.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block titulo %}
+  <title>Contacto</title>
+{% endblock %}
+
+{% block contenido %}
   <div class="d-flex flex-column d-lg-flex flex-lg-row w-75 mx-auto contacto mt-5">
 
-    <div class="col-12 col-lg-7">
+    <div class="col-12 col-lg-6">
       <h2 class="my-2 mx-sm-3 mx-xl-5">Escribinos</h2>
 
       <form method="POST" class="m-5 mx-sm-3 mx-xl-5">
@@ -17,18 +28,20 @@
         {% endfor %}
 
         <input class="btn btn-primary btn-form" type="submit" value="Enviar Mensaje">
-        <!-- <button class="btn btn-primary btn-form" type="submit" value="Submit">Enviar</button> -->
       </form>
     </div>
 
-    <div class="col-12 col-lg-4">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.4496408594996!2d-57.649849!3d-38.0132958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95852750b43c79c7%3A0xa0fa83486cff88ce!2sClub%20de%20Planeadores%20Mar%20Del%20Plata!5e0!3m2!1ses!2sar!4v1682528599909!5m2!1ses!2sar" width="470" height="600" style="border:0;"></iframe>
+    <div class="d-flex col-12 col-lg-6">
+      <iframe
+        class="w-100 vh-50 vh-lg-none"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.4496408594996!2d-57.649849!3d-38.0132958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95852750b43c79c7%3A0xa0fa83486cff88ce!2sClub%20de%20Planeadores%20Mar%20Del%20Plata!5e0!3m2!1ses!2sar!4v1682528599909!5m2!1ses!2sar"
+      ></iframe>
     </div>
 
   </div>
 
   <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-evenly">
-    <div class="">
+    <div>
       <div class="contacto-icono">
         <img src="{% static 'img/geo-alt-fill.svg' %}" alt="...">
       </div>
