@@ -18,7 +18,11 @@
 
   <body>
     <header>{% include "componentes/header.html" %}</header>
-    <main>{% block contenido %}{% endblock %}</main>
+    <main>
+      
+      {% block img_fondo %}{% endblock %}
+      {% block contenido %}{% endblock %}
+    </main>
     <footer>{% include "componentes/footer.html" %}</footer>
   </body>
 

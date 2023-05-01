@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block img_fondo %}<img src="{% static 'img/cielo.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
 {% block contenido %}
     <h1>Aeronaves</h1>
 {% endblock %}
