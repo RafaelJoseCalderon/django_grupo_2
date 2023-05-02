@@ -1,6 +1,7 @@
 {% load static %}
+{% load planeadores_mdp_extras %}
 
-<nav class="navbar navbar-expand-lg white " >
+<nav id="navbar" class="navbar navbar-expand-lg {{eClass}}" data-bs-theme="dark">
   <div class="container-fluid">
 
     <a class="navbar-brand" href="{% url 'home' %}">
@@ -12,12 +13,32 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'aeronaves' %}">Aeronaves</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'institucion' %}">Institución</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'only_socios' %}">Exclusivo para Socios</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link {% link_activate 'home' %}" href="{% url 'home' %}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% link_activate 'aeronaves' %}" href="{% url 'aeronaves' %}">
+            Aeronaves
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% link_activate 'institucion' %}" href="{% url 'institucion' %}">
+            Institucion
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% link_activate 'contacto' %}" href="{% url 'contacto' %}">
+            Contacto
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% link_activate 'only_socios' %}" href="{% url 'only_socios' %}">
+            Solo Socios
+          </a>
+        </li>
       </ul>
     </div>
   </div>

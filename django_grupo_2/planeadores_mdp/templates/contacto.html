@@ -2,18 +2,26 @@
 {% load static %}
 
 {% block meta %}
-  <!-- Esto me llevara tiempo, y no quiero sacar una key -->
-  <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-someNonce'" /> -->
+  {% comment %}
+  Esto me llevara tiempo, y no quiero sacar una key
+  <meta http-equiv="Content-Security-Policy" content="script-src 'strict-dynamic' 'nonce-someNonce'" />
+  {% endcomment %}
 {% endblock %}
 
 {% block css %}
   <link href="{% static 'css/contacto.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
+{% block script%}{% endblock %}
+
 {% block titulo %}
   <title>Contacto</title>
 {% endblock %}
-{% block img_fondo %}<img src="{% static 'img/cielo.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
+
+{% block header %}
+  <header class="sticky-top">{% include "componentes/header.html" with eClass="navbar-color" %}</header>
+{% endblock %}
+
 {% block contenido %}
   <div class="d-flex flex-column d-lg-flex flex-lg-row w-75 mx-auto contacto mt-5">
 
@@ -43,7 +51,7 @@
   <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-evenly">
     <div>
       <div class="contacto-icono">
-        <img src="{% static 'img/geo-alt-fill.svg' %}" alt="...">
+        <img src="{% static 'img/contacto/geo-alt-fill.svg' %}" alt="...">
       </div>
 
       <div class="text-center">
@@ -54,7 +62,7 @@
 
     <div>
       <div class="contacto-icono">
-        <img src="{% static 'img/telephone-fill.svg' %}" alt="...">
+        <img src="{% static 'img/contacto/telephone-fill.svg' %}" alt="...">
       </div>
 
       <div class="text-center">
@@ -64,7 +72,7 @@
 
     <div>
       <div class="contacto-icono">
-        <img src="{% static 'img/send-fill.svg' %}" alt="...">
+        <img src="{% static 'img/contacto/send-fill.svg' %}" alt="...">
       </div>
 
       <div class="text-center">
