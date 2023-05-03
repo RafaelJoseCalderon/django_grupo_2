@@ -12,7 +12,9 @@
   <link href="{% static 'css/contacto.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block script%}{% endblock %}
+{% block script%}
+  <script src="{% static 'js/form.validation.js' %}" defer></script>
+{% endblock %}
 
 {% block titulo %}
   <title>Contacto</title>
@@ -28,11 +30,16 @@
     <div class="col-12 col-lg-6">
       <h2 class="my-2 mx-sm-3 mx-xl-5">Escribinos</h2>
 
-      <form method="POST" class="m-5 mx-sm-3 mx-xl-5">
+      <form method="POST" class="m-5 mx-sm-3 mx-xl-5 needs-validation" novalidate>
         {% csrf_token %}
         {% for field in form %}
-          <strong class="m-0 p-0">{{field.label}}</strong>
+          <label for="{{ field.id_for_label }}" class="form-label">
+            <strong class="m-0 p-0">{{field.label}}</strong>
+          </label>
+
           {{field}}
+
+          <div class="invalid-feedback mb-3">{{ field.help_text }}</div>
         {% endfor %}
 
         <input class="btn btn-primary btn-form" type="submit" value="Enviar Mensaje">
@@ -40,57 +47,46 @@
     </div>
 
     <div class="d-flex col-12 col-lg-6">
-      <iframe
+      <!-- <iframe
         class="w-100 vh-50 vh-lg-none"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.4496408594996!2d-57.649849!3d-38.0132958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95852750b43c79c7%3A0xa0fa83486cff88ce!2sClub%20de%20Planeadores%20Mar%20Del%20Plata!5e0!3m2!1ses!2sar!4v1682528599909!5m2!1ses!2sar"
-      ></iframe>
+      ></iframe> -->
     </div>
 
   </div>
 
-  <div class="d-flex flex-row w-75 mx-auto mt-5 justify-content-evenly">
-    <div>
+  <div class="d-flex flex-column d-lg-flex flex-lg-row w-75 mx-auto mt-5">
+
+    <div class="col-12 col-lg-4 d-flex flex-row d-lg-flex flex-lg-column align-items-center">
       <div class="contacto-icono">
-        <img src="{% static 'img/contacto/geo-alt-fill.svg' %}" alt="...">
+        <img src="{% static 'img/geo-alt-fill.svg' %}" alt="...">
       </div>
 
-      <div class="text-center">
-        <strong>Dirección:</strong> Ruta 88 km 6.5 B7600
-        <p>Mar del Plata, Buenos Aires, Argentina</p>
+      <div class="text-lg-center">
+        <strong>Dirección:</strong> Ruta 88 km 6.5 B7600 <br>
+        Mar del Plata, Buenos Aires, Argentina
       </div>
     </div>
 
-    <div>
+    <div class="col-12 col-lg-4 d-flex flex-row d-lg-flex flex-lg-column align-items-center">
       <div class="contacto-icono">
-        <img src="{% static 'img/contacto/telephone-fill.svg' %}" alt="...">
+        <img src="{% static 'img/telephone-fill.svg' %}" alt="...">
       </div>
 
-      <div class="text-center">
+      <div class="text-lg-center">
         <strong>Telefono:</strong> 123456789
       </div>
     </div>
 
-    <div>
+    <div class="col-12 col-lg-4 d-flex flex-row d-lg-flex flex-lg-column align-items-center">
       <div class="contacto-icono">
-        <img src="{% static 'img/contacto/send-fill.svg' %}" alt="...">
+        <img src="{% static 'img/send-fill.svg' %}" alt="...">
       </div>
 
-      <div class="text-center">
+      <div class="text-lg-center">
         <strong>E-mail:</strong> pmdp@email.com
       </div>
     </div>
   </div>
 
 {% endblock %}
-
-{% comment %}
-
-podriamos poner:
-
-. navbar
-. Mapa iframe
-. Formulario de contacto
-. Preguntas frecuentes
-. Footer
-
-{% endcomment %}

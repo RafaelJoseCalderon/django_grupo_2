@@ -4,7 +4,8 @@ from django import forms
 class ContactoForm(forms.Form):
     nombre_completo = forms.CharField(
         label = 'Nombre Completo', 
-        max_length = 200,
+        max_length = 100,
+        help_text = 'El nombre es requerido, no puede superar los 100 caracteres',
         widget = forms.TextInput(
             attrs = {
                 'class': 'form-control',
@@ -15,6 +16,7 @@ class ContactoForm(forms.Form):
 
     correo_electronico = forms.EmailField(
         label = 'Email',
+        help_text = 'El e-mail es requerido, no puede superar los 100 caracteres',
         widget = forms.EmailInput(
             attrs = {
                 'class': 'form-control',
@@ -25,7 +27,8 @@ class ContactoForm(forms.Form):
     )
 
     asunto = forms.CharField(
-        max_length = 200,
+        max_length = 100,
+        help_text = 'El asunto es requerido, no puede superar los 100 caracteres',
         widget = forms.TextInput(
             attrs = {
                 'class': 'form-control'
@@ -35,6 +38,7 @@ class ContactoForm(forms.Form):
 
     mensaje = forms.CharField(
         max_length = 1000,
+        help_text = 'El mensaje es requerido, no puede superar los 1000 caracteres',
         widget = forms.Textarea(
             attrs = {
                 'class': 'form-control contacto-textarea'
