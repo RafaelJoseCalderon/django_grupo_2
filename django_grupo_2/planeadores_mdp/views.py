@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.core.mail import send_mail
+
 from .forms import ContactoForm
 
 def home(request):
@@ -20,9 +23,24 @@ def institucion(request):
 def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
-        print("o envio por correo")
-        print("o lo guardo en bbdd para administrarlo en otra vista")
-        print("la validacion la debo")
+
+        if form.is_valid():
+            post = request.POST
+
+            try:
+                send_mail(
+                    post.get('asunto'),
+                    f"Nombre Completo: {post.get('nombre_completo')}\n" + 
+                    f"Mensaje: {post.get('mensaje')}",
+                    post.get('correo_electronico'),
+                    ["wololo@secretaria.com"],
+                    fail_silently=False
+                )
+
+                return redirect(reverse('contacto') + '?ok')
+            except:
+                return redirect(reverse('contacto') + '?fail')
+
     else:
         form = ContactoForm()
 
