@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.core.mail import send_mail
+from django.contrib import messages
 
 from .forms import ContactoForm
+from .tools import contact_send_mail
 
 def home(request):
     context = {}
@@ -25,22 +25,12 @@ def contacto(request):
         form = ContactoForm(request.POST)
 
         if form.is_valid():
-            post = request.POST
-
             try:
-                send_mail(
-                    post.get('asunto'),
-                    f"Nombre Completo: {post.get('nombre_completo')}\n" + 
-                    f"Mensaje: {post.get('mensaje')}",
-                    post.get('correo_electronico'),
-                    ["wololo@secretaria.com"],
-                    fail_silently=False
-                )
-
-                return redirect(reverse('contacto') + '?ok')
+                contact_send_mail(request)
+                form = ContactoForm()
+                messages.success(request, 'Su mensaje se ha enviado correctamente.')
             except:
-                return redirect(reverse('contacto') + '?fail')
-
+                messages.error(request, 'Error interno, disculpe las molestias.')
     else:
         form = ContactoForm()
 
