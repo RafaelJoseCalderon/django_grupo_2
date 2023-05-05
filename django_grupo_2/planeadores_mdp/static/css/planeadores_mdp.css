@@ -185,6 +185,30 @@ footer {
 
 
 /* ------------- Estilo Institucion -------------- */
+.container2-institucion h1{
+  text-align: center;
+  color: #45526e;
+}
+.container2-institucion{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container2-institucion img{
+  margin-right: 10px;
+  max-width: 600px;
+  height: auto;
+}
+.container3-institucion{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.container3-institucion img{
+  margin-left: 10px;
+  max-width: 600px;
+  height: auto;
+}
 
 /* ------------- Estilo Solo Socios -------------- */
 
