@@ -62,15 +62,10 @@ a.nav-link.active:hover {
 }
 
 /* ------------- Estilo Footer -------------- */
-.footer {
-  margin-top: 10%;
-  /* box-sizing: border-box; */
-  left: 100px;
-  position: absolute;
-  color: #fff;
-  /* width: 100vh; */
+footer {
+  margin-top: 4.5rem;
+  background-color: #45526e
 }
-
 
 /* ------------- Estilo Home -------------- */
 

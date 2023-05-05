@@ -12,26 +12,24 @@
     <link href="{% static 'css/planeadores_mdp.css' %}" rel="stylesheet" type="text/css">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-
     {% block css %}{% endblock %}
     
     <script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
-    {% block script%}<script src="{% static 'js/navbar.js' %}" defer></script>{% endblock %}
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+    {% block script%}{% endblock %}
 
     {% block titulo %} {% endblock %}
   </head>
 
   <body>
-    {% block header %}
-      <header class="fixed-top">{% include "componentes/header.html" %}</header>
-    {% endblock %}
+    <header class="fixed-top">{% include "componentes/header.html" %}</header>
 
     <main>
       {% block img_fondo %}{% endblock %}
       {% block contenido %}{% endblock %}
     </main>
 
-    <footer>{% include "componentes/footer.html" %}</footer>
-  </body>
-
+    <footer class="text-center text-lg-start text-white">
+      {% include "componentes/footer.html" %}
+    </footer
 </html>

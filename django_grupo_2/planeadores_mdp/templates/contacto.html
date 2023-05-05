@@ -13,11 +13,9 @@
   <title>Contacto</title>
 {% endblock %}
 
-{% block header %}
-  <header class="sticky-top">{% include "componentes/header.html" with eClass="navbar-color" %}</header>
+{% block img_fondo %}
+  <img src="{% static 'img/contacto.jpg' %}" alt="imagen de fondo" class="fondo">
 {% endblock %}
-
-{% block img_fondo %}<img src="{% static 'img/contacto.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
 
 {% block contenido %}
   <div class="contacto w-75 mx-auto mt-5 pb-1">
