@@ -118,6 +118,7 @@ footer {
 .card .contenido p{
   line-height: 1.5;
   color: #6a6a6a;
+  text-align: justify;
 }
 
 .card .contenido h3{
@@ -139,6 +140,7 @@ footer {
   background: #2fb4cc;
   color: #fff;
 }
+
 /* ------------- Estilo Aeronaves -------------- */
 .title{
   margin: 5%;
