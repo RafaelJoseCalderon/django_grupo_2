@@ -8,10 +8,48 @@
 {% block img_fondo %}<img src="{% static 'img/home.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
 
 {% block contenido %}
-  <div class="fake-content">
-    <h1>Home</h1>
+  <div class="title">
+    <h1>Nuestra historia</h1>    
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus doloribus fuga iusto accusamus facilis incidunt a architecto recusandae dignissimos quia, maiores qui minus vel ullam laudantium quas dicta, blanditiis natus.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, amet distinctio esse accusantium quo ab aut voluptates alias id eos praesentium eveniet atque soluta corporis. Obcaecati assumenda voluptatem eos blanditiis?
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, expedita, animi incidunt commodi, ab perspiciatis delectus magnam quo est illo vel veritatis placeat? Perferendis voluptatem omnis tempora? Totam, eaque quia.</p>
   </div>
-{% endblock %}
+
+  <div class="container">
+    <div class="card">
+      <figure>
+        <img class="logo" src="{% static 'img/aeronaves/vuelovela.jpg' %}" alt="...">
+      </figure>
+      <div class="contenido">
+        <h3>Vuelo a Vela</h3>
+        <p>El vuelo a vela es una actividad que consiste en volar aeronaves que carecen de motor o métodos propios de propulsión. Estas dependen del movimiento ascendente de las masas de aire que las rodean para mantener, o incluso ganar, altura. El desafío del piloto es encontrar las corrientes ascendentes para intentar mantenerse el mayor tiempo posible volando. Es un deporte muy competitivo y apasionante, en el cual se llevan a cabo pruebas de distancia y velocidad, además, de campeonatos mundiales organizados por la Federación Aeronáutica Internacional (FAI). En el aeroclub se dicta el curso de piloto planeador, para quien quiera iniciarse en esta actividad.</p>
+        <a href="#">+ Info</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure>
+        <img class="logo" src="{% static 'img/aeronaves/vuelomotor.jpg' %}" alt="...">
+      </figure>
+      <div class="contenido">
+        <h3>Vuelo con motor</h3>
+        <p>El vuelo en avion propulsado mecánicamente tal como lo conocemos hoy se empezó a gestar a principios del siglo XX, y tuvo un avance muy acelerado, ya que en menos de un siglo logró convertirse en una de las industrias mas importantes del mundo, en la cual millones de pasajeros y toneladas de carga son transportados enormes distancias en muy poco tiempo. En el aeroclub se llevan a cabo actividades como: vuelos de instrucción, traslados, vuelos turísticos sobre la ciudad y alrededores, etc. Es una escuela de vuelo habilitada por la Administracion Nacional de Aviación Civil (ANAC) para dar el curso de piloto privado de avión, y de distintas habilitaciones.</p>
+        <a href="#">+ Info</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <figure>
+        <img class="logo" src="{% static 'img/aeronaves/aeromodelismo.jpg' %}" alt="...">
+      </figure>
+      <div class="contenido">
+        <h3>Aeromodelismo</h3>
+        <p>El Aeromodelismo es una afición y un deporte derivado de la técnica de construcción y vuelo de aeroplanos de pequeño tamaño mediano y gran tamaño, llamados aeromodelos, que han sido preparados para volar sin tripulación. Los aeromodelos suelen hacerse a escala, bien como réplica lo más exacta posible de otros existentes, exclusivamente para aeromodelismo o incluso diseños de prueba para futuros aviones. Es considerado un muy buen deporte para iniciarse en la actividad aeronautica. En el pais el deporte es representado por la Federacion Argentina de Aeromodelismo. En el aeroclub se practica esta actividad por parte de la subcomisión de aeromodelismo.</p>
+        <a href="#">+ Info</a>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 
 {% comment %}
   . navbar
