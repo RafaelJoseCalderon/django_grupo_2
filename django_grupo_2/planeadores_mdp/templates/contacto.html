@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block css %}
-  <link href="{% static 'css/contacto.css' %}" rel="stylesheet" type="text/css">
-{% endblock %}
-
 {% block script%}
   <script src="{% static 'js/form.validation.js' %}" defer></script>
 {% endblock %}
@@ -25,16 +21,18 @@
         <h2 class="my-2 mx-sm-3 mx-xl-5">Escribinos</h2>
 
         <form method="POST" class="m-5 mx-sm-3 mx-xl-5 needs-validation" novalidate>
-          {% csrf_token %}
+          <div>{% csrf_token %}</div>
           {% for field in form %}
-            <label for="{{ field.id_for_label }}" class="form-label">
-              <strong class="m-0 p-0">{{field.label}}</strong>
-            </label>
+            <div>
+              <label for="{{ field.id_for_label }}" class="form-label">
+                <strong class="m-0 p-0">{{field.label}}</strong>
+              </label>
 
-            {{field}}
+              {{field}}
 
-            {% include "componentes/backend_error.html" with errors=field.errors %}
-            {% include "componentes/frontend_error.html" with help_text=field.help_text %}
+              {% include "componentes/backend_error.html" with errors=field.errors %}
+              {% include "componentes/frontend_error.html" with help_text=field.help_text %}
+            </div>
           {% endfor %}
 
           <input class="btn btn-primary btn-form" type="submit" value="Enviar Mensaje">
@@ -87,4 +85,4 @@
     </div>
   </div>
 
-{% endblock %}
+  {% endblock %}
