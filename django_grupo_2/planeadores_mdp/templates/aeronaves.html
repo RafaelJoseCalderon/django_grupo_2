@@ -4,162 +4,29 @@
 {% block img_fondo %}<img src="{% static 'img/aeronaves.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
 
 {% block contenido %}
-  <div class="title">
+  <div class="ae-titulo">
     <h1>AERONAVES</h1>
     <p>Nuestro club cuenta con la siguiente flota preparada y automatizada para poder volar</p>
   </div>
 
-<main>
-  <div class="product">
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/Piper11.jpg' %}" alt="...">
-    </div>
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Piper PA-11 LV-XLT</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 2 pax</li>
-          <li>Motor: Continental 90HP</li>
-          <li>Velocidad Crucero: 90mph</li>
-          <li>Tanque Combustible: 64 litros</li>
-          <li>Consumo por hora: 20lts/h</li>
-          <li>Autonomía: 3.2hs</li>
-          <li>Peso Máximo: 554kg</li>
-          <li>Equipaje: 9kg</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  {% for aeronave in aeronaves %}
+    <div class="ae-tarjeta">
+      <img class="ae-imagen" src="{{aeronave.imagen}}" alt="...">
 
-  <br>
-  <br>
-  <div class="product">
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Cessna 172 - LV-GRU</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 4 pax</li>
-          <li>Motor: Continental 145HP</li>
-          <li>Velocidad Crucero: 100mph</li>
-          <li>Tanque Combustible: 147 litros</li>
-          <li>Consumo por hora: 30lts/h</li>
-          <li>Autonomía: 4.6hs</li>
-          <li>Peso Máximo: 1043kg</li>
-          <li>Equipaje: 22kg</li>
+      <div class="ae-contenedor-datos">
+        <h1 class="ae-nombre">{{aeronave.nombre}}</h1>
+        <ul class="ae-datos-tecnicos">
+          <li>Capacidad: {{aeronave.capacidad}} pax</li>
+          <li>Motor: Continental {{aeronave.motor}}HP</li>
+          <li>Velocidad Crucero: {{aeronave.velocidad_crucero}}mph</li>
+          <li>Tanque Combustible: {{aeronave.tanque_combustible}} litros</li>
+          <li>Consumo por hora: {{aeronave.consumo_por_hora}}lts/h</li>
+          <li>Autonomía: {{aeronave.autonomia}}hs</li>
+          <li>Peso Máximo: {{aeronave.peso_maximo}}kg</li>
+          <li>Equipaje: {{aeronave.equipaje}}kg</li>
         </ul>
       </div>
     </div>
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/Cessna.jpg' %}" alt="...">
-    </div>
-  </div>
-  <br><br>
+  {% endfor %}
 
-  <div class="product">
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/AeroBoero.jpg' %}" alt="...">
-    </div>
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Aero Boero 180 LV-JZY</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 4 pax</li>
-          <li>Motor: Lycoming 180HP</li>
-          <li>Velocidad Crucero: 110mph</li>
-          <li>Tanque Combustible: 64 litros</li>
-          <li>Consumo por hora: 20lts/h</li>
-          <li>Autonomía: 3.2hs</li>
-          <li>Peso Máximo: 8444kg</li>
-          <li>Equipaje: 9kg</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="product">
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Piper PA-28 Cherokee LV-LMC</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 4 pax</li>
-          <li>Motor: Lycoming 180HP</li>
-          <li>Velocidad Crucero: 100mph</li>
-          <li>Tanque Combustible: 147 litros</li>
-          <li>Consumo por hora: 30lts/h</li>
-          <li>Autonomía: 4.6hs</li>
-          <li>Peso Máximo: 1043kg</li>
-          <li>Equipaje: 22kg</li>
-        </ul>
-      </div>
-    </div>
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/Piper28.jpg' %}" alt="...">
-    </div>
-  </div>
-  <br><br>
-  
-  <div class="product">
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/schleicher.jpg' %}" alt="...">
-    </div>
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Schleicher ASK-13 LV-EAK</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 4 pax</li>
-          <li>Motor: Lycoming 180HP</li>
-          <li>Velocidad Crucero: 90mph</li>
-          <li>Tanque Combustible: 64 litros</li>
-          <li>Consumo por hora: 20lts/h</li>
-          <li>Autonomía: 3.2hs</li>
-          <li>Peso Máximo: 480kg</li>
-          <li>Equipaje: 9kg</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <br><br>
-
-  <div class="product">
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Brasov ISD-28</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 2 pax</li>
-          <li>Motor: Lycoming 180HP</li>
-          <li>Velocidad Crucero: 95mph</li>
-          <li>Tanque Combustible: 147 litros</li>
-          <li>Consumo por hora: 30lts/h</li>
-          <li>Autonomía: 4.6hs</li>
-          <li>Peso Máximo: 590kg</li>
-          <li>Equipaje: 22kg</li>
-        </ul>
-      </div>
-    </div>
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/Brasov.jpg' %}" alt="...">
-    </div>
-  </div>
-  <br><br>
-
-  <div class="product">
-    <div class="product-img">
-      <img class="logo" src="{% static 'img/aeronaves/JantarS.jpg' %}" alt="...">
-    </div>
-    <div class="product-listing">
-      <div class="content">
-        <h1 class="name">Jantar Standard SZD-48</h1>
-        <ul class="datos-tecnicos">
-          <li>Capacidad: 1 pax</li>
-          <li>Vuelo a vela</li>
-          <li>Velocidad Crucero: 95mph</li>
-          <li>Peso Máximo: 535kg</li>
-          <li>Equipaje: 9kg</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <br><br>
-</main>
 {% endblock %}
