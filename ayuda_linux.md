@@ -40,18 +40,16 @@ deactivate
 ## Instalación de dependencias
 
 * para instalar dependencias aplicamos
-```
-pip install algun_paquete
-```
+  ```
+  pip install algun_paquete
+  ```
 * para instalar dependencias con una versión especifica aplicamos
-```
-pip install otro_paquete==2.6.0
-```
+  ```
+  pip install otro_paquete==2.6.0
+  ```
 
 # Respaldando el proyecto en github
-
 ## Archivo ".gitignore"
-
 el mismo deberá contener, como mínimo, las siguientes lineas
 
 ```C5
@@ -78,20 +76,17 @@ se aplica los pasos convenidos para github, dentro de el directorio de desarroll
 
 * se clona el proyecto desde github
 * se instala un nuevo proyecto con el nombre con el cual a sido la clonación. Se aplica (1)
-
-```C7
-python3 -m venv .venv
-```
+  ```C7
+  python3 -m venv .venv
+  ```
 * se instalan las dependencias, estando dentro del directorio donde se encuentra el entorno virtual/proyecto, aplicando (2)
-
-```C8
-pip install -r requirements.txt
-```
-
+  ```C8
+  pip install -r requirements.txt
+  ```
 * se construye la base de datos con
-```C9
-python manage.py migrate
-```
+  ```C9
+  python manage.py migrate
+  ```
 
 nota (1): se debe estar dentro de la carpeta clonada. <br>
 nota (2): se debe estar con el entorno virtual corriendo.
@@ -208,17 +203,34 @@ se puede aplicar cambios sobre la base de datos, desde un código python con:
 python manage.py sqlmigrate < app > < archivo migracion >
 ```
 
-# Bases de Datos
+# Bases de Datos [repo no oficial]
+## Instalación PostgreSql (debian 11)
+### Instalación
+https://www.postgresql.org/download/linux/debian/
 
-## Instalación de la base de datos en local
+```C19
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
-### Sqlite3
+sudo apt-get update
+sudo apt-get -y install postgresql
+```
 
-Viene por defecto, no requiere configuracion.
+### Instalación (sugerida)
+```C20
+sudo apt-get install apt-transport-https curl
 
-### Instalación Mysql (debian 11)
+sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/apt.postgresql.org.gpg] http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/postgresql.list'
+sudo curl -sS https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor --output /usr/share/keyrings/apt.postgresql.org.gpg
 
-1. instalar a travez de gdebi, específicamente en este orden
+sudo apt-get update
+sudo apt-get install postgresql
+```
+
+## Instalación MySQL Community (GPL) (debian 11)
+https://dev.mysql.com/downloads/mysql/
+
+* instalar a travez de gdebi, específicamente en este orden
    * mecab-ipadic-utf8 (1)
    * mysql-common
    * mysql-community-server-core
@@ -227,68 +239,227 @@ Viene por defecto, no requiere configuracion.
    * mysql-community-client
    * mysql-client
    * mysql-community-server
-
----
-
-2. configurar la seguridad de mysql (2)
-
-  ```C19
+* configurar la seguridad de mysql (2)
+  ```C21
   mysql_secure_installation
   ```
 
 nota (1): Opcional, anda perfectamente sin esto, sin embargo esta en la lista de dependencias. <br>
 nota (2): Leer detenidamente la configuración. (no sabe ingles, use Google.)
 
-### Instalación mariabd (debian 11) [repo no oficial]
+## Instalación mariabd (debian 11)
+### Instalación
+https://mariadb.org/download/?t=repo-config
 
-1. agregar los repos en sourses.list
+```C22
+sudo apt-get install apt-transport-https curl
 
-  * los repos de mariadb son: (1)
+sudo sh -c "echo 'deb https://mirror1.cl.netactuate.com/mariadb/repo/10.11/debian bullseye main' >>/etc/apt/sources.list"
+sudo curl -o /etc/apt/trusted.gpg.d/mariadb_release_signing_key.asc 'https://mariadb.org/mariadb_release_signing_key.asc'
 
-  ```C20
-  deb [arch=amd64] https://mirror1.cl.netactuate.com/mariadb/repo/10.5/debian buster main
-  deb-src https://mirror1.cl.netactuate.com/mariadb/repo/10.5/debian buster main
-  ```
-2. instalar la clave
+sudo apt-get update
+sudo apt-get install mariadb-server
+```
 
-  * para instalar la clave se tiene que tener instalado los siguientes paquetes
-  ```C21
-  apt-get install software-properties-common dirmngr apt-transport-https
-  ```
-  * luego instalar la clave
-  ```C22
-  apt-key adv --fetch-keys 'https://mariadb.org/mariadb_release_signing_key.asc'
-  ```
-3. intslar maria db
+nota: "cuidado hay repos sin ReleaseIn"
 
-  ```C23
-  apt-get install mariadb-server
-  ```
-4. configurar maria db (2)
+### Instalacion (sugerida)
+```C23
+sudo apt-get install apt-transport-https curl
 
-  ```C24
-  mysql_secure_installation
-  ```
+sudo sh -c "echo 'deb [signed-by=/usr/share/keyrings/apt.mariadb.gpg] https://mirror1.cl.netactuate.com/mariadb/repo/10.11/debian $(lsb_release -cs) main' > /etc/apt/sources.list.d/mariadb.list"
+sudo curl -sS https://mariadb.org/mariadb_release_signing_key.asc | gpg --dearmor --output /usr/share/keyrings/apt.mariadb.gpg
 
-nota (1): A la hora de instalar buscar los repos más actuales. <br>
-nota (2): Leer detenidamente la configuración. (no sabe ingles, use Google.)
+sudo apt-get update
+sudo apt-get install mariadb-server
+```
+
+nota: "cuidado hay repos sin ReleaseIn"
+
+### Configurar maria db (1)
+```C24
+mysql_secure_installation
+```
+
+nota (1): Leer detenidamente la configuración. (no sabe ingles, use Google.)
+
+# Bases de Datos [repo oficial]
 
 ### Instalacion mariabd (debian 11) [repo oficial]
 
 1. intslar maria db (1)
-
-  ```C25
-  apt-get install mariadb-server
-  ```
+    ```C25
+    apt-get install mariadb-server
+    ```
 
 2. configurar maria db (2)
-
-  ```C26
-  mysql_secure_installation
-  ```
+    ```C26
+    mysql_secure_installation
+    ```
 
 nota (1): A la hora de instalar siempre tener repos más actuales (de lo contrario pueden haber desagradables sorpresas). <br>
-nota: (2)Leer detenidamente la configuración. (no sabe ingles, use Google.)
+nota (2): Leer detenidamente la configuración. (no sabe ingles, use Google.)
+
+# Creación de usuario
+
+## Usuario Sqlite
+No requiere la creación de ningun usuario.
+
+## Usuario PostgreSql
+0. primer inicio (solo la primera vez)
+    * iniciar a la fuerza
+      ```C27
+      sudo -u postgres psql
+      ```
+
+    * cambio de contraseña al ususario principal
+      ```C28
+      ALTER USER postgres WITH ENCRYPTED PASSWORD '<pass>';
+      ```
+
+    * salir de la terminal de postgres
+      ```C29
+      quit;
+      ```
+
+    * abrir el siguiente archivo
+      ```C30
+      sudo nano /etc/postgresql/15/main/pg_hba.conf
+      ```
+
+    * en el mismo modificar las lineas donde aparezca peer por md5
+
+    * luego guardar y salir
+
+    * reiniciar el servicio
+      ```C31
+      sudo systemctl restart postgresql.service
+      ```
+
+1. ingreso a laterminal de postgres
+    ```C32
+    psql -U postgres
+    ```
+
+2. creacion del usuario propiamente dicho (x)
+    ```C33
+    CREATE USER usuario WITH PASSWORD 'usuario';
+    ```
+
+3. comprobamos su creación y si se le a asignado su contraseña
+    ```C34
+    SELECT usename, passwd FROM pg_user;
+    ```
+
+4. cambiar contraseña
+    ```C34
+    ALTER USER <usuarios> WITH ENCRYPTED PASSWORD '<pass>';
+    ```
+
+5. creacion, base de datos (3)
+    ```C35
+    CREATE DATABASE <base_de_datos>;
+    ```
+
+6. comprobación, creacion de la base de datos
+    ```C36
+    \list
+    ```
+
+7. borrado, base de datos
+    ```C37
+    CREATE DATABASE <base_de_datos> OWNER <propietario>;
+    ```
+
+8. borrado, usuario
+    ```C38
+    DROP USER <usuario>;
+    ```
+
+9. limpiar pantalla
+    ```C39
+    \! clear;
+    ```
+
+10. salir
+    ```C40
+    quit;
+    ```
+
+## Usuario mariabd / mysql
+Luego de la instalacion y configuración
+
+1. ingreso a laterminal de mysql
+    ```C41
+    sudo mysql
+    ```
+
+2. creacion del usuario propiamente dicho
+    ```C42
+    CREATE USER '<usuario>'@'localhost' IDENTIFIED BY '<pass>';
+    ```
+
+3. comprobación de creación y si se le a asignado su contraseña
+    * mariabd
+      ```C43
+      SELECT User, Password, Host FROM mysql.user;
+      ```
+    * mysql
+      ```C44
+      SELECT User, authentication_string, Host FROM mysql.user;
+      ```
+
+4. cambiar contraseña
+    ```C45
+    SET PASSWORD FOR '<usuario>'@'localhost' = PASSWORD('<pass>');
+    ```
+
+5. creacion de la base de datos (3)
+    ```C46
+    CREATE DATABASE <base_de_datos>;
+    ```
+
+6. comprobación, creacion de la base de datos
+    ```C47
+    SHOW DATABASES;
+    ```
+
+7. asignación los permisos
+    ```C36
+    GRANT ALL PRIVILEGES ON <base_de_datos>.* TO 'user'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
+
+8. borrado, base de datos
+    ```C37
+    DROP DATABASE <base_de_datos>;
+    ```
+
+9. borrado, usuario
+    ```38
+    DROP USER '<usuario>'@localhost;
+    ```
+
+9. limpiar pantalla
+    ```C39
+    \! clear;
+    ```
+
+10. salir
+    ```C40
+    quit;
+    ```
+
+nota (1): en caso de que root no tenga contraseña se le asigna una.
+nota (2): 'usuario', es un generico, puede ir cualquiera que consideremos pertinente.
+nota (3): 'base_de_datos', es un generico, puede ir cualquiera que consideremos pertinente.
+
+# Controladores de conexión
+## Controlador Sqlite
+Viene por defecto, no hay que instalar ni configurar nada.
+
+## Controlador PostgreSql
+Nan
 
 ## Controlador mysql
 
@@ -296,26 +467,24 @@ Según las instrucciones de la pagina oficial del desarrollador del conector, lo
 
 ### prerequisito
 
-```C27
+### Prerequisito
+```C41
 sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 ```
 
 ### Conector propiamente dicho
-
-```C28
+```C42
 pip install mysqlclient
 ```
 
 ### Respaldo del mismo en el proyecto
-
-```C29
+```C43
 pip freeze > requirements.txt
 ```
 
-## Extras
+# Extras
+Paquete necesario, en tiempo de desarrollo, para visualizar imágenes en los templates
 
-paquete necesario, en tiempo de desarrollo, para visualizar imágenes en los templates
-
-```C30
+```C44
 pip install Pillow
 ```
