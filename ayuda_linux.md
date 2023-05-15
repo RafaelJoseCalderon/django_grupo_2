@@ -205,8 +205,7 @@ python manage.py sqlmigrate < app > < archivo migracion >
 
 # Bases de Datos [repo no oficial]
 ## Instalación PostgreSql (debian 11)
-### Instalación
-https://www.postgresql.org/download/linux/debian/
+### Instalación (https://www.postgresql.org/download/linux/debian/)
 
 ```C19
 sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
@@ -227,8 +226,8 @@ sudo apt-get update
 sudo apt-get install postgresql
 ```
 
-## Instalación MySQL Community (GPL) (debian 11)
-https://dev.mysql.com/downloads/mysql/
+## Instalación MySQL Community (GPL) (debian 11) 
+### https://dev.mysql.com/downloads/mysql/
 
 * instalar a travez de gdebi, específicamente en este orden
    * mecab-ipadic-utf8 (1)
@@ -247,9 +246,8 @@ https://dev.mysql.com/downloads/mysql/
 nota (1): Opcional, anda perfectamente sin esto, sin embargo esta en la lista de dependencias. <br>
 nota (2): Leer detenidamente la configuración. (no sabe ingles, use Google.)
 
-## Instalación mariabd (debian 11)
-### Instalación
-https://mariadb.org/download/?t=repo-config
+## Instalación Mariabd (debian 11)
+### Instalación (https://mariadb.org/download/?t=repo-config)
 
 ```C22
 sudo apt-get install apt-transport-https curl
@@ -276,7 +274,7 @@ sudo apt-get install mariadb-server
 
 nota: "cuidado hay repos sin ReleaseIn"
 
-### Configurar maria db (1)
+### Configurar Mariadb (1)
 ```C24
 mysql_secure_installation
 ```
@@ -285,15 +283,26 @@ nota (1): Leer detenidamente la configuración. (no sabe ingles, use Google.)
 
 # Bases de Datos [repo oficial]
 
-### Instalacion mariabd (debian 11) [repo oficial]
-
-1. intslar maria db (1)
+## Instalación PostgreSql (debian 11)
+1. instalacion PostgreSql
     ```C25
+    sudo apt-get install postgresql-13
+    ```
+
+2. iniciar el servidor de bases de datos usando
+    ```C26
+    pg_ctlcluster 13 main start
+    ```
+
+## Instalacion mariabd (debian 11) [repo oficial]
+
+1. instalacion Mariadb (1)
+    ```C27
     apt-get install mariadb-server
     ```
 
-2. configurar maria db (2)
-    ```C26
+2. configurar Mariadb (2)
+    ```C28
     mysql_secure_installation
     ```
 
@@ -308,23 +317,23 @@ No requiere la creación de ningun usuario.
 ## Usuario PostgreSql
 0. primer inicio (solo la primera vez)
     * iniciar a la fuerza
-      ```C27
+      ```C29
       sudo -u postgres psql
       ```
 
     * cambio de contraseña al ususario principal
-      ```C28
+      ```C30
       ALTER USER postgres WITH ENCRYPTED PASSWORD '<pass>';
       ```
 
     * salir de la terminal de postgres
-      ```C29
+      ```C31
       quit;
       ```
 
     * abrir el siguiente archivo
-      ```C30
-      sudo nano /etc/postgresql/15/main/pg_hba.conf
+      ```C32
+      sudo nano /etc/postgresql/<version_postgresql>/main/pg_hba.conf
       ```
 
     * en el mismo modificar las lineas donde aparezca peer por md5
@@ -332,121 +341,121 @@ No requiere la creación de ningun usuario.
     * luego guardar y salir
 
     * reiniciar el servicio
-      ```C31
+      ```C33
       sudo systemctl restart postgresql.service
       ```
 
 1. ingreso a laterminal de postgres
-    ```C32
+    ```C34
     psql -U postgres
     ```
 
-2. creacion del usuario propiamente dicho (x)
-    ```C33
-    CREATE USER usuario WITH PASSWORD 'usuario';
+2. creacion del usuario propiamente dicho
+    ```C35
+    CREATE USER <usuario> WITH PASSWORD '<pass>';
     ```
 
 3. comprobamos su creación y si se le a asignado su contraseña
-    ```C34
+    ```C36
     SELECT usename, passwd FROM pg_user;
     ```
 
 4. cambiar contraseña
-    ```C34
-    ALTER USER <usuarios> WITH ENCRYPTED PASSWORD '<pass>';
+    ```C37
+    ALTER USER <usuario> WITH ENCRYPTED PASSWORD '<pass>';
     ```
 
-5. creacion, base de datos (3)
-    ```C35
-    CREATE DATABASE <base_de_datos>;
+5. creacion, base de datos
+    ```C38
+    CREATE DATABASE <base_de_datos> OWNER <propietario>;
     ```
 
 6. comprobación, creacion de la base de datos
-    ```C36
+    ```C39
     \list
     ```
 
 7. borrado, base de datos
-    ```C37
-    CREATE DATABASE <base_de_datos> OWNER <propietario>;
+    ```C40
+    DROP DATABASE <base_de_datos>;
     ```
 
 8. borrado, usuario
-    ```C38
+    ```C41
     DROP USER <usuario>;
     ```
 
 9. limpiar pantalla
-    ```C39
+    ```C42
     \! clear;
     ```
 
 10. salir
-    ```C40
+    ```C43
     quit;
     ```
 
-## Usuario mariabd / mysql
+## Usuario Mariabd / Mysql
 Luego de la instalacion y configuración
 
 1. ingreso a laterminal de mysql
-    ```C41
+    ```C44
     sudo mysql
     ```
 
 2. creacion del usuario propiamente dicho
-    ```C42
+    ```C45
     CREATE USER '<usuario>'@'localhost' IDENTIFIED BY '<pass>';
     ```
 
 3. comprobación de creación y si se le a asignado su contraseña
     * mariabd
-      ```C43
+      ```C46
       SELECT User, Password, Host FROM mysql.user;
       ```
     * mysql
-      ```C44
+      ```C47
       SELECT User, authentication_string, Host FROM mysql.user;
       ```
 
 4. cambiar contraseña
-    ```C45
+    ```C48
     SET PASSWORD FOR '<usuario>'@'localhost' = PASSWORD('<pass>');
     ```
 
 5. creacion de la base de datos (3)
-    ```C46
+    ```C49
     CREATE DATABASE <base_de_datos>;
     ```
 
 6. comprobación, creacion de la base de datos
-    ```C47
+    ```C50
     SHOW DATABASES;
     ```
 
 7. asignación los permisos
-    ```C36
+    ```C51
     GRANT ALL PRIVILEGES ON <base_de_datos>.* TO 'user'@'localhost';
     FLUSH PRIVILEGES;
     ```
 
 8. borrado, base de datos
-    ```C37
+    ```C52
     DROP DATABASE <base_de_datos>;
     ```
 
 9. borrado, usuario
-    ```38
+    ```53
     DROP USER '<usuario>'@localhost;
     ```
 
 9. limpiar pantalla
-    ```C39
+    ```C54
     \! clear;
     ```
 
 10. salir
-    ```C40
+    ```C55
     quit;
     ```
 
@@ -458,33 +467,48 @@ nota (3): 'base_de_datos', es un generico, puede ir cualquiera que consideremos 
 ## Controlador Sqlite
 Viene por defecto, no hay que instalar ni configurar nada.
 
-## Controlador PostgreSql
-Nan
-
-## Controlador mysql
-
-Según las instrucciones de la pagina oficial del desarrollador del conector, los pasos son:
+## Controlador PostgreSql (https://www.psycopg.org/install/)
 
 ### prerequisito
+```C56
+sudo apt install python3-dev libpq-dev
+```
+
+### Conector propiamente dicho
+```C57
+pip install psycopg2
+```
+
+### Respaldo del mismo en el proyecto
+```C58
+pip freeze > requirements.txt
+```
+
+## Controlador mysql (https://github.com/PyMySQL/mysqlclient)
 
 ### Prerequisito
-```C41
+```C59
 sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 ```
 
 ### Conector propiamente dicho
-```C42
+```C60
 pip install mysqlclient
 ```
 
 ### Respaldo del mismo en el proyecto
-```C43
+```C61
 pip freeze > requirements.txt
 ```
 
 # Extras
-Paquete necesario, en tiempo de desarrollo, para visualizar imágenes en los templates
-
-```C44
+## Dependencia para 'ImageField'
+```C62
 pip install Pillow
+```
+
+## Visor de base de datos 
+Extension de vscode/vscodium, es basico, pero tiene lo que necesito.
+```C63
+SQLTools PostgreSQL/Cockroach Driver
 ```

@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Aeronave
 
-# Register your models here.
+
+@admin.register(Aeronave)
+class PropiedadAdmin(admin.ModelAdmin):
+    pass

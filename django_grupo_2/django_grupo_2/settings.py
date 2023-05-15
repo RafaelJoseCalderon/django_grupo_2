@@ -29,6 +29,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# Data Bases configurations
+# DATABASES_TYPE = sqlite3 | mysql | postgresql
+# nota: no esta en el "requirements.txt" el controlador para mysql
+
+DATABASES_TYPE = 'sqlite3'
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -86,12 +93,37 @@ MESSAGE_TAGS = {
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DATABASES_TYPE == 'sqlite3':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+if DATABASES_TYPE == 'postgresql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'planeadores_mdp',
+            'USER':'usuario',
+            'PASSWORD':'usuario',
+            'HOST':'localhost',
+            'PORT': '5432',
+        }
+    }
+
+if DATABASES_TYPE == 'mysql':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'planeadores_mdp',
+            'USER':'usuario',
+            'PASSWORD':'usuario',
+            'HOST':'localhost',
+            'PORT': '3306',
+        }
+    }
 
 
 # Password validation
