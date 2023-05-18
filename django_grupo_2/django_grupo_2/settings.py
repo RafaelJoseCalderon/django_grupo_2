@@ -39,13 +39,13 @@ DATABASES_TYPE = 'sqlite3'
 # Application definition
 
 INSTALLED_APPS = [
+    'planeadores_mdp.apps.PlaneadoresMdpConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'planeadores_mdp'
 ]
 
 MIDDLEWARE = [
