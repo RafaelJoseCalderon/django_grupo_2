@@ -40,13 +40,13 @@ deactivate
 ## Instalación de dependencias
 
 * para instalar dependencias aplicamos
-```
-pip install algun_paquete
-```
+    ```
+    pip install algun_paquete
+    ```
 * para instalar dependencias con una versión especifica aplicamos
-```
-pip install otro_paquete==2.6.0
-```
+    ```
+    pip install otro_paquete==2.6.0
+    ```
 
 # Respaldando el proyecto en Github
 ## Archivo ".gitignore"
@@ -76,17 +76,17 @@ se aplica los pasos convenidos para Github, dentro de el directorio de desarroll
 
 * se clona el proyecto desde Github
 * se instala un nuevo proyecto con el nombre con el cual a sido la clonación. Se aplica (1)
-```C7
-python3 -m venv .venv
-```
+    ```C7
+    python3 -m venv .venv
+    ```
 * se instalan las dependencias, estando dentro del directorio donde se encuentra el entorno virtual/proyecto, aplicando (2)(3)
-```C8
-pip install -r requirements.txt
-```
+    ```C8
+    pip install -r requirements.txt
+    ```
 * se construye la base de datos con
-```C9
-python manage.py migrate
-```
+    ```C9
+    python manage.py migrate
+    ```
 
 nota (1): se debe estar dentro de la carpeta clonada. <br>
 nota (2): se debe estar con el entorno virtual corriendo. <br>
@@ -231,17 +231,18 @@ sudo apt-get install postgresql
 ### https://dev.mysql.com/downloads/mysql/
 
 * instalar a través de gdebi, específicamente en este orden
-* mysql-common
-* mysql-community-server-core
-* mysql-community-client-plugins
-* mysql-community-client-core
-* mysql-community-client
-* mysql-client
-* mysql-community-server
+    * mysql-common
+    * mysql-community-server-core
+    * mysql-community-client-plugins
+    * mysql-community-client-core
+    * mysql-community-client
+    * mysql-client
+    * mysql-community-server
+
 * configurar la seguridad de Mysql (1)
-```C21
-mysql_secure_installation
-```
+    ```C21
+    mysql_secure_installation
+    ```
 
 nota (1): Leer detenidamente la configuración. (no sabe ingles, use Google.)
 
@@ -285,28 +286,28 @@ nota (1): Leer detenidamente la configuración. (no sabe ingles, use Google.)
 ## Instalación PostgreSql (Debian 11)
 
 1. instalación PostgreSql (1)
-```C25
-sudo apt-get install postgresql-13
-```
+    ```C25
+    sudo apt-get install postgresql-13
+    ```
 
 2. iniciar el servidor de bases de datos usando
-```C26
-pg_ctlcluster 13 main start
-```
+    ```C26
+    pg_ctlcluster 13 main start
+    ```
 
 nota (1): A la hora de instalar siempre tener repos más actuales (de lo contrario pueden haber desagradables sorpresas). <br>
 
 ## Instalación Mariabd (Debian 11) [repo oficial]
 
 1. instalación Mariadb (1)
-```C27
-apt-get install mariadb-server
-```
+    ```C27
+    apt-get install mariadb-server
+    ```
 
 2. configuración Mariadb (2)
-```C28
-mysql_secure_installation
-```
+    ```C28
+    mysql_secure_installation
+    ```
 
 nota (1): A la hora de instalar siempre tener repos más actuales (de lo contrario pueden haber desagradables sorpresas). <br>
 nota (2): Leer detenidamente la configuración. (no sabe ingles, use Google.)
@@ -318,148 +319,148 @@ No requiere la creación de ningún usuario.
 
 ## Usuario PostgreSql
 0. primer inicio (solo la primera vez)
-* iniciar a la fuerza
-```C29
-sudo -u postgres psql
-```
+    * iniciar a la fuerza
+        ```C29
+        sudo -u postgres psql
+        ```
 
-* cambio de contraseña al usuario principal
-```C30
-ALTER USER postgres WITH ENCRYPTED PASSWORD '<pass>';
-```
+    * cambio de contraseña al usuario principal
+        ```C30
+        ALTER USER postgres WITH ENCRYPTED PASSWORD '<pass>';
+        ```
 
-* salir de la terminal de postgres
-```C31
-quit;
-```
+    * salir de la terminal de postgres
+        ```C31
+        quit;
+        ```
 
-* abrir el siguiente archivo
-```C32
-sudo nano /etc/postgresql/<version_postgresql>/main/pg_hba.conf
-```
+    * abrir el siguiente archivo
+        ```C32
+        sudo nano /etc/postgresql/<version_postgresql>/main/pg_hba.conf
+        ```
 
-* en el mismo modificar las lineas donde aparezca peer por md5
+    * en el mismo modificar las lineas donde aparezca peer por md5
 
-* luego guardar y salir
+    * luego guardar y salir
 
-* reiniciar el servicio
-```C33
-sudo systemctl restart postgresql.service
-```
+    * reiniciar el servicio
+        ```C33
+        sudo systemctl restart postgresql.service
+        ```
 
 1. ingreso a la terminal de Postgres
-```C34
-psql -U postgres
-```
+    ```C34
+    psql -U postgres
+    ```
 
 2. creación del usuario propiamente dicho
-```C35
-CREATE USER <usuario> WITH PASSWORD '<pass>';
-```
+    ```C35
+    CREATE USER <usuario> WITH PASSWORD '<pass>';
+    ```
 
 3. comprobamos su creación y si se le a asignado su contraseña
-```C36
-SELECT usename, passwd FROM pg_user;
-```
+    ```C36
+    SELECT usename, passwd FROM pg_user;
+    ```
 
 4. cambiar contraseña
-```C37
-ALTER USER <usuario> WITH ENCRYPTED PASSWORD '<pass>';
-```
+    ```C37
+    ALTER USER <usuario> WITH ENCRYPTED PASSWORD '<pass>';
+    ```
 
 5. creación, base de datos
-```C38
-CREATE DATABASE <base_de_datos> OWNER <propietario>;
-```
+    ```C38
+    CREATE DATABASE <base_de_datos> OWNER <propietario>;
+    ```
 
 6. comprobación, creación de la base de datos
-```C39
-\list
-```
+    ```C39
+    \list
+    ```
 
 7. borrado, base de datos
-```C40
-DROP DATABASE <base_de_datos>;
-```
+    ```C40
+    DROP DATABASE <base_de_datos>;
+    ```
 
 8. borrado, usuario
-```C41
-DROP USER <usuario>;
-```
+    ```C41
+    DROP USER <usuario>;
+    ```
 
 9. limpiar pantalla
-```C42
-\! clear;
-```
+    ```C42
+    \! clear;
+    ```
 
 10. salir
-```C43
-quit;
-```
+    ```C43
+    quit;
+    ```
 
 ## Usuario Mariabd / Mysql
 Luego de la instalación y configuración
 
 1. ingreso a la terminal de Mariabd / Mysql
-```C44
-sudo mysql
-```
+    ```C44
+    sudo mysql
+    ```
 
 2. creación del usuario propiamente dicho
-```C45
-CREATE USER '<usuario>'@'localhost' IDENTIFIED BY '<pass>';
-```
+    ```C45
+    CREATE USER '<usuario>'@'localhost' IDENTIFIED BY '<pass>';
+    ```
 
 3. comprobación de creación y si se le a asignado su contraseña
-* mariabd
-```C46
-SELECT User, Password, Host FROM mysql.user;
-```
-* mysql
-```C47
-SELECT User, authentication_string, Host FROM mysql.user;
-```
+    * mariabd
+        ```C46
+        SELECT User, Password, Host FROM mysql.user;
+        ```
+    * mysql
+        ```C47
+        SELECT User, authentication_string, Host FROM mysql.user;
+        ```
 
 4. cambiar contraseña
-```C48
-SET PASSWORD FOR '<usuario>'@'localhost' = PASSWORD('<pass>');
-```
+    ```C48
+    SET PASSWORD FOR '<usuario>'@'localhost' = PASSWORD('<pass>');
+    ```
 
 5. creación de la base de datos (3)
-```C49
-CREATE DATABASE <base_de_datos>;
-```
+    ```C49
+    CREATE DATABASE <base_de_datos>;
+    ```
 
 6. comprobación, creación de la base de datos
-```C50
-SHOW DATABASES;
-```
+    ```C50
+    SHOW DATABASES;
+    ```
 
 7. asignación los permisos
-```C51
-GRANT ALL PRIVILEGES ON <base_de_datos>.* TO 'user'@'localhost';
-FLUSH PRIVILEGES;
-```
+    ```C51
+    GRANT ALL PRIVILEGES ON <base_de_datos>.* TO 'user'@'localhost';
+    FLUSH PRIVILEGES;
+    ```
 
 8. borrado, base de datos
-```C52
-DROP DATABASE <base_de_datos>;
-```
+    ```C52
+    DROP DATABASE <base_de_datos>;
+    ```
 
 9. borrado, usuario
-```53
-DROP USER '<usuario>'@localhost;
-```
+    ```53
+    DROP USER '<usuario>'@localhost;
+    ```
 
 9. limpiar pantalla
-```C54
-\! clear;
-```
+    ```C54
+    \! clear;
+    ```
 
 10. salir
-```C55
-quit;
-```
+    ```C55
+    quit;
+    ```
 
 nota (1): en caso de que root no tenga contraseña se le asigna una.
 nota (2): 'usuario', es un genérico, puede ir cualquiera que consideremos pertinente.

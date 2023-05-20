@@ -1,44 +1,42 @@
-from django.shortcuts import render, redirect
 from django.contrib import messages
 
+from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
+from django.views.generic.edit import FormView
+from django.views.generic import CreateView
+
 from .forms import ContactoForm
-from .tools import contact_send_mail
 from .models import Aeronave
 
-def home(request):
-    context = {}
-    return render(request, 'home.html', context)
 
-def aeronaves(request):
-    aeronaves = Aeronave.objects.all()
-
-    return render(request, 'aeronaves.html', {'aeronaves': aeronaves})
+class Home(TemplateView):
+    template_name = 'home.html'
 
 
-def institucion(request):
-    context = {}
-    return render(request, 'institucion.html', context)
+class Aeronave(ListView):
+    template_name = 'aeronaves.html'
+    context_object_name = 'aeronaves'
+    model = Aeronave
 
-# def preguntasFrecuentes(request):
-#     context = {}
-#     return render(request, 'preguntas_frecuentes.html', context)
 
-def contacto(request):
-    if request.method == 'POST':
-        form = ContactoForm(request.POST)
+class Institucion(TemplateView):
+    template_name = 'institucion.html'
 
-        if form.is_valid():
-            try:
-                contact_send_mail(request)
-                form = ContactoForm()
-                messages.success(request, 'Su mensaje se ha enviado correctamente.')
-            except:
-                messages.error(request, 'Error interno, disculpe las molestias.')
-    else:
-        form = ContactoForm()
 
-    return render(request, 'contacto.html', {'form': form})
+class Contacto(FormView):
+    template_name = 'contacto.html'
+    success_url = 'contacto'
+    form_class = ContactoForm
 
-def only_socios(request):
-    context = {}
-    return render(request, 'only_socios.html', context)
+    def form_valid(self, form):
+        try:
+            form.send_mail()
+            messages.success(self.request, 'Su mensaje se ha enviado correctamente.')
+        except:
+            messages.error(self.request, 'Error interno, disculpe las molestias.')
+
+        return super().form_valid(form)
+
+
+class SoloSocios(TemplateView):
+    template_name = 'solo_socios.html'

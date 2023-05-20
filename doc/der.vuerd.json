@@ -1,0 +1,734 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -472,
+    "scrollLeft": -245,
+    "zoomLevel": 0.8,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "MySQL",
+    "databaseName": "",
+    "canvasType": "ERD",
+    "language": "JPA",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "AtomOneLight",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "Aeronave",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_aeronave",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 73.55712890625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "657c5a5c-604c-404f-821f-57e9ccb205cd"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 239.2046,
+          "top": 1026.6914,
+          "zIndex": 2,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "99fdc77f-064d-45c9-b55c-8b03d702601f"
+      },
+      {
+        "name": "Remolcador",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_aeronave",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 73.55712890625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "29572896-bca3-4dd9-9250-bfb2ea16ef15"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 238.819,
+          "top": 760.848,
+          "zIndex": 4,
+          "widthName": 72.08447265625,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "ceac0dd3-8a09-4055-b456-f464a47febde"
+      },
+      {
+        "name": "Planeador",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_aeronave",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 73.55712890625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "afc50099-e18a-40e3-99cf-fce0bbde4478"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 829.2863,
+          "top": 1025.2116,
+          "zIndex": 7,
+          "widthName": 61.26806640625,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "2f3ab818-8e85-4e34-978e-f7d33c82d656"
+      },
+      {
+        "name": "Actividad",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_aeronave_remolcador",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 145.8125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "3addb719-99ec-4dde-aa32-090787f1ef7b"
+          },
+          {
+            "name": "id_aeronave_planeador",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 138.6142578125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "8737730c-c9d2-468c-ac15-61da884668a2"
+          },
+          {
+            "name": "id_usuario_instructor",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 122.67529296875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "4ea7a9a3-8c6f-4100-ba7f-77101bbbc4ae"
+          },
+          {
+            "name": "id_usuario_piloto",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 100.29345703125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7b2c534c-132f-44ef-856b-a0b230225b75"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 793.376,
+          "top": 728.828,
+          "zIndex": 3,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "ed399b37-d893-4cda-9ecb-1b460dca1d09"
+      },
+      {
+        "name": "Instructor",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 61.9853515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "21c90fb5-9f86-4d11-b723-3d08c5035aa0"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 836.07,
+          "top": 503.6629,
+          "zIndex": 5,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "400b478b-7225-4a3e-bda9-2ea66648dd3a"
+      },
+      {
+        "name": "Piloto",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 61.9853515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "fd5c8b2b-862d-46d1-821b-a1e25aa54a1c"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1428.827,
+          "top": 758.5998,
+          "zIndex": 8,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "4bb17e81-404a-40ac-b286-8b765cedce1d"
+      },
+      {
+        "name": "Usuario",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_usuario",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 61.9853515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6e007efd-28fa-43f1-872e-a0fe7df65a94"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1428.4058,
+          "top": 503.8803,
+          "zIndex": 6,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "35530bc8-2181-4d57-8ff2-afade96e0ca0"
+      },
+      {
+        "name": "pl",
+        "comment": "",
+        "columns": [],
+        "ui": {
+          "active": false,
+          "left": 0,
+          "top": 37.9757,
+          "zIndex": 1,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "20958907-51a6-41ac-8e6a-7ab4d5a377bb"
+      },
+      {
+        "name": "planeador_piloto",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_aeronave",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 73.55712890625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6f333349-0d9f-4642-b397-d943ae2d2c01"
+          },
+          {
+            "name": "id_usuario",
+            "comment": "",
+            "dataType": "",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": true,
+              "widthName": 61.9853515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "0f87ff73-3d71-4deb-8c7b-95beaee64fdf"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1424.25,
+          "top": 1015.5,
+          "zIndex": 9,
+          "widthName": 98.13525390625,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "243c5919-e1dc-40c1-a2f2-a6e1f93617f0"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": true,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "99fdc77f-064d-45c9-b55c-8b03d702601f",
+          "columnIds": [
+            "657c5a5c-604c-404f-821f-57e9ccb205cd"
+          ],
+          "x": 419.483164453125,
+          "y": 1026.6914,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "ceac0dd3-8a09-4055-b456-f464a47febde",
+          "columnIds": [
+            "29572896-bca3-4dd9-9250-bfb2ea16ef15"
+          ],
+          "x": 419.09756445312496,
+          "y": 850.348,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_aeronave_to_remolcador",
+        "visible": true,
+        "id": "e780c98a-6a59-4c1b-9163-7b145b6700ed"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "ceac0dd3-8a09-4055-b456-f464a47febde",
+          "columnIds": [
+            "29572896-bca3-4dd9-9250-bfb2ea16ef15"
+          ],
+          "x": 599.37612890625,
+          "y": 805.598,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "ed399b37-d893-4cda-9ecb-1b460dca1d09",
+          "columnIds": [
+            "3addb719-99ec-4dde-aa32-090787f1ef7b"
+          ],
+          "x": 793.376,
+          "y": 804.328,
+          "direction": "left"
+        },
+        "constraintName": "fk_remolcador_to_actividad",
+        "visible": true,
+        "id": "f0c81fbe-0c8a-4521-9012-d760513ce1ac"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "99fdc77f-064d-45c9-b55c-8b03d702601f",
+          "columnIds": [
+            "657c5a5c-604c-404f-821f-57e9ccb205cd"
+          ],
+          "x": 599.76172890625,
+          "y": 1071.4414,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "2f3ab818-8e85-4e34-978e-f7d33c82d656",
+          "columnIds": [
+            "afc50099-e18a-40e3-99cf-fce0bbde4478"
+          ],
+          "x": 829.2863,
+          "y": 1069.9616,
+          "direction": "left"
+        },
+        "constraintName": "fk_aeronave_to_planeador",
+        "visible": true,
+        "id": "4d306553-1d3b-4c59-9e52-90c651044f38"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "2f3ab818-8e85-4e34-978e-f7d33c82d656",
+          "columnIds": [
+            "afc50099-e18a-40e3-99cf-fce0bbde4478"
+          ],
+          "x": 1009.564864453125,
+          "y": 1025.2116,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "ed399b37-d893-4cda-9ecb-1b460dca1d09",
+          "columnIds": [
+            "8737730c-c9d2-468c-ac15-61da884668a2"
+          ],
+          "x": 1009.78225,
+          "y": 879.828,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_planeador_to_actividad",
+        "visible": true,
+        "id": "d2fd58e8-85d3-46bf-a03c-3cf792b4fc47"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "35530bc8-2181-4d57-8ff2-afade96e0ca0",
+          "columnIds": [
+            "6e007efd-28fa-43f1-872e-a0fe7df65a94"
+          ],
+          "x": 1428.4058,
+          "y": 548.6303,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "400b478b-7225-4a3e-bda9-2ea66648dd3a",
+          "columnIds": [
+            "21c90fb5-9f86-4d11-b723-3d08c5035aa0"
+          ],
+          "x": 1185.0553515625002,
+          "y": 548.4129,
+          "direction": "right"
+        },
+        "constraintName": "fk_usuario_to_instructor",
+        "visible": true,
+        "id": "9fa51e5f-cd18-4d88-bbcb-17f47ffea340"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "400b478b-7225-4a3e-bda9-2ea66648dd3a",
+          "columnIds": [
+            "21c90fb5-9f86-4d11-b723-3d08c5035aa0"
+          ],
+          "x": 1010.56267578125,
+          "y": 593.1629,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "ed399b37-d893-4cda-9ecb-1b460dca1d09",
+          "columnIds": [
+            "4ea7a9a3-8c6f-4100-ba7f-77101bbbc4ae"
+          ],
+          "x": 1009.78225,
+          "y": 728.828,
+          "direction": "top"
+        },
+        "constraintName": "fk_instructor_to_actividad",
+        "visible": true,
+        "id": "62f47390-8dfa-48ab-8b09-b94f197248cc"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneOnly",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "35530bc8-2181-4d57-8ff2-afade96e0ca0",
+          "columnIds": [
+            "6e007efd-28fa-43f1-872e-a0fe7df65a94"
+          ],
+          "x": 1602.89847578125,
+          "y": 593.3803,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "4bb17e81-404a-40ac-b286-8b765cedce1d",
+          "columnIds": [
+            "fd5c8b2b-862d-46d1-821b-a1e25aa54a1c"
+          ],
+          "x": 1603.31967578125,
+          "y": 758.5998,
+          "direction": "top"
+        },
+        "constraintName": "fk_usuario_to_piloto",
+        "visible": true,
+        "id": "fa3f0d6f-5381-4ba7-a9db-a4fceadd3487"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "4bb17e81-404a-40ac-b286-8b765cedce1d",
+          "columnIds": [
+            "fd5c8b2b-862d-46d1-821b-a1e25aa54a1c"
+          ],
+          "x": 1428.827,
+          "y": 803.3498,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "ed399b37-d893-4cda-9ecb-1b460dca1d09",
+          "columnIds": [
+            "7b2c534c-132f-44ef-856b-a0b230225b75"
+          ],
+          "x": 1226.1885,
+          "y": 804.328,
+          "direction": "right"
+        },
+        "constraintName": "fk_piloto_to_actividad",
+        "visible": true,
+        "id": "d47e3c62-465a-4ab1-89de-84490c82b2ae"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "2f3ab818-8e85-4e34-978e-f7d33c82d656",
+          "columnIds": [
+            "afc50099-e18a-40e3-99cf-fce0bbde4478"
+          ],
+          "x": 1189.84342890625,
+          "y": 1069.9616,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "243c5919-e1dc-40c1-a2f2-a6e1f93617f0",
+          "columnIds": [
+            "6f333349-0d9f-4642-b397-d943ae2d2c01"
+          ],
+          "x": 1424.25,
+          "y": 1070.5,
+          "direction": "left"
+        },
+        "constraintName": "fk_planeador_to_planeador_piloto",
+        "visible": true,
+        "id": "cad91ed1-0a71-4c2a-8919-8cf1dca0152c"
+      },
+      {
+        "identification": true,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "4bb17e81-404a-40ac-b286-8b765cedce1d",
+          "columnIds": [
+            "fd5c8b2b-862d-46d1-821b-a1e25aa54a1c"
+          ],
+          "x": 1603.31967578125,
+          "y": 848.0998,
+          "direction": "bottom"
+        },
+        "end": {
+          "tableId": "243c5919-e1dc-40c1-a2f2-a6e1f93617f0",
+          "columnIds": [
+            "0f87ff73-3d71-4deb-8c7b-95beaee64fdf"
+          ],
+          "x": 1604.528564453125,
+          "y": 1015.5,
+          "direction": "top"
+        },
+        "constraintName": "fk_piloto_to_planeador_piloto",
+        "visible": true,
+        "id": "f7172e4e-0c5e-4cf5-9d4c-6cb1617fda92"
+      }
+    ]
+  }
+}
