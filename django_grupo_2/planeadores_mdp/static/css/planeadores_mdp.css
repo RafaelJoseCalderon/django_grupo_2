@@ -44,7 +44,7 @@ main {
 }
 
 .navbar-color {
-  background-color: rgb(77, 93, 113) !important;
+  background-color: rgb(69, 82, 110) !important;
 }
 
 a.nav-link {
@@ -212,7 +212,9 @@ footer {
 
 /* ------------- Estilo Contacto -------------- */
 .contacto {
-  background-color: #e8edf0;
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .contacto-textarea {
@@ -220,15 +222,8 @@ footer {
   height: 8em;
 }
 
-.form-control {
-  margin-top: 0.25rem !important;
-  border-radius: 0 !important;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
 .contacto-icono {
-  background-color: #2553b8;
+  background-color: #45526e;
   border-radius: 50%;
 
   width: 50px;
@@ -241,12 +236,16 @@ footer {
   margin: 10px;
 }
 
-.vh-50 {
+.map {
+  margin: 0;
+  padding: 0;
+  border: 0 0.375rem 0.375rem 0;
   min-height: 50vh !important
 }
 
 @media (min-width:992px) {
-  .vh-lg-none {
+  .map {
+    border: 0 0 0.375rem 0.375rem;
     height: auto !important;
   }
 

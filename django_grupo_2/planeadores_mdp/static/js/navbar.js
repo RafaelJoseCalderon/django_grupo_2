@@ -3,17 +3,17 @@ function navbarColor() {
     let winHeight = window.innerHeight;
 
     let base = 2 * scrollTop / winHeight;
-    let navbar = document.getElementById("navbar");
+    let navbar = document.getElementById('navbar');
 
     if (scrollTop < 0.5 * winHeight){
-        navbar.style.backgroundColor = `rgb(77, 93, 113, ${base})`;
+        navbar.style.backgroundColor = `rgb(69, 82, 110, ${base})`;
     } else {
-        navbar.style.backgroundColor = "rgb(77, 93, 113)";
+        navbar.style.backgroundColor = 'rgb(69, 82, 110)';
     }
 }
 
 function scrollListener() {
-    document.addEventListener("scroll", () => {navbarColor()});
+    document.addEventListener('scroll', () => {navbarColor()});
 }
 
 (() => {navbarColor(); scrollListener();})();

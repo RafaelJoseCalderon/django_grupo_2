@@ -52,3 +52,48 @@ class Aeronave(models.Model):
         verbose_name = 'Imagen',
         upload_to = 'aeronaves'
     )
+
+# class Usuario(models.Model):
+#     pass
+
+
+# class Instructor(Usuario):
+#     pass
+
+
+# class Piloto(Usuario):
+#     pass
+
+
+# class Areonave(models.Model):
+#     pass
+
+
+# class Remolcador(Areonave):
+#     pass
+
+
+# class Planeador(Areonave):
+#     pass
+
+
+# class Actividad(models.Model):
+#     instructor = models.ForeignKey(
+#         Instructor,
+#         on_delete=models.RESTRICT
+#     )
+
+#     piloto = models.ForeignKey(
+#         Piloto,
+#         on_delete=models.RESTRICT
+#     )
+
+#     remolcador = models.ForeignKey(
+#         Remolcador,
+#         on_delete=models.RESTRICT
+#     )
+
+#     planeador = models.ForeignKey(
+#         Planeador,
+#         on_delete=models.RESTRICT
+#     )
