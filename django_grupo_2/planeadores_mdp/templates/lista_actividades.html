@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+  <div>
+    <h1>Lista de actividades</h1>
+    {% for actividad in actividades %}
+      <div>
+        <div>
+          <ul>
+            <li>Envergadura: {{actividad.instructor.nombre}}</li>
+            <li>Área del ala: {{actividad.piloto.apellido}}</li>
+            <li>Relación de aspecto: {{actividad.remolcador.nombre}}</li>
+            <li>Peso máximo: {{actividad.planeador.nombre}}</li>
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

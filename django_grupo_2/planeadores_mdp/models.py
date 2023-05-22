@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class Usuario(models.Model):
     class Meta:
@@ -146,23 +145,31 @@ class Planeador(models.Model):
     )
 
 
-# class Actividad(models.Model):
-#     instructor = models.ForeignKey(
-#         Instructor,
-#         on_delete=models.RESTRICT
-#     )
+class Actividad(models.Model):
+    class Meta:
+        verbose_name = 'Actividad'
+        verbose_name_plural = 'Actividades'
 
-#     piloto = models.ForeignKey(
-#         Piloto,
-#         on_delete=models.RESTRICT
-#     )
+    instructor = models.ForeignKey(
+        Instructor,
+        on_delete=models.RESTRICT
+    )
 
-#     remolcador = models.ForeignKey(
-#         Remolcador,
-#         on_delete=models.RESTRICT
-#     )
+    piloto = models.ForeignKey(
+        Piloto,
+        on_delete=models.RESTRICT
+    )
 
-#     planeador = models.ForeignKey(
-#         Planeador,
-#         on_delete=models.RESTRICT
-#     )
+    remolcador = models.ForeignKey(
+        Remolcador,
+        on_delete=models.RESTRICT
+    )
+
+    # remolque_despegue = models.TimeField()
+
+    # remolque_corte = models.TimeField()
+
+    planeador = models.ForeignKey(
+        Planeador,
+        on_delete=models.RESTRICT
+    )

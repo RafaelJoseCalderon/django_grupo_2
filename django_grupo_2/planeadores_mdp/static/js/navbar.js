@@ -16,4 +16,16 @@ function scrollListener() {
     document.addEventListener('scroll', () => {navbarColor()});
 }
 
-(() => {navbarColor(); scrollListener();})();
+(() => {
+    if (document.getElementById('imgfond')) {
+        navbarColor();
+        scrollListener();
+    } else {
+        let header = document.getElementById("header");
+        header.classList.add("sticky-top");
+        header.classList.remove("fixed-top");
+
+        let navbar = document.getElementById('navbar');
+        navbar.classList.add("navbar-color");
+    }
+})();

@@ -6,7 +6,7 @@ from django.views.generic.edit import FormView
 from django.views.generic import CreateView
 
 from .forms import ContactoForm
-from .models import Planeador, Remolcador
+from .models import Planeador, Remolcador, Actividad
 
 
 class Home(TemplateView):
@@ -44,5 +44,15 @@ class Contacto(FormView):
         return super().form_valid(form)
 
 
-class SoloSocios(TemplateView):
-    template_name = 'solo_socios.html'
+
+class ActvidadAlta(CreateView):
+    template_name = 'alta_actividad.html'
+    model = Actividad
+    fields = '__all__'
+    success_url = '/'
+
+
+class ListaActividades(ListView):
+    template_name = 'lista_actividades.html'
+    context_object_name = 'actividades'
+    model = Actividad
