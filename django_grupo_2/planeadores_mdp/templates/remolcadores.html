@@ -1,0 +1,24 @@
+{% extends 'aeronaves.html' %}
+{% load static %}
+
+{% block aeronaves %}
+  {% for aeronave in aeronaves %}
+    <div class="ae-tarjeta">
+      <img class="ae-imagen" src="{{aeronave.imagen.url}}" alt="...">
+
+      <div class="ae-contenedor-datos">
+        <h1 class="ae-nombre">{{aeronave.nombre}}</h1>
+        <ul class="ae-datos-tecnicos">
+          <li>Carga util maxima: {{aeronave.carga_util_maxima}}pies</li>
+          <li>Tanque combustible: {{aeronave.tanque_combustible}}L</li>
+          <li>Velociad crucero: {{aeronave.velociad_crucero}}KTAS</li>
+          <li>Velociad maxima: {{aeronave.velocidad_maxima}}KTAS</li>
+          <li>Autonomia de vuelo: {{aeronave.autonomia_de_vuelo}}km</li>
+          <li>Contras de combustible: {{aeronave.contras_de_combustible}}L/Hs</li>
+          <li>Tasa de ascenso: {{aeronave.tasa_de_ascenso}}pies</li>
+          <li>Maxima altura: {{aeronave.maxima_altura}}pies</li>
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

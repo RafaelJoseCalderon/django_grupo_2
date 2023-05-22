@@ -9,24 +9,6 @@
     <p>Nuestro club cuenta con la siguiente flota preparada y automatizada para poder volar</p>
   </div>
 
-  {% for aeronave in aeronaves %}
-    <div class="ae-tarjeta">
-      <img class="ae-imagen" src="{{aeronave.imagen.url}}" alt="...">
-
-      <div class="ae-contenedor-datos">
-        <h1 class="ae-nombre">{{aeronave.nombre}}</h1>
-        <ul class="ae-datos-tecnicos">
-          <li>Capacidad: {{aeronave.capacidad}} pax</li>
-          <li>Motor: Continental {{aeronave.motor}}HP</li>
-          <li>Velocidad Crucero: {{aeronave.velocidad_crucero}}mph</li>
-          <li>Tanque Combustible: {{aeronave.tanque_combustible}} litros</li>
-          <li>Consumo por hora: {{aeronave.consumo_por_hora}}lts/h</li>
-          <li>Autonomía: {{aeronave.autonomia}}hs</li>
-          <li>Peso Máximo: {{aeronave.peso_maximo}}kg</li>
-          <li>Equipaje: {{aeronave.equipaje}}kg</li>
-        </ul>
-      </div>
-    </div>
-  {% endfor %}
+  {% block aeronaves %}{% endblock %}
 
 {% endblock %}

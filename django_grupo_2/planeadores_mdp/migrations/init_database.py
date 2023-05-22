@@ -1,125 +1,221 @@
 from django.db import migrations, models
 from django.contrib.auth.models import User
 
-from ..models import Aeronave
+from ..models import Instructor, Piloto, Planeador, Remolcador
 
 
 def setUp(apps, scheme_editor):
-    """ Aeronaves """
-    aeronaves = []
+    """Remolcador"""
+    remolcadores = []
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Piper PA-11 LV-XLT",
-            capacidad = 2,
-            motor = "Continental 90",
-            velocidad_crucero = 90,
-            tanque_combustible = 64,
-            consumo_por_hora = 20,
-            autonomia = 3.2,
-            peso_maximo = 554,
-            equipaje = 9,
-            imagen = "aeronaves/Piper11.jpg"
+    remolcadores.append(
+        Remolcador.objects.create(
+            nombre = 'robin-aircraft DR401 - 180R',
+            carga_util_maxima = 1000,
+            tanque_combustible = 160,
+            velociad_crucero = 123,
+            velocidad_maxima = 124,
+            autonomia_de_vuelo = 944,
+            contras_de_combustible = 39.0,
+            tasa_de_ascenso = 770,
+            maxima_altura = 20000,
+            imagen = "remolcadores/dr401_180r.jpg"
         )
     )
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Cessna 172 - LV-GRU",
-            capacidad = 4,
-            motor = "Continental 145",
-            velocidad_crucero = 100,
-            tanque_combustible = 147,
-            consumo_por_hora = 30,
-            autonomia = 4.6,
-            peso_maximo = 1043,
-            equipaje = 22,
-            imagen = "aeronaves/Cessna.jpg"
+    remolcadores.append(
+        Remolcador.objects.create(
+            nombre = 'robin-aircraft DR401 - 155R',
+            carga_util_maxima = 920,
+            tanque_combustible = 160,
+            velociad_crucero = 122,
+            velocidad_maxima = 132,
+            autonomia_de_vuelo = 1507,
+            contras_de_combustible = 23.8,
+            tasa_de_ascenso = 650,
+            maxima_altura = 16000,
+            imagen = "remolcadores/dr401_155r.jpg"
         )
     )
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Aero Boero 180 LV-JZY",
-            capacidad = 4,
-            motor = "Lycoming 180",
-            velocidad_crucero = 110,
-            tanque_combustible = 64,
-            consumo_por_hora = 20,
-            autonomia = 3.2,
-            peso_maximo = 8444,
-            equipaje = 9,
-            imagen = "aeronaves/AeroBoero.jpg"
+    for remolcador in remolcadores:
+        remolcador.save()
+
+    """ Planeadores """
+    planeadores = []
+
+    planeadores.append(
+        Planeador.objects.create(
+            nombre = 'JS2 Revelation',
+            envergadura = 18,
+            area_del_ala = 11.19,
+            relacion_de_aspecto = 28.8,
+            peso_maximo = 640,
+            peso_minimo = 400,
+            imagen = "planeadores/js2_revelation.jpg"
         )
     )
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Piper PA-28 Cherokee LV-LMC",
-            capacidad = 4,
-            motor = "Lycoming 180",
-            velocidad_crucero = 100,
-            tanque_combustible = 147,
-            consumo_por_hora = 30,
-            autonomia = 4.6,
-            peso_maximo = 1043,
-            equipaje = 22,
-            imagen = "aeronaves/Piper28.jpg"
+    planeadores.append(
+        Planeador.objects.create(
+            nombre = 'JS3 Rapture',
+            envergadura = 18,
+            area_del_ala = 9.95,
+            relacion_de_aspecto = 32.8,
+            peso_maximo = 600,
+            peso_minimo = 296,
+            imagen = "planeadores/js3_rapture.jpg"
         )
     )
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Schleicher ASK-13 LV-EAK",
-            capacidad = 4,
-            motor = "Lycoming 180",
-            velocidad_crucero = 90,
-            tanque_combustible = 64,
-            consumo_por_hora = 20,
-            autonomia = 3.2,
-            peso_maximo = 480,
-            equipaje = 9,
-            imagen = "aeronaves/schleicher.jpg"
+    planeadores.append(
+        Planeador.objects.create(
+            nombre = 'JS4 Rengeti',
+            envergadura = 18,
+            area_del_ala = 11.25,
+            relacion_de_aspecto = 28.8,
+            peso_maximo = 600,
+            peso_minimo = 291,
+            imagen = "planeadores/js4_rengeti.jpg"
         )
     )
 
-    aeronaves.append(
-        Aeronave.objects.create(
-            nombre = "Brasov ISD-28",
-            capacidad = 2,
-            motor = "Lycoming 180",
-            velocidad_crucero = 95,
-            tanque_combustible = 147,
-            consumo_por_hora = 30,
-            autonomia = 4.6,
-            peso_maximo = 590,
-            equipaje = 22,
-            imagen = "aeronaves/Brasov.jpg"
+    planeadores.append(
+        Planeador.objects.create(
+            nombre = 'AS 35 Mi',
+            envergadura = 20,
+            area_del_ala = 11.75,
+            relacion_de_aspecto = 34,
+            peso_maximo = 730,
+            peso_minimo = 455,
+            imagen = "planeadores/as_35_mi.jpg"
         )
     )
 
-    for aeronave in aeronaves:
-        aeronave.save()
+    planeadores.append(
+        Planeador.objects.create(
+            nombre = 'ASH 31 Mi',
+            envergadura = 21,
+            area_del_ala = 13.20,
+            relacion_de_aspecto = 33.5,
+            peso_maximo = 700,
+            peso_minimo = 455,
+            imagen = "planeadores/ash_31_mi.jpg"
+        )
+    )
 
-    """ Usuarios """
+    for planeador in planeadores:
+        planeador.save()
+
+    """Usuarios"""
     usuarios = []
 
     usuarios.append(
-        User(
-            username = 'root',
-            first_name = 'root',
-            last_name = 'root',
-            email = 'root@root.com',
-            is_superuser = True,
-            is_staff = True,
-            is_active = True,
+        Instructor.objects.create(
+            nombre = 'Adan',
+            apellido = 'AdanAdan',
+            email = 'Adan@email.com',
+            dni = 48295602
         )
     )
-    
-    usuarios[0].set_password('root')
+
+    usuarios.append(
+        Instructor.objects.create(
+            nombre = 'Eva',
+            apellido = 'EvaEva',
+            email = 'EvaEva@email.com',
+            dni = 74244764
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Bonifacio',
+            apellido = 'Gomez',
+            email = 'bonifacio@email.com',
+            dni = 62899927
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Clemente',
+            apellido = 'Lopez',
+            email = 'clemente@email.com',
+            dni = 34941794
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Dalmacio',
+            apellido = 'Martinez',
+            email = 'dalmacio@email.com',
+            dni = 89208350
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Emeterio',
+            apellido = 'Garcia',
+            email = 'emeterio@email.com',
+            dni = 95659876
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Taciana',
+            apellido = 'Moyano',
+            email = 'taciana@email.com',
+            dni = 31650108
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Ursula',
+            apellido = 'Campos',
+            email = 'ursula@email.com',
+            dni = 38923477
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Valentina',
+            apellido = 'Soto',
+            email = 'valentina@email.com',
+            dni = 52480511
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            nombre = 'Zeferina',
+            apellido = 'Chávez',
+            email = 'zeferina@email.com',
+            dni = 75797068
+        )
+    )
 
     for usuario in usuarios:
         usuario.save()
+
+    """ Root """
+    root = User(
+        username = 'root',
+        first_name = 'root',
+        last_name = 'root',
+        email = 'root@root.com',
+        is_superuser = True,
+        is_staff = True,
+        is_active = True,
+    )
+    
+    root.set_password('root')
+    root.save()
 
 
 class Migration(migrations.Migration):

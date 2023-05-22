@@ -2,79 +2,148 @@ from django.db import models
 
 # Create your models here.
 
-# class Categoria(models.Model):
-#     nombre = models.CharField(max_length=20)
+class Usuario(models.Model):
+    class Meta:
+        abstract = True
 
-class Aeronave(models.Model):
     nombre = models.CharField(
         max_length = 50,
         verbose_name = 'Nombre'
     )
 
-    capacidad = models.IntegerField()
-
-    motor = models.CharField(
+    apellido = models.CharField(
         max_length = 50,
-        verbose_name = 'Motor'
+        verbose_name = 'Apellido'
     )
 
-    velocidad_crucero = models.DecimalField(
+    email = models.EmailField(
+        max_length = 200,
+        verbose_name = 'Correo electronico'
+    )
+
+    dni = models.BigIntegerField(
+        verbose_name = 'DNI'
+    )
+
+
+class Instructor(Usuario):
+    class Meta:
+        verbose_name = 'Instructor'
+        verbose_name_plural = 'Instructores'
+
+
+class Piloto(Usuario):
+    class Meta:
+        verbose_name = 'Piloto'
+        verbose_name_plural = 'Pilotos'
+
+
+class Remolcador(models.Model):
+    class Meta:
+        verbose_name = 'Remolcador'
+        verbose_name_plural = 'Remolcadores'
+
+    nombre = models.CharField(
+        verbose_name = 'Nombre',
+        max_length = 50
+    )
+
+    carga_util_maxima = models.DecimalField(
+        verbose_name = 'Carga util maxima',
         max_digits = 10,
         decimal_places = 2
     )
 
     tanque_combustible = models.DecimalField(
+        verbose_name = 'Tanque combustible',
         max_digits = 10,
         decimal_places = 2
     )
 
-    consumo_por_hora = models.DecimalField(
+    velociad_crucero = models.DecimalField(
+        verbose_name = 'Velociad crucero',
         max_digits = 10,
         decimal_places = 2
     )
 
-    autonomia = models.DecimalField(
+    velocidad_maxima = models.DecimalField(
+        verbose_name = 'Velociad maxima',
         max_digits = 10,
         decimal_places = 2
     )
 
-    peso_maximo = models.DecimalField(
+    autonomia_de_vuelo = models.DecimalField(
+        verbose_name = 'Autonomia de vuelo',
         max_digits = 10,
         decimal_places = 2
     )
 
-    equipaje = models.DecimalField(
+    contras_de_combustible = models.DecimalField(
+        verbose_name = 'Contras de combustible',
+        max_digits = 10,
+        decimal_places = 2
+    )
+
+    tasa_de_ascenso = models.DecimalField(
+        verbose_name = 'Tasa de ascenso',
+        max_digits = 10,
+        decimal_places = 2
+    )
+
+    maxima_altura = models.DecimalField(
+        verbose_name = 'Maxima altura',
         max_digits = 10,
         decimal_places = 2
     )
 
     imagen = models.ImageField(
         verbose_name = 'Imagen',
-        upload_to = 'aeronaves'
+        upload_to = 'remolcadores'
     )
 
-# class Usuario(models.Model):
-#     pass
 
+class Planeador(models.Model):
+    class Meta:
+        verbose_name = 'Planeador'
+        verbose_name_plural = 'Planeadores'
 
-# class Instructor(Usuario):
-#     pass
+    nombre = models.CharField(
+        verbose_name = 'Nombre',
+        max_length = 50
+    )
 
+    envergadura = models.IntegerField(
+        verbose_name = 'Envergadura'
+    )
 
-# class Piloto(Usuario):
-#     pass
+    area_del_ala = models.DecimalField(
+        verbose_name = 'Area del ala',
+        max_digits = 10,
+        decimal_places = 2
+    )
 
+    relacion_de_aspecto = models.DecimalField(
+        verbose_name = 'Relacion de aspecto',
+        max_digits = 10,
+        decimal_places = 2
+    )
 
-# class Areonave(models.Model):
-#     pass
+    peso_maximo = models.DecimalField(
+        verbose_name = 'Peso maximo',
+        max_digits = 10,
+        decimal_places = 2
+    )
 
+    peso_minimo = models.DecimalField(
+        verbose_name = 'Peso minimo',
+        max_digits = 10,
+        decimal_places = 2
+    )
 
-# class Remolcador(Areonave):
-#     pass
-
-
-# class Planeador(Areonave):
-#     pass
+    imagen = models.ImageField(
+        verbose_name = 'Imagen',
+        upload_to = 'planeadores'
+    )
 
 
 # class Actividad(models.Model):

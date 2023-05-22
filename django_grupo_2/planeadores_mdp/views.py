@@ -6,17 +6,23 @@ from django.views.generic.edit import FormView
 from django.views.generic import CreateView
 
 from .forms import ContactoForm
-from .models import Aeronave
+from .models import Planeador, Remolcador
 
 
 class Home(TemplateView):
     template_name = 'home.html'
 
 
-class Aeronave(ListView):
-    template_name = 'aeronaves.html'
+class Planeador(ListView):
+    template_name = 'planeadores.html'
     context_object_name = 'aeronaves'
-    model = Aeronave
+    model = Planeador
+
+
+class Remolcador(ListView):
+    template_name = 'remolcadores.html'
+    context_object_name = 'aeronaves'
+    model = Remolcador
 
 
 class Institucion(TemplateView):

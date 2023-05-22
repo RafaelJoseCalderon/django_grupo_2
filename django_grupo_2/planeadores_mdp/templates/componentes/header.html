@@ -19,21 +19,41 @@
             Home
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {% link_activate 'aeronaves' %}" href="{% url 'aeronaves' %}">
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Aeronaves
           </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'planeadores' %}">Planeadores</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'remolcadores' %}">Remolcadores</a></li>
+          </ul>
         </li>
+
         <li class="nav-item">
           <a class="nav-link {% link_activate 'institucion' %}" href="{% url 'institucion' %}">
             Institucion
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link {% link_activate 'solo_socios' %}" href="{% url 'solo_socios' %}">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle {% link_activate 'solo_socios' %}" href="{% url 'solo_socios' %}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Exclusivos Socios
           </a>
+
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Inst Alta</a></li>
+            <li><a class="dropdown-item" href="#">Inst Baja</a></li>
+            <li><a class="dropdown-item" href="#">Inst Modificacion</a></li>
+            <li><a class="dropdown-item" href="#">Inst Resultados</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Pil Alta</a></li>
+            <li><a class="dropdown-item" href="#">Pil Baja</a></li>
+            <li><a class="dropdown-item" href="#">Pil Modificacion</a></li>
+            <li><a class="dropdown-item" href="#">Pil Resultados</a></li>
+          </ul>
+
         </li>
 
         <li class="nav-item">
