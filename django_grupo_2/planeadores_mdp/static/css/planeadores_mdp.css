@@ -68,6 +68,10 @@ footer {
 }
 
 /* ------------- Estilo Home -------------- */
+.title {
+  margin: 5%;
+}
+
 .container{
   width: 100%;
   display: flex;
@@ -131,10 +135,6 @@ footer {
 }
 
 /* ------------- Estilo Aeronaves -------------- */
-.ae-titulo {
-  margin: 5%;
-}
-
 .ae-tarjeta {
   display: flex;
 
