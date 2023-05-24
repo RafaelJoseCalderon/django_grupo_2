@@ -49,7 +49,7 @@ class ActvidadAlta(CreateView):
     template_name = 'alta_actividad.html'
     model = Actividad
     fields = '__all__'
-    success_url = '/'
+    success_url = 'actividades'
 
 
 class ListaActividades(ListView):
