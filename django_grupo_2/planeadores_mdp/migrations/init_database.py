@@ -217,6 +217,19 @@ def setUp(apps, scheme_editor):
     root.set_password('root')
     root.save()
 
+    user = User(
+        username = 'adan',
+        first_name = 'Adan',
+        last_name = 'AdanAdan',
+        email = 'adan@root.com',
+        is_superuser = False,
+        is_staff = True,
+        is_active = True,
+    )
+    
+    user.set_password('1234')
+    user.save()
+
 
 class Migration(migrations.Migration):
     dependencies = [

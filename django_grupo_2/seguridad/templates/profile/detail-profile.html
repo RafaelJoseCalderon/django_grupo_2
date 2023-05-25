@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+  <link href="{% static 'css/seguridad.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block contenido %}
+  <div class="profile">
+    <h3>Perfil de usuario</h3>
+
+    <div class="profile-card">
+      <div class="d-flex flex-column d-md-flex flex-md-row">
+
+        <div class="col-12 col-md-4 profile-card-left">
+          <div class="d-flex justify-content-center flex-nowrap flex-column">
+            {% if object.picture %}
+              <img src="{{ object.picture.url }}" class="profile-card-image" alt="...">
+            {% else %}
+              <img src="{% static 'img/avatar_2x.png' %}" class="profile-card-image" alt="...">
+            {% endif %}
+  
+            <h3 class="mx-auto">{{ object.user.username }}</h3>
+  
+            <a href="{% url 'profile_edit' %}" class="btn btn-primary my-2 mx-5">Editar Perfil</a>
+          </div>
+        </div>
+  
+        <div class="col-12 col-md-8">
+          <div class="profile-card-body">
+            <h5 class="profile-card-title">Nombre</h5>
+            <p class="profile-card-text">{{ object.user.first_name }}</p>
+            <hr>
+  
+            <h5 class="profile-card-title">Apelido</h5>
+            <p class="profile-card-text">{{ object.user.last_name }}</p>
+            <hr>
+  
+            <h5 class="profile-card-title">Email</h5>
+            <p class="profile-card-text">{{ object.user.email }}</p>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+{% endblock %}

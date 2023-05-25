@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+  <link href="{% static 'css/seguridad.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block contenido %}
+  <div class="profile">
+    <h3>Perfil de usuario</h3>
+
+    {% for message in messages %}
+      <div class="col order-lg-last">
+        <div class="alert {{ message.tags }} alert-dismissible fade show m-1" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="profile-card mb-3">
+      <div class="d-flex flex-column d-md-flex flex-md-row">
+
+        <div class="col-12 col-md-4 profile-card-left">
+          <div class="d-flex justify-content-center flex-nowrap flex-column">
+            {% if object.picture %}
+              <img src="{{ object.picture.url }}" class="profile-card-image" alt="...">
+            {% else %}
+              <img src="{% static 'img/avatar_2x.png' %}" class="profile-card-image" alt="...">
+            {% endif %}
+
+            <h3 class="mx-auto">{{ object.user.username }}</h3>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+          <div class="profile-card-body">
+            <form method="post" enctype="multipart/form-data">
+              <div>{% csrf_token %}</div>
+
+              {% for field in form.user %}
+                <div class="mb-3">
+                <h5 class="profile-card-title">{{ field.label }}</h5>
+                {{ field }}
+              
+                {% comment %} error back {% endcomment %}
+                {% for error in field.errors %}
+                  <div class="alert alert-danger mb-1 p-2" role="alert">
+                    {{ error }}
+                  </div>
+                {% endfor %}
+              </div>
+              {% endfor %}
+
+              {% for field in form %}
+                <div class="mb-3">
+                  <h5 class="profile-card-title">{{ field.label }}</h5>
+                  {{ field }}
+                
+                  {% comment %} error back {% endcomment %}
+                  {% for error in field.errors %}
+                    <div class="alert alert-danger mb-1 p-2" role="alert">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endfor %}
+
+              <div class="my-4">
+                <a class= "btn border w-100" href="{% url 'password_change' %}">Cambiar contraseña</a>
+              </div>
+
+              <hr class="mb-4" />
+              <div class="d-grid gap-2 d-flex justify-content-end">
+                <a class="btn btn-primary btn-form" href="{% url 'profile' %}">Volver</a>
+                <input class="btn btn-primary btn-form" type="submit" value="Confirmar" />
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

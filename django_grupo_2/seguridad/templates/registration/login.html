@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+  <link href="{% static 'css/seguridad.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block script%}
+  <script src="{% static 'js/form-validate.js' %}" defer></script>
+{% endblock %}
+
+{% block contenido %}
+  <form class="form-login needs-validation" action="" method="post" novalidate>
+    <img class="img-redonda" src="{% static 'img/avatar_2x.png' %}" alt="imagen no disponible" />
+
+    <div>{% csrf_token %}</div>
+
+    <div class="mb-3">
+      <label class="form-label ps-1">Usuario</label>
+      <input id="id_username" type="text" name="username" maxlength="254" class="form-control" placeholder="juan_perez"
+        required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label ps-1">Contraseña</label>
+      <input id="id_password" type="password" name="password" class="form-control" placeholder="*******" required />
+      <div class="invalid-feedback">Este campo es requerido</div>
+    </div>
+
+    {% for message in messages %}
+      <div class="col order-lg-last">
+        <div class="alert {{ message.tags }} alert-dismissible fade show m-1" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+      </div>
+    {% endfor %}
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger alert-dismissible fade show p-2" role="alert">
+        <div>Usuario y/o contraseña incorrectos,<br> prueba nuevamente.</div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endif %}
+
+    <hr class="mb-4" />
+    <input class="btn btn-primary btn-lg w-100" type="submit" value="Ingresar" />
+
+    <p class="text-center m-2">
+      <a href="{% url 'password_reset' %}">¿Ha olvidado su contraseña?</a>
+    </p>
+
+  </form>
+{% endblock %}
