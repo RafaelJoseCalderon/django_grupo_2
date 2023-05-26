@@ -182,29 +182,67 @@ footer {
 }
 
 /* ------------- Estilo Institucion -------------- */
-.container2-institucion h1{
+.container-institucion {
+  margin: 10%;
+  margin-left: 60vh;
+  width: 50%;
+}
+
+.container-institucion h1 {
   text-align: center;
-  color: #45526e;
 }
-.container2-institucion{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
+.container-institucion p{
+  text-align: justify;
+  margin-top: 2em;
+  margin-left: 5%;
 }
-.container2-institucion img{
-  margin-right: 10px;
-  max-width: 600px;
-  height: auto;
+
+h3{
+  margin-left: 5vh;
 }
-.container3-institucion{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+
+ul {
+  margin-left: 5vh;
 }
-.container3-institucion img{
-  margin-left: 10px;
-  max-width: 600px;
-  height: auto;
+
+#imgfond {
+  margin-top: 5vh;
+}
+
+.button {
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;	
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #eb94d0;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 6px 5px 24px #666666;
+  font-family: Arial;
+  color: #fafafa;
+  font-size: 27px;
+  padding: 19px;
+  margin-left: 40%;
+  margin-top: 5%;
+}
+
+.button:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* ------------- Estilo Solo Socios -------------- */

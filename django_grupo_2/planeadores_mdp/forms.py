@@ -9,7 +9,7 @@ class ContactoForm(forms.Form):
     nombre_completo = forms.CharField(
         label = 'Nombre Completo', 
         max_length = 100,
-        help_text = 'El nombre es requerido, no puede superar los 100 caracteres',
+        help_text = 'Por favor ingrese su nombre y apellido completo, los mismos no pueden superar los 100 caracteres',
         widget = forms.TextInput(
             attrs = {
                 'class': 'form-control',
