@@ -233,7 +233,7 @@ def setUp(apps, scheme_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('planeadores_mdp', '0001_initial'),
+        ('usuarios', '0001_initial'),
     ]
 
     operations = [

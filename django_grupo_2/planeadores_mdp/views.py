@@ -3,10 +3,9 @@ from django.contrib import messages
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import FormView
-from django.views.generic import CreateView
 
+from usuarios.models import Planeador, Remolcador
 from .forms import ContactoForm
-from .models import Planeador, Remolcador, Actividad
 
 
 class Home(TemplateView):
@@ -42,17 +41,3 @@ class Contacto(FormView):
             messages.error(self.request, 'Error interno, disculpe las molestias.')
 
         return super().form_valid(form)
-
-
-
-class ActvidadAlta(CreateView):
-    template_name = 'alta_actividad.html'
-    model = Actividad
-    fields = '__all__'
-    success_url = 'actividades'
-
-
-class ListaActividades(ListView):
-    template_name = 'lista_actividades.html'
-    context_object_name = 'actividades'
-    model = Actividad

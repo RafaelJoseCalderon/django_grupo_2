@@ -2,8 +2,6 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.core.mail import send_mail
 
-from .models import Actividad
-
 
 class ContactoForm(forms.Form):
     nombre_completo = forms.CharField(
@@ -60,9 +58,3 @@ class ContactoForm(forms.Form):
             ["wololo@secretaria.com"],
             fail_silently=False
         )
-
-
-class ActividadForm(forms.ModelForm):
-    class Meta:
-        model = Actividad
-        fields = '__all__'

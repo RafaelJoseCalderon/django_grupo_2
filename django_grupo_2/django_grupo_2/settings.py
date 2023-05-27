@@ -33,6 +33,7 @@ DATABASES_TYPE = 'sqlite3'
 
 INSTALLED_APPS = [
     'planeadores_mdp.apps.PlaneadoresMdpConfig',
+    'usuarios.apps.UsuariosConfig',
     'seguridad.apps.SeguridadConfig',
     'django.contrib.admin',
     'django.contrib.auth',

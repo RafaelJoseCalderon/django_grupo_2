@@ -7,7 +7,4 @@ urlpatterns = [
     path('remolcadores', Remolcador.as_view(), name='remolcadores'),
     path('institucion', Institucion.as_view(), name='institucion'),
     path('contacto', Contacto.as_view(), name='contacto'),
-
-    path('alta_actividad', ActvidadAlta.as_view(), name='alta_actividad'),
-    path('actividades', ListaActividades.as_view(), name='actividades'),
 ]
