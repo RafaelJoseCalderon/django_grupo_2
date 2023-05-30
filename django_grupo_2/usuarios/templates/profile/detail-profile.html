@@ -14,8 +14,8 @@
 
         <div class="col-12 col-md-4 profile-card-left">
           <div class="d-flex justify-content-center flex-nowrap flex-column">
-            {% if object.picture %}
-              <img src="{{ object.picture.url }}" class="profile-card-image" alt="...">
+            {% if object.perfil.imagen %}
+              <img src="{{ object.perfil.imagen.url }}" class="profile-card-image" alt="...">
             {% else %}
               <img src="{% static 'img/avatar_2x.png' %}" class="profile-card-image" alt="...">
             {% endif %}

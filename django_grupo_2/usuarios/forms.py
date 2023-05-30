@@ -2,14 +2,34 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import Profile
+from .models import Perfil
 from .models import Actividad
 
 
-class ProfileForm(forms.ModelForm):
+class InitFormsMixin:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+
+class PerfilForm(InitFormsMixin, forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['username', 'first_name', 'last_name', 'email', 'picture']
+        model = Perfil
+        fields = ['imagen']
+
+    def __init__(self, *args, **kwargs):
+        kwargs['instance'] = kwargs['instance'].perfil
+        super().__init__(*args, **kwargs)
+
+        self.fields['imagen'].widget.template_name = 'components/clearable_file_input.html'
+
+
+class UsuarioPerfilForm(InitFormsMixin, forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
         widgets = {
             'email': forms.EmailInput(
                 attrs = {
@@ -24,16 +44,23 @@ class ProfileForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
+        self.perfil = PerfilForm(*args, **kwargs)
+ 
         for field in self.fields.values():
-            field.widget.attrs['class'] = 'form-control'
             field.required = True
 
-        self.fields['picture'].widget.template_name = 'components/clearable_file_input.html'
-        self.fields['picture'].required = False
+    def is_valid(self):
+        return super().is_valid() and self.perfil.is_valid()
+
+    # como diantres se hace el atomic aca!!!
+    def save(self):
+        perfil = self.perfil.save()
+        usuario = super().save()
+
+        return usuario
 
 
-class ActividadForm(forms.ModelForm):
+class ActividadForm(InitFormsMixin, forms.ModelForm):
     class Meta:
         model = Actividad
         fields = '__all__'

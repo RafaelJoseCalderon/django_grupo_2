@@ -3,34 +3,32 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
 
-class Profile(User):
-    # esto no me anduvo, al crear el perfil me borra el usuario
-    # user_ptr = models.OneToOneField(
-    #     User,
-    #     on_delete=models.PROTECT,
-    #     parent_link=True,
-    #     primary_key=True,
-    # )
-
-    picture = models.ImageField(
-        verbose_name = _('Image'),
+class Perfil(models.Model):
+    imagen = models.ImageField(
+        verbose_name = _('Imagen'),
         upload_to = 'seguridad',
         null = True,
         blank = True
     )
 
+    usuario = models.OneToOneField(
+        related_name='perfil',
+        to = User,
+        on_delete = models.CASCADE
+    )
+
     def save(self, *args, **kwargs):
         try:
-            profile_query = Profile.objects.filter(id = self.id)
+            perfil_query = Perfil.objects.filter(id = self.id)
 
-            if profile_query.exists():
-                if profile_query[0].picture != self.picture:
-                    profile_query[0].picture.delete(save = False)
+            if perfil_query.exists():
+                if perfil_query[0].imagen != self.imagen:
+                    perfil_query[0].imagen.delete(save = False)
 
         except ValueError:
             raise ValueError('Houston, tenemos un problema')
 
-        super(Profile, self).save(*args, **kwargs)
+        super(Perfil, self).save(*args, **kwargs)
 
 
 class Usuario(models.Model):
