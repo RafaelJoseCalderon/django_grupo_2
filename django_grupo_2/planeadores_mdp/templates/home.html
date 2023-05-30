@@ -5,49 +5,89 @@
   <title>Club de Planeadores de Mar del Plata</title>
 {% endblock %}
 
-{% block img_fondo %}<img id="imgfond" src="{% static 'img/home.jpg' %}" alt="imagen de fondo" class="fondo">{% endblock %}
+{% block img_fondo %}
+  <img id="imgfond" src="{% static 'img/home.jpg' %}" alt="imagen de fondo" class="fondo">
+{% endblock %}
 
 {% block contenido %}
-  <div class="title">
-    <h1>Nuestra historia</h1>    
-    <p> Volar, uno de los más antiguos sueños de la humanidad, sentirse libre, sentir la brisa del viento. El brasilero Alberto Santos Dumont en 1906 logro volar alrededor de la Torre Eifel en París, luego los hermnaos Wright en Estados Unidos se incursionaron en la aviación. En 1919 nace la aviación comercial de transporte. El tratado de Versalles que documenta la derrota de los países del Eje, prohíbe al perdedor volar aeronaves motorizadas y fabricarlas. La juventud se vuelca al deporte del vuelo sin motor y lo perfecciona con la participación de ingenieros y científicos especializados, con la participación de todas las países de Europa sin ninguna discriminación. </br></br>
-      Tomás Anchorena y Jorge Newbery empiezan la historia del vuelo mecánico organizado en 1905 con el Globo "El Pampero". En 1910 se suma la Federación Aeronáutica Internacional, se crea el Aeroclub Argentino y el ACA (Automovil Club Argentino), el Club de Planeadores Albatros y la Radio Club Argentino. </br></br>
-      En 1930 el Gobierno Argentino invita a una Misión Alemana a realizar demostraciones de vuelo en planeadores y su director el profesor Dr. Walter Giorggi entusiasma a la juventud que el Gobierno Nacional decide impulsar el llamado "deporte ciencia" fomentando la fundación de clubes en todo el país. Surgieron miles de instituciones junto con los aeroclubes con motor.      
+  <div class="container my-5">
+    <h1>Nuestra historia</h1>
+    <p class="text-align-justify">
+      Volar, uno de los más antiguos sueños de la humanidad, sentirse libre, sentir la brisa del viento. El brasilero
+      Alberto Santos Dumont en 1906 logro volar alrededor de la Torre Eifel en París, luego los hermnaos Wright en Estados
+      Unidos se incursionaron en la aviación. En 1919 nace la aviación comercial de transporte. El tratado de Versalles
+      que documenta la derrota de los países del Eje, prohíbe al perdedor volar aeronaves motorizadas y fabricarlas. La
+      juventud se vuelca al deporte del vuelo sin motor y lo perfecciona con la participación de ingenieros y científicos
+      especializados, con la participación de todas las países de Europa sin ninguna discriminación.
     </p>
-    </div>
-    
-  <div class="container">
-    <div class="card">
-      <figure>
-        <img class="logo" src="{% static 'img/aeronaves/home-pic1.jpg' %}" alt="...">
-      </figure>
-      <div class="contenido">
-        <h3>Vuelo a Vela</h3>
-        <p>Es un deporte apasionante y competitivo basado en la capacidad de mantenerse volando en un planeador, sin motor ni métodos de propulsión, aprovechando la aerodinámica del avión y las corrientes del aire. Los planeadores deben ser remolcados por una avioneta hasta una cierta altura, a partir de ese momento el velero queda libre y el piloto tiene el desafío de volar sobre las corrientes ascendentes intentando mantenerse el mayor tiempo posible volando. La Federación Aeronáutica Internacional (FAI) organiza campeonatos mundiales de este deporte. En el aeroclub se dicta el curso de piloto planeador, para quien quiera iniciarse en este deporte.</p>
-        <a href="#">+ Info</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <figure>
-        <img class="logo" src="{% static 'img/aeronaves/home-pic2.jpg' %}" alt="...">
-      </figure>
-      <div class="contenido">
-        <h3>Volar sobre el mar</h3>
-        <p>El vuelo en avión propulsado mecánicamente tal como lo conocemos hoy se empezó a gestar a principios del siglo XX, y tuvo un avance muy acelerado, ya que en menos de un siglo logró convertirse en una de las industrias más importantes del mundo, en la cual millones de pasajeros y toneladas de carga son transportados hacia grandes distancias reduciendo el tiempo de viaje en muy poco tiempo. Nuestro club ofrece actividades especialmente diseñada para aquellos amantes de la aviación, contamos con una flota importante de aeronaves especialmente preparada para sentir la adrenalina junto con instructores altamente capacitados.</p>
-        <a href="#">+ Info</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <figure>
-        <img class="logo" src="{% static 'img/aeronaves/home-pic3.jpg' %}" alt="...">
-      </figure>
-      <div class="contenido">
-        <h3>Sumate al Club</h3>
-        <p>El Aeromodelismo es una afición y un deporte derivado de la técnica de construcción y vuelo de aeroplanos de pequeño, mediano y gran tamaño, llamados Aeromodelos, que han sido preparados para volar sin tripulación. Los aeromodelos suelen hacerse a escala, bien como réplica lo más exacta posible de otros existentes, exclusivamente para aeromodelismo o incluso, diseños de prueba para futuros aviones. Es considerado un muy buen deporte para iniciarse en la actividad aeronáutica. En el país el deporte es representado por la Federación Argentina de Aeromodelismo. En el aeroclub se practica esta actividad por parte de la subcomisión de aeromodelismo.</p>
-        <a href="#">+ Info</a>
-      </div>
-    </div>
+    <p class="text-align-justify">
+      Tomás Anchorena y Jorge Newbery empiezan la historia del vuelo mecánico organizado en 1905 con el Globo "El
+      Pampero". En 1910 se suma la Federación Aeronáutica Internacional, se crea el Aeroclub Argentino y el ACA (Automovil
+      Club Argentino), el Club de Planeadores Albatros y la Radio Club Argentino.
+    <p class="text-align-justify">
+      En 1930 el Gobierno Argentino invita a una Misión Alemana a realizar demostraciones de vuelo en planeadores y su
+      director el profesor Dr. Walter Giorggi entusiasma a la juventud que el Gobierno Nacional decide impulsar el llamado
+      "deporte ciencia" fomentando la fundación de clubes en todo el país. Surgieron miles de instituciones junto con los
+      aeroclubes con motor.
+    </p>
   </div>
-  {% endblock %}
+
+  <div class="container">
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+      <div class="col">
+        <div class="card hm-card">
+          <img src="{% static 'img/aeronaves/home-pic1.jpg' %}" class="card-img-top hm-card-img-top" alt="...">
+          <div class="card-body hm-card-body">
+            <h3 class="card-title text-center fw-normal my-3">Vuelo a Vela</h3>
+            <p class="card-text hm-card-text">
+              Es un deporte apasionante y competitivo basado en la capacidad de mantenerse volando en un planeador, sin motor
+              ni métodos de propulsión, aprovechando la aerodinámica del avión y las corrientes del aire. Los planeadores
+              deben ser remolcados por una avioneta hasta una cierta altura, a partir de ese momento el velero queda libre y
+              el piloto tiene el desafío de volar sobre las corrientes ascendentes intentando mantenerse el mayor tiempo
+              posible volando. La Federación Aeronáutica Internacional (FAI) organiza campeonatos mundiales de este deporte.
+              En el aeroclub se dicta el curso de piloto planeador, para quien quiera iniciarse en este deporte.            </p>
+          </div>
+          <a href="#" class="btn btn-outline-primary hm-button">+ Info</a>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card hm-card">
+          <img src="{% static 'img/aeronaves/home-pic2.jpg' %}" class="card-img-top hm-card-img-top" alt="...">
+          <div class="card-body hm-card-body">
+            <h3 class="card-title text-center fw-normal my-3">Volar sobre el mar</h3>
+            <p class="card-text hm-card-text">
+              El vuelo en avión propulsado mecánicamente tal como lo conocemos hoy se empezó a gestar a principios del siglo
+              XX, y tuvo un avance muy acelerado, ya que en menos de un siglo logró convertirse en una de las industrias más
+              importantes del mundo, en la cual millones de pasajeros y toneladas de carga son transportados hacia grandes
+              distancias reduciendo el tiempo de viaje en muy poco tiempo. Nuestro club ofrece actividades especialmente
+              diseñada para aquellos amantes de la aviación, contamos con una flota importante de aeronaves especialmente
+              preparada para sentir la adrenalina junto con instructores altamente capacitados.
+            </p>
+          </div>
+          <a href="#" class="btn btn-outline-primary hm-button">+ Info</a>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card hm-card">
+          <img src="{% static 'img/aeronaves/home-pic3.jpg' %}" class="card-img-top hm-card-img-top" alt="...">
+          <div class="card-body hm-card-body">
+            <h3 class="card-title text-center fw-normal my-3">Sumate al Club</h3>
+            <p class="card-text hm-card-text">
+              El Aeromodelismo es una afición y un deporte derivado de la técnica de construcción y vuelo de aeroplanos de
+              pequeño, mediano y gran tamaño, llamados Aeromodelos, que han sido preparados para volar sin tripulación. Los
+              aeromodelos suelen hacerse a escala, bien como réplica lo más exacta posible de otros existentes, exclusivamente
+              para aeromodelismo o incluso, diseños de prueba para futuros aviones. Es considerado un muy buen deporte para
+              iniciarse en la actividad aeronáutica. En el país el deporte es representado por la Federación Argentina de
+              Aeromodelismo. En el aeroclub se practica esta actividad por parte de la subcomisión de aeromodelismo.
+            </p>
+          </div>
+          <a href="#" class="btn btn-outline-primary hm-button">+ Info</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

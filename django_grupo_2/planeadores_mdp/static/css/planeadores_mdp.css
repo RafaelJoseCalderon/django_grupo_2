@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -12,14 +11,6 @@ main {
 }
 
 /* ------------- Estilo Base -------------- */
-
-/* herramientas */
-.fake-content {
-  /* background-color: gainsboro; */
-  width: 100%;
-  height: 200vh;
-}
-
 /* Fondo */
 .fondo {
   display: block;
@@ -68,77 +59,56 @@ footer {
 }
 
 /* ------------- Estilo Home -------------- */
-.title {
-  margin: 5%;
+.text-align-justify, .hm-card-text{
+  text-align: justify;
 }
 
-.container{
-  width: 100%;
-  display: flex;
-  max-width: 100%;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-}
-
-.card{
-  width: 30%;
-  margin: 20px;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0px 1px 10px rgba(0,0,0,0.2);
+.hm-card {
+  height: 100% !important;
+  margin: 1.25rem;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
   cursor: default;
   transition: all 400ms;
 }
 
-.card:hover{
-  box-shadow: 5px 5px 20px rgba(0,0,0,0.4);
-  transform: translateY(-3%);
+.hm-card-img-top {
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  height: 17.5rem;
 }
 
-.card img{
-  width: 100%;
-  height: 210px;
-}
-
-.card .contenido{
-  padding: 15px;
+.hm-card-body {
   text-align: center;
 }
 
-.card .contenido p{
+.hm-card:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
+}
+
+.hm-card-text {
   line-height: 1.5;
   color: #6a6a6a;
-  text-align: justify;
 }
 
-.card .contenido h3{
-  font-weight: 400;
-  margin-bottom: 15px;
+.hm-button {
+  /* margin-top: ; */
+  margin: 1rem auto;
+  padding: 0.625rem !important;
+  border-radius: 0.25rem !important;
+  color: #2fb4cc !important;
+  border: 1px solid #2fb4cc !important;
 }
 
-.card .contenido a{
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px;
-  margin-top: 10px;
-  color: #2fb4cc;
-  border: 1px solid #2fb4cc;
-  border-radius: 4px;
-}
-
-.card .contenido a:hover{
-  background: #2fb4cc;
-  color: #fff;
+.hm-button:hover {
+  background: #2fb4cc !important;
+  color: #fff !important;
 }
 
 /* ------------- Estilo Aeronaves -------------- */
 .ae-tarjeta {
   display: flex;
-
-  width: 80%;
   margin: 2.5rem auto;
   padding: 0;
 }
@@ -161,9 +131,7 @@ footer {
 .ae-contenedor-datos {
   color: #eae3d2;
   background-color: #292929;
-
   width: 50%;
-  height: 50%x;
 }
 
 .ae-nombre {
@@ -177,48 +145,31 @@ footer {
 .ae-datos-tecnicos {
   font-size: 15px;
   line-height: 30px;
-  margin: 50px 0;
-  margin-left: 90px;
+  margin: 2rem
 }
 
 /* ------------- Estilo Institucion -------------- */
-.container-institucion {
-  margin: 10%;
-  margin-left: 60vh;
-  width: 50%;
+.in-imagen {
+  object-fit: cover;
+  aspect-ratio: 1/0.65;
+  width: 100%;
 }
 
-.container-institucion h1 {
-  text-align: center;
+.in-contenedor-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-institucion p{
-  text-align: justify;
-  margin-top: 2em;
-  margin-left: 5%;
-}
-
-h3{
-  margin-left: 5vh;
-}
-
-/* ul {
-  margin-left: 5vh;
-} */
-
-.imgfond {
-  margin-top: 5vh;
-}
-
-.button {
+.in-boton {
   display: inline-block;
-  padding: 15px 25px;
-  font-size: 24px;
+  padding: 19px;
+  font-size: 27px;
   cursor: pointer;
-  text-align: center;	
+  text-align: center;
   text-decoration: none;
   outline: none;
-  color: #fff;
+  color: #fafafa;
   background-color: #eb94d0;
   border: none;
   border-radius: 15px;
@@ -233,14 +184,9 @@ h3{
   border-radius: 28px;
   -webkit-box-shadow: 6px 5px 24px #666666;
   font-family: Arial;
-  color: #fafafa;
-  font-size: 27px;
-  padding: 19px;
-  margin-left: 40%;
-  margin-top: 5%;
 }
 
-.button:active {
+.in-boton:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
