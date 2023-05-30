@@ -34,12 +34,9 @@ class ProfileMixin:
 
         if not Profile.objects.filter(user_ptr=self.request.user.id).exists():
             user = User.objects.get(pk=self.request.user.id)
-            try:
-                profile = user.profile
-            except:
-                profile = Profile.objects.create(user_ptr=user)
-                profile.save()
-                user.save()
+            profile = Profile.objects.create(user_ptr=user)
+            profile.save()
+            user.save()
 
         return Profile.objects.get(user_ptr=self.request.user.id)
 
