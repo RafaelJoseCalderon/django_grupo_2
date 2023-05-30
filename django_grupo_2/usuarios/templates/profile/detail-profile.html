@@ -20,7 +20,7 @@
               <img src="{% static 'img/avatar_2x.png' %}" class="profile-card-image" alt="...">
             {% endif %}
   
-            <h3 class="mx-auto">{{ object.user.username }}</h3>
+            <h3 class="mx-auto">{{ object.username }}</h3>
   
             <a href="{% url 'profile_edit' %}" class="btn btn-primary my-2 mx-5">Editar Perfil</a>
           </div>
@@ -29,15 +29,15 @@
         <div class="col-12 col-md-8">
           <div class="profile-card-body">
             <h5 class="profile-card-title">Nombre</h5>
-            <p class="profile-card-text">{{ object.user.first_name }}</p>
+            <p class="profile-card-text">{{ object.first_name }}</p>
             <hr>
   
             <h5 class="profile-card-title">Apelido</h5>
-            <p class="profile-card-text">{{ object.user.last_name }}</p>
+            <p class="profile-card-text">{{ object.last_name }}</p>
             <hr>
   
             <h5 class="profile-card-title">Email</h5>
-            <p class="profile-card-text">{{ object.user.email }}</p>
+            <p class="profile-card-text">{{ object.email }}</p>
           </div>
         </div>
   
