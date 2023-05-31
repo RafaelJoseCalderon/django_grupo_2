@@ -1,0 +1,46 @@
+{% load static %}
+
+<div class="input-group mb-3">
+  <label for="id_{{ widget.name }}" class="btn btn-outline-secondary">
+    <i class="fas fa-file-upload"></i>
+  </label>
+
+  <label id="label_{{ widget.name }}" for="id_{{ widget.name }}" class="form-control">
+    {{ widget.value|default:'Archivo no Seleccionado' }}
+  </label>
+
+  <input
+    id="id_{{ widget.name }}"
+    type="{{ widget.type }}"
+    name="{{ widget.name }}"
+    style="display:none"
+    onchange="input_label()"
+    {% include "django/forms/widgets/attrs.html" %}>
+
+  {% if not widget.required %}
+    <input
+      type="checkbox"
+      class="btn-check"
+      id="{{ widget.checkbox_id }}"
+      name="{{ widget.checkbox_name }}"
+      autocomplete="off"
+      {% if widget.attrs.disabled %} disabled {% endif %}
+    >
+
+    <label class="btn btn-outline-danger" for="{{ widget.checkbox_id }}">
+      <i class="fas fa-trash-alt"></i>
+    </label>
+  {% endif %}
+</div>
+
+<!-- ver como poner esta cosa en algún lugar más apropiado -->
+<script>
+   input_label = () => {
+    file_name = document.getElementById("id_{{ widget.name }}");
+    label_name=document.getElementById("label_{{ widget.name }}");
+
+    if(file_name.files[0]) label_name.innerHTML = file_name.files[0].name;
+  };
+
+  input_label();
+</script>

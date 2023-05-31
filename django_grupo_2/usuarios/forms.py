@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
+from herramientas.widgets import ClearableFileInput
+
 from .models import Perfil
 from .models import Actividad
 
@@ -18,12 +20,16 @@ class PerfilForm(InitFormsMixin, forms.ModelForm):
     class Meta:
         model = Perfil
         fields = ['imagen']
+        widgets = {
+            'imagen': ClearableFileInput()
+        }
 
     def __init__(self, *args, **kwargs):
+
+        print(ClearableFileInput().media)
+
         kwargs['instance'] = kwargs['instance'].perfil
         super().__init__(*args, **kwargs)
-
-        self.fields['imagen'].widget.template_name = 'components/clearable_file_input.html'
 
 
 class UsuarioPerfilForm(InitFormsMixin, forms.ModelForm):
@@ -35,11 +41,6 @@ class UsuarioPerfilForm(InitFormsMixin, forms.ModelForm):
                 attrs = {
                     'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
                 })
-        }
-        help_texts = {
-            'first_name': 'Obligatorio. 150 caracteres o menos.',
-            'last_name': 'Obligatorio. 150 caracteres o menos.',
-            'email': 'Introduzca una dirección de correo electrónico válida'
         }
 
     def __init__(self, *args, **kwargs):

@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'planeadores_mdp.apps.PlaneadoresMdpConfig',
     'usuarios.apps.UsuariosConfig',
     'seguridad.apps.SeguridadConfig',
+    'herramientas.apps.HerramientasConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

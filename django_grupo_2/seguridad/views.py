@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordResetConfirmView
@@ -7,7 +6,8 @@ from django.contrib.auth.views import PasswordResetView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.utils.safestring import mark_safe
+
+from herramientas.utils import messages_success
 
 from .forms import UserRegistrationForm
 
@@ -54,8 +54,3 @@ class PasswordResetConfirm(PasswordResetConfirmView):
         )
 
         return super().form_valid(form)
-
-
-# tools
-def messages_success(request, message):
-    messages.success(request, mark_safe(message))

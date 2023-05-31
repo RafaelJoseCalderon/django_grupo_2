@@ -1,0 +1,8 @@
+Documentacion auto-host
+https://fontawesome.com/v5/docs/web/setup/host-font-awesome-yourself
+
+Nota:
+En la descarga del paquete "free", vienen archivos que la documentacion
+son marcados como "pro".
+Los mismos son eliminados de este proyecto. No se realizo ninguna
+validacion del buen funcionamiento de los componentes "free"

@@ -1,0 +1,53 @@
+/* ------------- Estilo Profile -------------- */
+.img-redonda {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+
+    margin: 25px auto;
+}
+
+.profile {
+    max-width: 900px;
+    margin: 3rem 1rem;
+    padding: 0 1rem;
+}
+
+@media (min-width: 900px) {
+    .profile {
+        margin: 3rem auto;
+    }
+}
+
+.profile-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-card-left {
+    padding-bottom: 1rem;
+    background-color: rgb(200, 200, 200);
+    border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.profile-card-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+
+    margin: 50px auto !important;
+}
+
+.profile-card-body {
+    flex: 1 1 auto;
+    padding: 1rem 1rem;
+}
+
+.profile-card-title {
+    margin-bottom: 0.5rem;
+}
+
+.profile-card-text:last-child {
+    margin-bottom: 0
+}
