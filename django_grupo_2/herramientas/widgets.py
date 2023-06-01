@@ -2,6 +2,9 @@ from django import forms
 
 
 class ClearableFileInput(forms.ClearableFileInput):
+    class Media:
+        js = ['js/clearable_file_input.js']
+
     template_name = 'clearable_file_input.html'
 
     def get_context(self, name, value, attrs):

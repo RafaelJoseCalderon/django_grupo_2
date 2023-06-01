@@ -3,7 +3,7 @@
     <i class="fas fa-file-upload"></i>
   </label>
 
-  <label id="label_{{ widget.name }}" for="id_{{ widget.name }}" class="form-control">
+  <label id="id_{{ widget.name }}_label" for="id_{{ widget.name }}" class="form-control">
     {{ widget.file_name|default:'Archivo no Seleccionado' }}
   </label>
 
@@ -12,7 +12,7 @@
     type="{{ widget.type }}"
     name="{{ widget.name }}"
     style="display:none"
-    onchange="set_input_label(this.files[0].name)"
+    onchange="setLebel(this.id, this.files[0])"
     {% include "django/forms/widgets/attrs.html" %}>
 
   {% if not widget.required %}
@@ -30,12 +30,3 @@
     </label>
   {% endif %}
 </div>
-
-<!-- ver como poner esta cosa en algún lugar más apropiado -->
-<script>
-   set_input_label = (value) => {
-    if(value) {
-      document.getElementById("label_{{ widget.name }}").innerHTML = value;
-    }
-  };
-</script>

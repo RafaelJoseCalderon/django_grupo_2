@@ -5,6 +5,8 @@
   <link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
+{% block script %}{{ form.perfil.media }}{% endblock %}
+
 {% block contenido %}
   <div class="profile">
     <h3>Perfil de usuario</h3>
