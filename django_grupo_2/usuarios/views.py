@@ -10,13 +10,12 @@ from django.contrib.auth.models import User
 from herramientas.utils import messages_success
 
 from .forms import UsuarioPerfilForm
-from .models import Perfil
-
 from .forms import ActividadForm
+from .models import Perfil
 from .models import Actividad
 
 
-class ProfileMixin:
+class PerfilMixin:
     def user_id(self):
         return self.request.user.id
 
@@ -30,16 +29,16 @@ class ProfileMixin:
 
 
 @method_decorator(login_required, name = 'dispatch')
-class DetailProfile(ProfileMixin, DetailView):
+class DetallePerfil(PerfilMixin, DetailView):
     template_name = 'perfil-detalle.html'
     model = User
 
 
 @method_decorator(login_required, name = 'dispatch')
-class UpdateProfile(ProfileMixin, UpdateView):
+class ActualizacionPerfil(PerfilMixin, UpdateView):
     form_class = UsuarioPerfilForm
     template_name = 'perfil-actualizacion.html'
-    success_url = reverse_lazy('profile_edit')
+    success_url = reverse_lazy('editar_perfil')
 
     def form_valid(self, form):
         messages_success(self.request, 'Se ha actualizado correctamente.')

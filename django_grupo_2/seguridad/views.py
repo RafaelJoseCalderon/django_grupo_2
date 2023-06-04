@@ -28,7 +28,7 @@ class SingUp(CreateView):
 @method_decorator(login_required, name = 'dispatch')
 class PasswordChange(PasswordChangeView):
     template_name = 'password/change_form.html'
-    success_url = reverse_lazy('profile_edit')
+    success_url = reverse_lazy('editar_perfil')
 
     def form_valid(self, form):
         messages_success(self.request, 'Contraseña cambiada correctamente.')

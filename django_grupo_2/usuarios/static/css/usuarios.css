@@ -9,15 +9,15 @@
 
 .profile {
     max-width: 900px;
-    margin: 3rem 1rem;
+    /* margin: 3rem 1rem; */
     padding: 0 1rem;
 }
 
-@media (min-width: 900px) {
+/* @media (min-width: 900px) {
     .profile {
         margin: 3rem auto;
     }
-}
+} */
 
 .profile-card {
     border: 1px solid #dee2e6;
@@ -51,3 +51,26 @@
 .profile-card-text:last-child {
     margin-bottom: 0
 }
+
+/* ------------- Estilo Profile -------------- */
+main {
+    display: flex;
+}
+
+footer {
+    margin-top: 0;
+}
+
+a.nav-link {
+    font-size: 1rem;
+    margin-right: 6px;
+  }
+  
+  a.nav-link.active {
+    color: black !important;
+    font-weight: 600;
+  }
+  
+  a.nav-link.active:hover {
+    color: gray !important;
+  }

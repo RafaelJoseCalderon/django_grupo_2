@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
 
+from herramientas.forms import ParentWithChildrenForm
 from herramientas.widgets import ClearableFileInput
 
 from .models import Perfil
@@ -24,15 +24,8 @@ class PerfilForm(InitFormsMixin, forms.ModelForm):
             'imagen': ClearableFileInput()
         }
 
-    def __init__(self, *args, **kwargs):
 
-        print(ClearableFileInput().media)
-
-        kwargs['instance'] = kwargs['instance'].perfil
-        super().__init__(*args, **kwargs)
-
-
-class UsuarioPerfilForm(InitFormsMixin, forms.ModelForm):
+class UsuarioForm(InitFormsMixin, forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email']
@@ -43,22 +36,14 @@ class UsuarioPerfilForm(InitFormsMixin, forms.ModelForm):
                 })
         }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.perfil = PerfilForm(*args, **kwargs)
- 
-        for field in self.fields.values():
-            field.required = True
 
-    def is_valid(self):
-        return super().is_valid() and self.perfil.is_valid()
-
-    # como diantres se hace el atomic aca!!!
-    def save(self):
-        perfil = self.perfil.save()
-        usuario = super().save()
-
-        return usuario
+class UsuarioPerfilForm(ParentWithChildrenForm):
+    structure = {
+        'parent': UsuarioForm,
+        'childrens': [
+            {'children': PerfilForm, 'related_name': 'perfil'}
+        ]
+    }
 
 
 class ActividadForm(InitFormsMixin, forms.ModelForm):

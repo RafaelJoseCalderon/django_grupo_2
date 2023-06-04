@@ -1,13 +1,13 @@
-{% extends "base.html" %}
+{% extends "ss_base.html" %}
 {% load static %}
 
 {% block css %}
   <link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
-{% block script %}{{ form.perfil.media }}{% endblock %}
+{% block script %}{{ form.childrens.0.media }}{% endblock %}
 
-{% block contenido %}
+{% block socio %}
   <div class="profile">
     <h3>Perfil de usuario</h3>
 
@@ -40,7 +40,7 @@
             <form method="post" enctype="multipart/form-data">
               <div>{% csrf_token %}</div>
 
-              {% for field in form %}
+              {% for field in form.parent %}
                 <div class="mb-3">
                 <h5 class="profile-card-title">{{ field.label }}</h5>
                 {{ field }}
@@ -54,7 +54,7 @@
               </div>
               {% endfor %}
 
-              {% for field in form.perfil %}
+              {% for field in form.childrens.0 %}
                 <div class="mb-3">
                   <h5 class="profile-card-title">{{ field.label }}</h5>
                   {{ field }}
@@ -74,8 +74,7 @@
 
               <hr class="mb-4" />
               <div class="d-grid gap-2 d-flex justify-content-end">
-                <a class="btn btn-primary btn-form" href="{% url 'profile' %}">Volver</a>
-                <input class="btn btn-primary btn-form" type="submit" value="Confirmar" />
+                <input class="btn btn-primary btn-form" type="submit" value="Guardar" />
               </div>
             </form>
 
