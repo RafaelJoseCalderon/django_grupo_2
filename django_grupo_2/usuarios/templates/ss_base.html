@@ -2,93 +2,32 @@
 {% load static %}
 
 {% block css %}
-<link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block contenido %}
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="bootstrap" viewBox="0 0 118 94">
-    <title>Bootstrap</title>
-    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
-  </symbol>
-</svg>
+  <div class="d-flex col w-100">
 
-<div class="d-flex flex-row w-100">
-  <div class="d-flex flex-column flex-shrink-0 border-end shadow p-3" style="width: 280px;">
-
-    {% comment %} <a href="{% url 'home' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Sidebar</span>
-    </a> {% endcomment %}
-
-    {% comment %} <hr> {% endcomment %}
-
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link link-body-emphasis" aria-current="page">
-          <i class="bi fas fa-home me-2"></i>
-          <span>Alta</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-          <i class="bi fas fa-tachometer-alt me-2"></i>
-          <span>Baja</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-          <i class="bi fas fa-border-all me-2"></i>
-          <span>Modificacion</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-          <i class="bi fab fa-product-hunt me-2"></i>
-          <span>Lista</span>
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-body-emphasis">
-          <i class="bi fas fa-user-circle me-2"></i>
-          <span>Otra Cosa</span>
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <div class="collapse" id="account-collapse">
-      <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-        <li>
-          <a href="{% url 'perfil' %}" class="link-dark d-inline-flex text-decoration-none rounded">
-            <i class="bi far fa-address-card me-2"></i>
-            <span>Perfil</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'editar_perfil' %}" class="link-dark d-inline-flex text-decoration-none rounded">
-            <i class="bi far fa-address-card me-2"></i>
-            <span>Editar Perfil</span>
-          </a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}" class="link-dark d-inline-flex text-decoration-none rounded">
-            <i class="bi fas fa-sign-out-alt me-2"></i>
-            <span>Cerrar Sesión</span>
-          </a>
-        </li>
-      </ul>
+    <div id="sidebar" class="collapse d-lg-flex collapse-horizontal sidebar">
+      {% include "componentes/barr-lateral.html" %}
     </div>
 
-    <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
-      <span>Cuentas</span>
+    {% comment %}
+      no encontre la menera de determinar el ancho con margen automatico, asi que
+      envolvi en un div sin margen.
+    {% endcomment %}
+    <div id="usuario" class="m-0 p-5 w-100">
+      <div class="container">
+        {% block socio %}{% endblock %}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="d-flex d-lg-none sticky-bottom justify-content-end h-0">
+    <button class="btn btn-outline-success btn-menu fs-4 rounded-circle" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false" aria-controls="sidebar">
+      <i class="fas fa-ellipsis-h"></i>
     </button>
-
   </div>
 
-  <div class="px-5 py-5 w-100">
-    {% block socio %}{% endblock %}
-  </div>
-</div>
 {% endblock %}

@@ -1,11 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from django.views.generic.list import ListView
 from django.views.generic import CreateView
-from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
-from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
-from django.contrib.auth.models import User
 
 from herramientas.utils import messages_success
 
@@ -15,7 +14,7 @@ from .models import Perfil
 from .models import Actividad
 
 
-class PerfilMixin:
+class PerfilMixin(LoginRequiredMixin):
     def user_id(self):
         return self.request.user.id
 
@@ -28,13 +27,19 @@ class PerfilMixin:
         return usuario
 
 
-@method_decorator(login_required, name = 'dispatch')
+class InstructorMixin(LoginRequiredMixin):
+    pass
+
+
+class PilotoMixin(LoginRequiredMixin):
+    pass
+
+
 class DetallePerfil(PerfilMixin, DetailView):
     template_name = 'perfil-detalle.html'
     model = User
 
 
-@method_decorator(login_required, name = 'dispatch')
 class ActualizacionPerfil(PerfilMixin, UpdateView):
     form_class = UsuarioPerfilForm
     template_name = 'perfil-actualizacion.html'

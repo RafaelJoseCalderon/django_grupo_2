@@ -1,0 +1,73 @@
+{% comment %}
+<a href="{% url 'home' %}" class="d-flex link-body-emphasis text-decoration-none">
+  <i class="bi fa-2x fab fa-bootstrap me-2"></i>
+  <span class="fs-4">Sidebar</span>
+</a>
+{% endcomment %}
+
+{% comment %}<hr>{% endcomment %}
+
+<div class="mt-0 mb-auto">
+  <ul class="navbar-left nav nav-pills d-flex flex-column">
+    <li class="nav-item">
+      <a href="#" class="nav-link sidebar-link link-body-emphasis">
+        <i class="fas fa-home"></i>
+        <span>Alta</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link sidebar-link link-body-emphasis">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>Baja</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link sidebar-link link-body-emphasis">
+        <i class="fas fa-border-all"></i>
+        <span>Modificacion</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link sidebar-link link-body-emphasis">
+        <i class="fab fa-product-hunt"></i>
+        <span>Lista</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="#" class="nav-link sidebar-link link-body-emphasis">
+        <i class="fas fa-user-circle"></i>
+        <span>Otra Cosa</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<hr>
+
+<div class="collapse" id="account-collapse">
+  <ul class="toggle-nav list-unstyled fw-normal pb-1 small">
+    <li>
+      <a href="{% url 'perfil' %}" class="link-dark text-decoration-none">
+        <i class="far fa-address-card"></i>
+        <span>Perfil</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'editar_perfil' %}" class="link-dark text-decoration-none">
+        <i class="far fa-address-card"></i>
+        <span>EditarPerfil</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}" class="link-dark text-decoration-none">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="d-inline-block"></i>Cerrar Sesión</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
+  data-bs-target="#account-collapse" aria-expanded="false">
+  <span>Cuentas</span>
+</button>

@@ -1,11 +1,5 @@
-# - la recursion de formularios quedaba feita, más que nada porque no la he visto por ahí
-# - primero lo intente con inlinefromset_factory pero no fui capaz de hacerlo andar.
-# - luego me di cuenta que inlinefromset_factory deja cosillas en el html
-# - luego me di cuenta que puede haber más de una relacion entre dos entidades y era
-#   necesario declararlas para tener un esquema coherente. (inlinefromset_factory
-#   descartado)
-# - y luego quedo este engendro, que tiene el mismo espiriu que la versión anterior pero
-#   sin recursión, ademaś me dio fiaca declarar una clase nodo y otra hoja.
+
+
 class ParentWithChildrenForm:
     structure = {}
 

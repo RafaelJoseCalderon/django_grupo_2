@@ -1,24 +1,62 @@
+/* ------------- Estilo ss_base -------------- */
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: 0;
+}
+
+/* ------------- Estilo Sidebar -------------- */
+:root {
+    --marg--btn-extra: 20px;
+    --zise--btn-extra: 50px;
+    --size-sidebar: 300px
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    border-right: 1px solid #dee2e6;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+    padding: 1rem;
+
+    /* z-index: 1000; */
+    /* background-color: white; */
+
+    width: var(--size-sidebar);
+    transition: width 0.25s linear !important;
+}
+
+.toggle-nav, .navbar-left {
+    width: 230px; /*a ojo*/
+}
+
+.btn-menu {
+    background-color: white;
+    width: var(--zise--btn-extra);
+    height: var(--zise--btn-extra);
+    margin: var(--marg--btn-extra);
+    margin-top: calc(-1 * var(--marg--btn-extra) - var(--zise--btn-extra));
+}
+
+a.nav-link.sidebar-link {
+    font-size: 1rem;
+    margin-right: 6px;
+}
+
+a.nav-link.sidebar-link.active {
+    color: black !important;
+    font-weight: 600;
+}
+
+a.nav-link.sidebar-link.active:hover {
+    color: gray !important;
+}
+
 /* ------------- Estilo Profile -------------- */
-.img-redonda {
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-
-    margin: 25px auto;
-}
-
-.profile {
-    max-width: 900px;
-    /* margin: 3rem 1rem; */
-    padding: 0 1rem;
-}
-
-/* @media (min-width: 900px) {
-    .profile {
-        margin: 3rem auto;
-    }
-} */
-
 .profile-card {
     border: 1px solid #dee2e6;
     border-radius: 0.375rem;
@@ -34,43 +72,34 @@
 .profile-card-image {
     width: 200px;
     height: 200px;
-    border-radius: 100px;
-
-    margin: 50px auto !important;
 }
 
-.profile-card-body {
-    flex: 1 1 auto;
-    padding: 1rem 1rem;
-}
-
-.profile-card-title {
-    margin-bottom: 0.5rem;
-}
-
-.profile-card-text:last-child {
-    margin-bottom: 0
-}
-
-/* ------------- Estilo Profile -------------- */
-main {
+.horizontal {
     display: flex;
+    flex-direction: row;
 }
 
-footer {
-    margin-top: 0;
+.vertical {
+    display: flex;
+    flex-direction: column;
 }
 
-a.nav-link {
-    font-size: 1rem;
-    margin-right: 6px;
-  }
-  
-  a.nav-link.active {
-    color: black !important;
-    font-weight: 600;
-  }
-  
-  a.nav-link.active:hover {
-    color: gray !important;
-  }
+.profile-card-left, .profile-card-right {
+    flex: 0 0 auto;
+}
+
+.horizontal .profile-card-left {
+    width: 33.33333333%
+}
+
+.horizontal .profile-card-right {
+    width: 66.66666667%
+}
+
+.vertical .profile-card-left {
+    width: 100%
+}
+
+.vertical .profile-card-right {
+    width: 100%
+}
