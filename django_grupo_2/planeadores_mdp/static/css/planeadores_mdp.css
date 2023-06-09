@@ -22,7 +22,8 @@ main {
 
 /* Menu */
 .logo {
-  margin: 1px 0;
+  margin: 2px 0;
+  margin-left: 20px;
   width: 2.5rem;
   height: 2.5rem;
 }
@@ -92,24 +93,52 @@ footer {
   color: #6a6a6a;
 }
 
-.hm-button {
-  /* margin-top: ; */
-  margin: 1rem auto;
-  padding: 0.625rem !important;
-  border-radius: 0.25rem !important;
-  color: #2fb4cc !important;
-  border: 1px solid #2fb4cc !important;
+.button-enlace {
+  width: 100px;
+  align-items: center;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #7d8cfd 100%);
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 50px;
+  justify-content: center;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 20px;
+  margin-left: 8rem;
+  margin-bottom: 30px;
 }
 
-.hm-button:hover {
-  background: #2fb4cc !important;
-  color: #fff !important;
+.button-enlace:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-enlace:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-6px);
+}
+
+.button-enlace:active {
+  box-shadow: #0a0a0a 0 3px 7px inset;
+  transform: translateY(6px);
 }
 
 /* ------------- Estilo Aeronaves -------------- */
 .ae-tarjeta {
   display: flex;
-  margin: 2.5rem auto;
+  width: 80%;
+  margin: 10rem auto;
   padding: 0;
 }
 
@@ -126,29 +155,47 @@ footer {
   object-fit: cover;
   aspect-ratio: 1/1;
   width: 50%;
+  border-radius: 4%;
 }
 
 .ae-contenedor-datos {
   color: #eae3d2;
   background-color: #292929;
   width: 50%;
+  height: 50%;
+  border-radius: 4%;
 }
 
 .ae-nombre {
   font-family: 'dosis';
-  font-size: 1.56rem;
+  font-size: 2rem;
   text-transform: capitalize;
   text-align: center;
-  margin: 1rem;
+  margin: 5rem;
+  font-style: inherit;
 }
 
 .ae-datos-tecnicos {
   font-size: 15px;
   line-height: 30px;
-  margin: 2rem
+  margin: 50px 0;
+  margin-left: 90px;
+  font-style: oblique;
+}
+
+.aviondepapel {
+  width: 200px;
+  margin-left: 80px;
+  padding-top: 40px;
 }
 
 /* ------------- Estilo Institucion -------------- */
+.container-institucion {
+  margin: 10%;
+  margin-left: 30%;
+  width: 50%;
+}
+
 .in-imagen {
   object-fit: cover;
   aspect-ratio: 1/0.65;
