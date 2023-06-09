@@ -20,7 +20,7 @@ main {
   height: 100vh;
 }
 
-/* Menu */
+/* ------------- Estilo Header -------------- */
 .logo {
   margin: 2px 0;
   margin-left: 20px;
@@ -33,23 +33,38 @@ main {
     width: 3.5rem;
     height: 3.5rem;
   }
+
+  .hd-position-center {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .hd-position-right {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    transform: translateY(-50%) !important;
+  }
 }
 
 .navbar-color {
-  background-color: rgb(69, 82, 110) !important;
+  background-color: #45526e !important;
 }
 
-a.nav-link {
+a.hd-nav-link {
   font-size: 1.4rem;
   margin-right: 10px;
+  text-shadow: 0.05px  0px 0px #7991c5, 0px  0.05px 0px #7991c5, -0.05px  0px 0px #7991c5, 0px -0.05px 0px #7991c5;
 }
 
-a.nav-link.active {
+a.hd-nav-link.active {
   color: #24d9fe !important;
   font-weight: 600;
 }
 
-a.nav-link.active:hover {
+a.hd-nav-link.active:hover {
   color: #81eaff !important;
 }
 
@@ -116,7 +131,8 @@ footer {
   white-space: nowrap;
   will-change: box-shadow,transform;
   font-size: 20px;
-  margin-left: 8rem;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 30px;
 }
 
@@ -155,7 +171,6 @@ footer {
   object-fit: cover;
   aspect-ratio: 1/1;
   width: 50%;
-  border-radius: 4%;
 }
 
 .ae-contenedor-datos {
@@ -163,7 +178,16 @@ footer {
   background-color: #292929;
   width: 50%;
   height: 50%;
-  border-radius: 4%;
+}
+
+.ae-tarjeta:nth-child(odd) .ae-imagen,
+.ae-tarjeta:nth-child(even) .ae-contenedor-datos {
+  border-radius: 0 4% 4% 0;
+}
+
+.ae-tarjeta:nth-child(even) .ae-imagen,
+.ae-tarjeta:nth-child(odd) .ae-contenedor-datos {
+  border-radius: 4% 0 0 4%;
 }
 
 .ae-nombre {

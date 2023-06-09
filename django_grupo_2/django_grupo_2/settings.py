@@ -165,7 +165,7 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Auth redirects
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'actividades'
 
 LOGOUT_REDIRECT_URL = 'home'
 

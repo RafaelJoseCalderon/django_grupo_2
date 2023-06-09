@@ -14,3 +14,5 @@ def link_activate(context, url):
 
     if url_name == url:
         return 'active'
+    else:
+        return ''

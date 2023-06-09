@@ -22,10 +22,6 @@ footer {
     border-right: 1px solid #dee2e6;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
     padding: 1rem;
-
-    /* z-index: 1000; */
-    /* background-color: white; */
-
     width: var(--size-sidebar);
     transition: width 0.25s linear !important;
 }
@@ -40,20 +36,6 @@ footer {
     height: var(--zise--btn-extra);
     margin: var(--marg--btn-extra);
     margin-top: calc(-1 * var(--marg--btn-extra) - var(--zise--btn-extra));
-}
-
-a.nav-link.sidebar-link {
-    font-size: 1rem;
-    margin-right: 6px;
-}
-
-a.nav-link.sidebar-link.active {
-    color: black !important;
-    font-weight: 600;
-}
-
-a.nav-link.sidebar-link.active:hover {
-    color: gray !important;
 }
 
 /* ------------- Estilo Profile -------------- */
@@ -74,13 +56,15 @@ a.nav-link.sidebar-link.active:hover {
     height: 200px;
 }
 
-.horizontal {
+.horizontal, .vertical {
     display: flex;
+}
+
+.horizontal {
     flex-direction: row;
 }
 
 .vertical {
-    display: flex;
     flex-direction: column;
 }
 
@@ -96,10 +80,7 @@ a.nav-link.sidebar-link.active:hover {
     width: 66.66666667%
 }
 
-.vertical .profile-card-left {
-    width: 100%
-}
-
+.vertical .profile-card-left,
 .vertical .profile-card-right {
     width: 100%
 }

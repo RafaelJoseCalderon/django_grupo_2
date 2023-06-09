@@ -13,15 +13,16 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mx-auto">
+
+      <ul class="navbar-nav hd-position-center">
         <li class="nav-item">
-          <a class="nav-link {% link_activate 'home' %}" href="{% url 'home' %}">
+          <a class="hd-nav-link nav-link {% link_activate 'home' %}" href="{% url 'home' %}">
             Home
           </a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="hd-nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Aeronaves
           </a>
           <ul class="dropdown-menu">
@@ -32,30 +33,46 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link {% link_activate 'institucion' %}" href="{% url 'institucion' %}">
+          <a class="hd-nav-link nav-link {% link_activate 'institucion' %}" href="{% url 'institucion' %}">
             Institucion
           </a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Exclusivos Socios
-          </a>
-
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="alta_actividad">Inst Alta</a></li>
-            <li><a class="dropdown-item" href="actividades">Inst Resultados</a></li>
-          </ul>
-
-        </li>
-
         <li class="nav-item">
-          <a class="nav-link {% link_activate 'contacto' %}" href="{% url 'contacto' %}">
+          <a class="hd-nav-link nav-link {% link_activate 'contacto' %}" href="{% url 'contacto' %}">
             Contacto
           </a>
         </li>
 
       </ul>
+
+      <ul class="navbar-nav me-3 hd-position-right">
+        {% if not request.user.is_authenticated %}
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'login' %}">
+              Acceder
+            </a>
+          </li>
+
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'singup' %}">
+              Registrarse
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'actividades' %}">
+              Principal
+            </a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'logout' %}">
+              Salir
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
     </div>
   </div>
 </nav>

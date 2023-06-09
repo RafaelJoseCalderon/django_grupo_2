@@ -51,13 +51,13 @@ class ActualizacionPerfil(PerfilMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ActvidadAlta(CreateView):
+class ActvidadAlta(LoginRequiredMixin, CreateView):
     template_name = 'alta_actividad.html'
     form_class = ActividadForm
     success_url = 'actividades'
 
 
-class ListaActividades(ListView):
+class ListaActividades(LoginRequiredMixin, ListView):
     template_name = 'lista_actividades.html'
     context_object_name = 'actividades'
     model = Actividad
