@@ -14,6 +14,7 @@ from .models import Perfil
 from .models import Actividad
 
 
+## ------------- Seccion Perfil -------------- ##
 class PerfilMixin(LoginRequiredMixin):
     def user_id(self):
         return self.request.user.id
@@ -25,14 +26,6 @@ class PerfilMixin(LoginRequiredMixin):
             Perfil.objects.create(usuario=usuario)
 
         return usuario
-
-
-class InstructorMixin(LoginRequiredMixin):
-    pass
-
-
-class PilotoMixin(LoginRequiredMixin):
-    pass
 
 
 class DetallePerfil(PerfilMixin, DetailView):
@@ -51,13 +44,23 @@ class ActualizacionPerfil(PerfilMixin, UpdateView):
         return super().form_valid(form)
 
 
-class ActvidadAlta(LoginRequiredMixin, CreateView):
+## ------------- Seccion Instructor ---------- ##
+class InstructorMixin(LoginRequiredMixin):
+    pass
+
+
+class ActvidadAlta(InstructorMixin, CreateView):
     template_name = 'alta_actividad.html'
     form_class = ActividadForm
     success_url = 'actividades'
 
 
-class ListaActividades(LoginRequiredMixin, ListView):
+class ListaActividades(InstructorMixin, ListView):
     template_name = 'lista_actividades.html'
     context_object_name = 'actividades'
     model = Actividad
+
+
+## ------------- Seccion Piloto -------------- ##
+class PilotoMixin(LoginRequiredMixin):
+    pass

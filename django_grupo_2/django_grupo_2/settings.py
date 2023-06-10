@@ -169,6 +169,8 @@ LOGIN_REDIRECT_URL = 'actividades'
 
 LOGOUT_REDIRECT_URL = 'home'
 
+PROFILE_EDIT_REDIRECT_URL = 'editar_perfil'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,11 +1,11 @@
-from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.contrib.auth.views import PasswordResetDoneView
 from django.contrib.auth.views import PasswordResetView
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 
 from herramientas.utils import messages_success
 
@@ -25,10 +25,16 @@ class SingUp(CreateView):
         return super().form_valid(form)
 
 
-@method_decorator(login_required, name = 'dispatch')
-class PasswordChange(PasswordChangeView):
+class PasswordChange(LoginRequiredMixin, PasswordChangeView):
     template_name = 'password/change_form.html'
     success_url = reverse_lazy('editar_perfil')
+    profile_edit_url = settings.PROFILE_EDIT_REDIRECT_URL
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile_edit_url'] = self.profile_edit_url
+
+        return context
 
     def form_valid(self, form):
         messages_success(self.request, 'Contraseña cambiada correctamente.')
