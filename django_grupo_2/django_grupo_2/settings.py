@@ -163,7 +163,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 
-# Auth redirects
+# Auth classes (obligatorio para la app seguridad)
+
+AUTH_SINGUP_USER_MODEL = 'usuarios.Piloto'
+
+
+# Auth ruls redirects (obligatorio para la app seguridad)
 
 LOGIN_REDIRECT_URL = 'actividades'
 

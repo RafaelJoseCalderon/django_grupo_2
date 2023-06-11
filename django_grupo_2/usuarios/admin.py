@@ -87,7 +87,7 @@ class ActividadAdmin(admin.ModelAdmin):
 
 @admin.register(Instructor, Piloto)
 class InstructorPilotoAdmin(admin.ModelAdmin):
-    list_display = ['nombre', 'apellido', 'dni']
+    list_display = ['first_name', 'last_name', 'dni']
 
 
 @admin.register(Planeador, Remolcador)

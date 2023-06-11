@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
 
+## ------------- Seccion Perfil -------------- ##
 class Perfil(models.Model):
     imagen = models.ImageField(
         verbose_name = _('Imagen'),
@@ -31,28 +33,29 @@ class Perfil(models.Model):
         super(Perfil, self).save(*args, **kwargs)
 
 
-class Usuario(models.Model):
+## ------------- Seccion Usuarios ------------ ##
+class Usuario(User):
     class Meta:
         abstract = True
-
-    nombre = models.CharField(
-        max_length = 50,
-        verbose_name = 'Nombre'
-    )
-
-    apellido = models.CharField(
-        max_length = 50,
-        verbose_name = 'Apellido'
-    )
-
-    email = models.EmailField(
-        max_length = 200,
-        verbose_name = 'Correo electronico'
-    )
 
     dni = models.BigIntegerField(
         verbose_name = 'DNI'
     )
+
+    def groups_name(self):
+        return ''
+
+    def save(self, *args, **kwargs):
+        super(Usuario, self).save(*args, **kwargs)
+
+        try:
+            if not self.groups.all():
+                self.groups.add(
+                    Group.objects.get(name = self.groups_name())
+                )
+
+        except ValueError:
+            raise ValueError('Houston, tenemos un problema')
 
 
 class Instructor(Usuario):
@@ -60,13 +63,20 @@ class Instructor(Usuario):
         verbose_name = 'Instructor'
         verbose_name_plural = 'Instructores'
 
+    def groups_name(self):
+        return 'Instructores'
+
 
 class Piloto(Usuario):
     class Meta:
         verbose_name = 'Piloto'
         verbose_name_plural = 'Pilotos'
 
+    def groups_name(self):
+        return 'Pilotos'
 
+
+## ------------- Seccion Aeronaves ----------- ##
 class Remolcador(models.Model):
     class Meta:
         verbose_name = 'Remolcador'
@@ -175,6 +185,7 @@ class Planeador(models.Model):
     )
 
 
+## ------------- Seccion Actividades---------- ##
 class Actividad(models.Model):
     class Meta:
         verbose_name = 'Actividad'

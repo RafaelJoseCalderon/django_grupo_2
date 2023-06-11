@@ -1,4 +1,5 @@
 from django.db import migrations, models
+from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 
 from ..models import Instructor, Piloto, Planeador, Remolcador
@@ -107,102 +108,6 @@ def setUp(apps, scheme_editor):
     for planeador in planeadores:
         planeador.save()
 
-    """Usuarios"""
-    usuarios = []
-
-    usuarios.append(
-        Instructor.objects.create(
-            nombre = 'Adan',
-            apellido = 'AdanAdan',
-            email = 'Adan@email.com',
-            dni = 48295602
-        )
-    )
-
-    usuarios.append(
-        Instructor.objects.create(
-            nombre = 'Eva',
-            apellido = 'EvaEva',
-            email = 'EvaEva@email.com',
-            dni = 74244764
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Bonifacio',
-            apellido = 'Gomez',
-            email = 'bonifacio@email.com',
-            dni = 62899927
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Clemente',
-            apellido = 'Lopez',
-            email = 'clemente@email.com',
-            dni = 34941794
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Dalmacio',
-            apellido = 'Martinez',
-            email = 'dalmacio@email.com',
-            dni = 89208350
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Emeterio',
-            apellido = 'Garcia',
-            email = 'emeterio@email.com',
-            dni = 95659876
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Taciana',
-            apellido = 'Moyano',
-            email = 'taciana@email.com',
-            dni = 31650108
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Ursula',
-            apellido = 'Campos',
-            email = 'ursula@email.com',
-            dni = 38923477
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Valentina',
-            apellido = 'Soto',
-            email = 'valentina@email.com',
-            dni = 52480511
-        )
-    )
-
-    usuarios.append(
-        Piloto.objects.create(
-            nombre = 'Zeferina',
-            apellido = 'Chávez',
-            email = 'zeferina@email.com',
-            dni = 75797068
-        )
-    )
-
-    for usuario in usuarios:
-        usuario.save()
-
     """ Root """
     root = User(
         username = 'root',
@@ -217,18 +122,160 @@ def setUp(apps, scheme_editor):
     root.set_password('root')
     root.save()
 
-    user = User(
-        username = 'adan',
-        first_name = 'Adan',
-        last_name = 'AdanAdan',
-        email = 'adan@root.com',
-        is_superuser = False,
-        is_staff = True,
-        is_active = True,
+    """Usuarios Grupos"""
+    grupos = []
+
+    grupos.append(
+        Group.objects.create(
+            name='Instructores'
+        )
     )
-    
-    user.set_password('1234')
-    user.save()
+
+    grupos.append(
+        Group.objects.create(
+            name='Pilotos'
+        )
+    )
+
+    for grupo in grupos:
+        grupo.save()
+
+    """Usuarios Usuarios"""
+    usuarios = []
+
+    usuarios.append(
+        Instructor.objects.create(
+            username = 'adan',
+            first_name = 'Adan',
+            last_name = 'AdanAdan',
+            email = 'Adan@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 48295602
+        )
+    )
+
+    usuarios.append(
+        Instructor.objects.create(
+            username = 'eva',
+            first_name = 'Eva',
+            last_name = 'EvaEva',
+            email = 'EvaEva@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 74244764
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'bonifacio',
+            first_name = 'Bonifacio',
+            last_name = 'Gomez',
+            email = 'bonifacio@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 62899927
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'clemente',
+            first_name = 'Clemente',
+            last_name = 'Lopez',
+            email = 'clemente@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 34941794
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'dalmacio',
+            first_name = 'Dalmacio',
+            last_name = 'Martinez',
+            email = 'dalmacio@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 89208350
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'emeterio',
+            first_name = 'Emeterio',
+            last_name = 'Garcia',
+            email = 'emeterio@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 95659876
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'taciana',
+            first_name = 'Taciana',
+            last_name = 'Moyano',
+            email = 'taciana@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 31650108
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'ursula',
+            first_name = 'Ursula',
+            last_name = 'Campos',
+            email = 'ursula@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 38923477
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'valentina',
+            first_name = 'Valentina',
+            last_name = 'Soto',
+            email = 'valentina@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 52480511
+        )
+    )
+
+    usuarios.append(
+        Piloto.objects.create(
+            username = 'zeferina',
+            first_name = 'Zeferina',
+            last_name = 'Chávez',
+            email = 'zeferina@email.com',
+            is_superuser = False,
+            is_staff = False,
+            is_active = True,
+            dni = 75797068
+        )
+    )
+
+    for usuario in usuarios:
+        usuario.set_password('1234')
+        usuario.save()
 
 
 class Migration(migrations.Migration):

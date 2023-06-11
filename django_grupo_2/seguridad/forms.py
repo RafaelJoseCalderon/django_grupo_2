@@ -1,13 +1,16 @@
 from django import forms
-from django.contrib.auth import get_user_model
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+from .tools import get_singup_user_model
+
+
+UserSingup = get_singup_user_model()
 
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
-        model = get_user_model()
-        fields = ['username', 'first_name', 'last_name', 'email']
+        model = UserSingup
+        fields = ['username', 'first_name', 'last_name', 'email', 'dni']
         widgets = {
             'username': forms.TextInput(
                 attrs = {
@@ -25,12 +28,17 @@ class UserRegistrationForm(UserCreationForm):
                 attrs = {
                     'placeholder': 'juan_perez@email.com',
                     'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
-                })
+                }),
+            'dni': forms.TextInput(
+                attrs = {
+                    'placeholder': '99999999'
+            })
         }
         help_texts = {
             'first_name': 'Obligatorio. 150 caracteres o menos.',
             'last_name': 'Obligatorio. 150 caracteres o menos.',
-            'email': 'Introduzca una dirección de correo electrónico válida'
+            'email': 'Introduzca una dirección de correo electrónico válida',
+            'dni': 'Numero enteron, sin puntos, comas o espacios'
         }
 
     def __init__(self, *args, **kwargs):
@@ -48,7 +56,7 @@ class UserRegistrationForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get('email')
 
-        if User.objects.filter(email = email).exists():
+        if UserSingup.objects.filter(email = email).exists():
             raise forms.ValidationError('El mail ya esta registrado, prueba con otro')
 
         return email

@@ -1,10 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.urls import reverse_lazy
-from django.views.generic.list import ListView
 from django.views.generic import CreateView
 from django.views.generic import DetailView
 from django.views.generic import UpdateView
+from django.views.generic.list import ListView
+
+from django.conf import settings
+from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 from herramientas.utils import messages_success
 
@@ -12,6 +15,16 @@ from .forms import UsuarioPerfilForm
 from .forms import ActividadForm
 from .models import Perfil
 from .models import Actividad
+
+
+# redireccion en construccion
+def redireccion(request):
+    print(request.user)
+
+    if not request.user.is_authenticated:
+        return redirect(f"{settings.LOGIN_URL}?next={request.path}")
+
+    return redirect(reverse_lazy('home'))
 
 
 ## ------------- Seccion Perfil -------------- ##
