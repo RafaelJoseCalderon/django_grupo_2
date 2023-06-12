@@ -19,7 +19,7 @@ class ChoiceFieldMixin:
 
 class UsuarioChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
     def label_from_instance(self, obj):
-        return f"{self.label}: {obj.apellido}, {obj.nombre}"
+        return f"{self.label}: {obj.last_name}, {obj.first_name}"
 
 
 class AeronaveChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
@@ -33,11 +33,11 @@ class ActividadAdmin(admin.ModelAdmin):
 
     def get_instructor(self, actividad):
         instructor = actividad.instructor
-        return f'{instructor.apellido}, {instructor.nombre}'
+        return f'{instructor.last_name}, {instructor.first_name}'
 
     def get_piloto(self, actividad):
         piloto = actividad.piloto
-        return f'{piloto.apellido}, {piloto.nombre}'
+        return f'{piloto.last_name}, {piloto.first_name}'
 
     def get_remolcador(self, actividad):
         remolcador = actividad.remolcador

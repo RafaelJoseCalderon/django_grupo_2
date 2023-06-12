@@ -1,0 +1,27 @@
+{% extends 'ss_base.html' %}
+
+{% block socio %}
+  <h1>Lista de actividades</h1>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Instructor</th>
+      <th>Piloto</th>
+      <th>Remolcador</th>
+      <th>Planeador</th>
+    </tr>
+    {% for actividad in actividades %}
+      <tr>
+        <td>{{actividad.instructor.first_name}}</td>
+        <td>{{actividad.piloto.first_name}}</td>
+        <td>{{actividad.remolcador.nombre}}</td>
+        <td>{{actividad.planeador.nombre}}</td>
+        {% if es_instructor %}
+          <td><a href="{% url 'modi-actividad' actividad.id %}"><i class="far fa-edit"></i></a></td>
+          <td><a href="{% url 'baja-actividad' actividad.id %}"><i class="far fa-trash-alt"></i></a></td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </table>
+
+{% endblock %}

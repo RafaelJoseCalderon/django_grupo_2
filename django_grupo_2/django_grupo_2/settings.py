@@ -170,7 +170,7 @@ AUTH_SINGUP_USER_MODEL = 'usuarios.Piloto'
 
 # Auth ruls redirects (obligatorio para la app seguridad)
 
-LOGIN_REDIRECT_URL = 'actividades'
+LOGIN_REDIRECT_URL = 'usuario'
 
 LOGOUT_REDIRECT_URL = 'home'
 

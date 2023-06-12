@@ -9,36 +9,30 @@
 
 <div class="mt-0 mb-auto">
   <ul class="navbar-left nav nav-pills d-flex flex-column">
-    <li class="nav-item">
-      <a href="{% url 'alta_actividad' %}" class="nav-link sidebar-link link-body-emphasis">
-        <i class="fas fa-home"></i>
-        <span>Alta</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link sidebar-link link-body-emphasis">
-        <i class="fas fa-tachometer-alt"></i>
-        <span>Baja</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link sidebar-link link-body-emphasis">
-        <i class="fas fa-border-all"></i>
-        <span>Modificacion</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="{% url 'actividades' %}" class="nav-link sidebar-link link-body-emphasis">
-        <i class="fab fa-product-hunt"></i>
-        <span>Lista</span>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link sidebar-link link-body-emphasis">
-        <i class="fas fa-user-circle"></i>
-        <span>Otra Cosa</span>
-      </a>
-    </li>
+    {% if es_instructor %}
+      <li class="nav-item">
+        <a href="{% url 'alta_actividad' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fas fa-home"></i>
+          <span>Alta Actividad</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'actividades_instructor' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fab fa-product-hunt"></i>
+          <span>Lista de Actividades</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if es_piloto %}
+      <li class="nav-item">
+        <a href="{% url 'actividades_piloto' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fab fa-product-hunt"></i>
+          <span>Lista de Actividades</span>
+        </a>
+      </li>
+    {% endif %}
+
   </ul>
 </div>
 
