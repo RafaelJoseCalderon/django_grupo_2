@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
-from django.utils.translation import gettext as _
 
 
 ## ------------- Seccion Perfil -------------- ##
 class Perfil(models.Model):
     imagen = models.ImageField(
-        verbose_name = _('Imagen'),
+        verbose_name = 'Imagen',
         upload_to = 'seguridad',
         null = True,
         blank = True
@@ -185,32 +184,106 @@ class Planeador(models.Model):
     )
 
 
-## ------------- Seccion Actividades---------- ##
+## ------------- Seccion PlanDeVuelo --------- ##
+class PilotoRemolcador(models.Model):
+    class Meta:
+        verbose_name = 'PilotoRemolcador'
+        verbose_name_plural = 'PilotosRemolcadores'
+
+    nombre = models.CharField(
+        max_length = 50,
+        verbose_name = 'Nombre'
+    )
+
+    apellido = models.CharField(
+        max_length = 50,
+        verbose_name = 'Apellido'
+    )
+
+    email = models.EmailField(
+        max_length = 200,
+        verbose_name = 'Correo electronico'
+    )
+
+    dni = models.BigIntegerField(
+        verbose_name = 'DNI'
+    )
+
+
+class PlanDeVuelo(models.Model):
+    class Meta:
+        verbose_name = 'PlanDeVuelo'
+        verbose_name_plural = 'PlanesDeVuelo'
+
+    denominacion = models.CharField(
+        max_length = 50,
+        verbose_name = 'Denominacion'
+    )
+
+    fecha = models.DateField(
+        verbose_name = 'Fecha'
+    )
+
+    instructor = models.ForeignKey(
+        related_name='instructor',
+        to = Instructor,
+        on_delete = models.RESTRICT
+    )
+
+    pilotos_remolcadores = models.ManyToManyField(
+        related_name='pilotos_remolcadores',
+        to = PilotoRemolcador
+    )
+
+
 class Actividad(models.Model):
     class Meta:
         verbose_name = 'Actividad'
         verbose_name_plural = 'Actividades'
 
-    instructor = models.ForeignKey(
-        Instructor,
-        on_delete=models.RESTRICT
+    plan_de_vuelo = models.ForeignKey(
+        related_name='plan_de_vuelo',
+        to = PlanDeVuelo,
+        on_delete = models.RESTRICT
     )
 
     piloto = models.ForeignKey(
-        Piloto,
-        on_delete=models.RESTRICT
+        related_name='piloto',
+        to = Piloto,
+        on_delete = models.RESTRICT
     )
 
+    # remolcador
     remolcador = models.ForeignKey(
-        Remolcador,
-        on_delete=models.RESTRICT
+        related_name='remolcador',
+        to = Remolcador,
+        on_delete = models.RESTRICT
     )
 
-    # remolque_despegue = models.TimeField()
+    # remolcador_piloto = models.ForeignKey(
+    #     to = PilotoRemolcador,
+    #     on_delete = models.RESTRICT
+    # )
 
-    # remolque_corte = models.TimeField()
+    remolque_despegue = models.TimeField(
+        verbose_name = 'Despegue Remolcador'
+    )
 
+    remolque_corte = models.TimeField(
+        verbose_name = 'Corte Remolcador'
+    )
+
+    # planeador
     planeador = models.ForeignKey(
-        Planeador,
-        on_delete=models.RESTRICT
+        related_name='planeador',
+        to = Planeador,
+        on_delete = models.RESTRICT
+    )
+
+    planeador_aterrizaje = models.TimeField(
+        verbose_name = 'Aterrizaje Planeador'
+    )
+
+    planeador_vuelo_librado = models.TimeField(
+        verbose_name = 'Vuelo Librado Planeador'
     )

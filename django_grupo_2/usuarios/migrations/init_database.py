@@ -1,12 +1,16 @@
+from datetime import time, date, timedelta
+
 from django.db import migrations, models
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import User
 
-from ..models import Instructor, Piloto, Planeador, Remolcador
+from ..models import *
 
 
 def setUp(apps, scheme_editor):
-    """Remolcador"""
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Remolcador                                                            %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     remolcadores = []
 
     remolcadores.append(
@@ -42,7 +46,9 @@ def setUp(apps, scheme_editor):
     for remolcador in remolcadores:
         remolcador.save()
 
-    """ Planeadores """
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Planeadores                                                           %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     planeadores = []
 
     planeadores.append(
@@ -108,7 +114,9 @@ def setUp(apps, scheme_editor):
     for planeador in planeadores:
         planeador.save()
 
-    """ Root """
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Root                                                                  %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     root = User(
         username = 'root',
         first_name = 'root',
@@ -122,25 +130,29 @@ def setUp(apps, scheme_editor):
     root.set_password('root')
     root.save()
 
-    """Usuarios Grupos"""
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Usuarios - Grupos                                                     %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     grupos = []
 
     grupos.append(
         Group.objects.create(
-            name='Instructores'
+            name = 'Instructores'
         )
     )
 
     grupos.append(
         Group.objects.create(
-            name='Pilotos'
+            name = 'Pilotos'
         )
     )
 
     for grupo in grupos:
         grupo.save()
 
-    """Usuarios Usuarios"""
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Usuarios - Usuarios                                                   %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     usuarios = []
 
     usuarios.append(
@@ -148,7 +160,7 @@ def setUp(apps, scheme_editor):
             username = 'adan',
             first_name = 'Adan',
             last_name = 'AdanAdan',
-            email = 'Adan@email.com',
+            email = 'adan@email.com',
             is_superuser = False,
             is_staff = False,
             is_active = True,
@@ -161,7 +173,7 @@ def setUp(apps, scheme_editor):
             username = 'eva',
             first_name = 'Eva',
             last_name = 'EvaEva',
-            email = 'EvaEva@email.com',
+            email = 'evaEva@email.com',
             is_superuser = False,
             is_staff = False,
             is_active = True,
@@ -276,6 +288,135 @@ def setUp(apps, scheme_editor):
     for usuario in usuarios:
         usuario.set_password('1234')
         usuario.save()
+
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Pilotos Remolcadores                                                  %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    pilotos_remolcadores = []
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Ivo',
+            apellido = 'Benítez',
+            email = 'ivo@email.com',
+            dni = 64231556
+        )
+    )
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Jenaro',
+            apellido = 'Acosta',
+            email = 'jenaro@email.com',
+            dni = 60020322
+        )
+    )
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Julio',
+            apellido = 'Medina',
+            email = 'julio@email.com',
+            dni = 28938595
+        )
+    )
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Laureano',
+            apellido = 'Herrera',
+            email = 'laureano@email.com',
+            dni = 62051205
+        )
+    )
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Lorenzo',
+            apellido = 'Suárez',
+            email = 'lorenzo@email.com',
+            dni = 8051852
+        )
+    )
+
+    pilotos_remolcadores.append(
+        PilotoRemolcador(
+            nombre = 'Mamerto',
+            apellido = 'Aguirre',
+            email = 'mamerto@email.com',
+            dni = 24988966
+        )
+    )
+
+    for piloto in pilotos_remolcadores:
+        piloto.save()
+
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Planes De Vuelo                                                       %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    planes_de_vuelo = []
+    semana_plus = timedelta(days = 14)
+
+    # Adan
+    fecha_adan = date(2023, 1, 4)
+    for i in range(0, 3):
+        fecha_adan = fecha_adan + timedelta(days = 14)
+
+        plan_de_vuelo = PlanDeVuelo(
+            denominacion = 'plan de vuelo adan ' + str(i),
+            fecha = fecha_adan,
+            instructor = usuarios[0],
+        )
+
+        plan_de_vuelo.save()
+        plan_de_vuelo.pilotos_remolcadores.add(
+            pilotos_remolcadores[0],
+            pilotos_remolcadores[1],
+            pilotos_remolcadores[2]
+        )
+
+        planes_de_vuelo.append(plan_de_vuelo)
+
+    # Eva
+    fecha_eva = date(2023, 1, 11)
+    for i in range(0, 3):
+        fecha_eva = fecha_eva + timedelta(days = 14)
+        plan_de_vuelo = PlanDeVuelo(
+            denominacion = 'plan de vuelo eva ' + str(i),
+            fecha = fecha_eva,
+            instructor = usuarios[1],
+        )
+
+        plan_de_vuelo.save()
+        plan_de_vuelo.pilotos_remolcadores.add(
+            pilotos_remolcadores[0],
+            pilotos_remolcadores[2],
+            pilotos_remolcadores[3]
+        )
+
+        planes_de_vuelo.append(plan_de_vuelo)
+
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    # % Actividades                                                           %
+    # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    actividades = []
+
+    for i in range(0, 36):
+        actividades.append(
+            Actividad(
+                plan_de_vuelo = planes_de_vuelo[i // 6],
+                piloto = usuarios[2 + i % 8],
+                remolcador = remolcadores[i % 2],
+                remolque_despegue = time(10 + i % 6, 15),
+                remolque_corte = time(0, 5),
+                planeador = planeadores[i % 5],
+                planeador_aterrizaje = time(10 + i % 6, 30),
+                planeador_vuelo_librado = time(0, 10)
+            )
+        )
+
+    for actividad in actividades:
+        actividad.save()
 
 
 class Migration(migrations.Migration):

@@ -25,7 +25,7 @@ El PIG deberá ser un sitio web con temática a elección, orientado a la gesti�
     * [X] Debe haber al menos un formulario basado en clases.
     * [X] Debe haber al menos un formulario asociado a un modelo.
 * [X] Deben existir al menos dos modelos distintos.
-* [ ] En los modelos generados, debe haber al menos una relación de uno a muchos y una relación de muchos a muchos.
+* [X] En los modelos generados, debe haber al menos una relación de uno a muchos y una relación de muchos a muchos.
 * [X] El proyecto debe funcionar utilizando un servidor de base de datos local dentro de los soportados (en el curso se recomienda PostgreSQL), y debe poseer las migraciones necesarias para su funcionamiento (no se permite utilizar SQLLite).
 * [X] Debe poder accederse al admin de Django y al menos los modelos que poseen la relación muchos a muchos deben poder administrarse del mismo.
 * [X] El proyecto debe poseer al menos una página a la que solo se pueda acceder mediante autenticación y la misma debe ser validada tanto en el front-end como el back-end.
