@@ -5,8 +5,9 @@ from .models import Instructor
 from .models import Piloto
 from .models import Planeador
 from .models import Remolcador
+from .models import PilotoRemolcador
 from .models import Actividad
-
+from .models import PlanDeVuelo
 
 class ChoiceFieldMixin:
     def __init__(self, *args, **kwargs):
@@ -17,36 +18,7 @@ class ChoiceFieldMixin:
         )
 
 
-class UsuarioChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return f"{self.label}: {obj.last_name}, {obj.first_name}"
-
-
-class AeronaveChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return f"{self.label}: {obj.nombre}"
-
-
-@admin.register(Actividad)
-class ActividadAdmin(admin.ModelAdmin):
-    list_display = ['get_instructor', 'get_piloto', 'get_remolcador', 'get_planeador']
-
-    def get_instructor(self, actividad):
-        instructor = actividad.instructor
-        return f'{instructor.last_name}, {instructor.first_name}'
-
-    def get_piloto(self, actividad):
-        piloto = actividad.piloto
-        return f'{piloto.last_name}, {piloto.first_name}'
-
-    def get_remolcador(self, actividad):
-        remolcador = actividad.remolcador
-        return f'{remolcador.nombre}'
-
-    def get_planeador(self, actividad):
-        planeador = actividad.planeador
-        return f'{planeador.nombre}'
-
+class AdminMixin:
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
 
@@ -64,6 +36,40 @@ class ActividadAdmin(admin.ModelAdmin):
                 queryset = Instructor.objects.all()
             )
 
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+
+class UsuarioChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name}, {obj.first_name}"
+
+
+class AeronaveChoiceField(ChoiceFieldMixin, forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.nombre}"
+
+
+@admin.register(Actividad)
+class ActividadAdmin(AdminMixin, admin.ModelAdmin):
+    list_display = ['get_instructor', 'get_piloto', 'get_remolcador', 'get_planeador']
+
+    def get_instructor(self, actividad):
+        instructor = actividad.plan_de_vuelo.instructor
+        return f'{instructor.last_name}, {instructor.first_name}'
+
+    def get_piloto(self, actividad):
+        piloto = actividad.piloto
+        return f'{piloto.last_name}, {piloto.first_name}'
+
+    def get_remolcador(self, actividad):
+        remolcador = actividad.remolcador
+        return f'{remolcador.nombre}'
+
+    def get_planeador(self, actividad):
+        planeador = actividad.planeador
+        return f'{planeador.nombre}'
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == 'piloto':
             return UsuarioChoiceField(
                 label = 'Piloto',
@@ -85,9 +91,26 @@ class ActividadAdmin(admin.ModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
+@admin.register(PlanDeVuelo)
+class PlanDeVueloAdmin(AdminMixin, admin.ModelAdmin):
+    list_display = ['denominacion', 'fecha', 'get_instructor']
+    fields = ['denominacion', 'fecha', 'instructor', 'pilotos_remolcadores']
+    filter_horizontal = ['pilotos_remolcadores']
+
+    def get_instructor(self, plan_de_vuelo):
+        instructor = plan_de_vuelo.instructor
+        return f'{instructor.last_name}, {instructor.first_name}'
+
+
+@admin.register(PilotoRemolcador)
+class PilotoRemolcadorAdmin(admin.ModelAdmin):
+    list_display = ['nombre', 'apellido', 'dni']
+
+
 @admin.register(Instructor, Piloto)
 class InstructorPilotoAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'last_name', 'dni']
+    fields = ['username', 'first_name', 'last_name', 'dni', 'email']
 
 
 @admin.register(Planeador, Remolcador)

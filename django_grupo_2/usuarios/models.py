@@ -13,7 +13,7 @@ class Perfil(models.Model):
     )
 
     usuario = models.OneToOneField(
-        related_name='perfil',
+        related_name = 'perfil',
         to = User,
         on_delete = models.CASCADE
     )
@@ -187,8 +187,8 @@ class Planeador(models.Model):
 ## ------------- Seccion PlanDeVuelo --------- ##
 class PilotoRemolcador(models.Model):
     class Meta:
-        verbose_name = 'PilotoRemolcador'
-        verbose_name_plural = 'PilotosRemolcadores'
+        verbose_name = 'Piloto Remolcador'
+        verbose_name_plural = 'Pilotos Remolcadores'
 
     nombre = models.CharField(
         max_length = 50,
@@ -209,11 +209,10 @@ class PilotoRemolcador(models.Model):
         verbose_name = 'DNI'
     )
 
-
 class PlanDeVuelo(models.Model):
     class Meta:
-        verbose_name = 'PlanDeVuelo'
-        verbose_name_plural = 'PlanesDeVuelo'
+        verbose_name = 'Plan De Vuelo'
+        verbose_name_plural = 'Planes De Vuelo'
 
     denominacion = models.CharField(
         max_length = 50,
@@ -225,13 +224,13 @@ class PlanDeVuelo(models.Model):
     )
 
     instructor = models.ForeignKey(
-        related_name='instructor',
+        related_name = 'planes_de_vuelo',
         to = Instructor,
         on_delete = models.RESTRICT
     )
 
     pilotos_remolcadores = models.ManyToManyField(
-        related_name='pilotos_remolcadores',
+        related_name = 'planes_de_vuelo',
         to = PilotoRemolcador
     )
 
@@ -242,20 +241,20 @@ class Actividad(models.Model):
         verbose_name_plural = 'Actividades'
 
     plan_de_vuelo = models.ForeignKey(
-        related_name='plan_de_vuelo',
+        related_name = 'actividades',
         to = PlanDeVuelo,
         on_delete = models.RESTRICT
     )
 
     piloto = models.ForeignKey(
-        related_name='piloto',
+        related_name = 'actividades',
         to = Piloto,
         on_delete = models.RESTRICT
     )
 
     # remolcador
     remolcador = models.ForeignKey(
-        related_name='remolcador',
+        related_name = 'actividades',
         to = Remolcador,
         on_delete = models.RESTRICT
     )
@@ -275,7 +274,7 @@ class Actividad(models.Model):
 
     # planeador
     planeador = models.ForeignKey(
-        related_name='planeador',
+        related_name = 'actividades',
         to = Planeador,
         on_delete = models.RESTRICT
     )
