@@ -11,7 +11,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('planeadores_mdp.urls')),
-    path('usuario', include('usuarios.urls')),
+    path('usuario/', include('usuarios.urls')),
 
     path('accounts/', include('seguridad.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

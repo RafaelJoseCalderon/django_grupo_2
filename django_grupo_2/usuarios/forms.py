@@ -6,6 +6,7 @@ from herramientas.widgets import ClearableFileInput
 
 from .models import Perfil
 from .models import Actividad
+from .models import PlanDeVuelo
 
 
 class InitFormsMixin:
@@ -16,6 +17,9 @@ class InitFormsMixin:
             field.widget.attrs['class'] = 'form-control'
 
 
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                            Seccion Perfil                             %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PerfilForm(InitFormsMixin, forms.ModelForm):
     class Meta:
         model = Perfil
@@ -44,6 +48,48 @@ class UsuarioPerfilForm(ParentWithChildrenForm):
             {'children': PerfilForm, 'related_name': 'perfil'}
         ]
     }
+
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                        Seccion Plan De Vuel                           %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class PlanDeVueloSearchForm(InitFormsMixin, forms.ModelForm):
+    class Meta:
+        model = PlanDeVuelo
+        fields = ['denominacion', 'fecha']
+        widgets = {
+            'fecha': forms.DateInput(
+                attrs = {
+                    'placeholder': 'AAAA-mm-dd'
+            })            
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PlanDeVueloSearchForm, self).__init__(*args, **kwargs)
+
+        for value in self.fields.values():
+            value.required = False
+
+
+class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                          Seccion Actividad                            %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class ActividadSearchForm(InitFormsMixin, forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = ['piloto']
+
+    def __init__(self, *args, **kwargs):
+        super(ActividadSearchForm, self).__init__(*args, **kwargs)
+
+        for value in self.fields.values():
+            value.required = False
 
 
 class ActividadForm(InitFormsMixin, forms.ModelForm):

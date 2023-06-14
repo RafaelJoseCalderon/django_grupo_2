@@ -3,6 +3,13 @@
 {% block socio %}
   <h1>Lista de actividades</h1>
 
+  <form method="get">
+    <div>{% csrf_token %}</div>
+    {{ form }}
+    <a class="btn btn-outline-secondary" href="{% url 'actividades-i' %}">Borrar</a>
+    <input class="btn btn-outline-secondary" id="id_ubucacion" type="submit" value="Busacar">
+  </form>
+
   <table class="table table-striped">
     <tr>
       <th>Instructor</th>
@@ -11,8 +18,12 @@
       <th>Planeador</th>
     </tr>
     {% for actividad in actividades %}
-      <tr>
-        <td>{{actividad.instructor.first_name}}</td>
+      <tr
+        class="user-select-none"
+        style="cursor: pointer"
+        onclick="location.href = `{% url 'actividad' actividad.id %}`"
+      >
+        <td>{{actividad.plan_de_vuelo.instructor.first_name}}</td>
         <td>{{actividad.piloto.first_name}}</td>
         <td>{{actividad.remolcador.nombre}}</td>
         <td>{{actividad.planeador.nombre}}</td>
@@ -23,5 +34,7 @@
       </tr>
     {% endfor %}
   </table>
+
+  {% include "paginacion.html" %}
 
 {% endblock %}

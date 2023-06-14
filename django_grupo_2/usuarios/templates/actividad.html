@@ -1,13 +1,5 @@
 {% extends 'ss_base.html' %}
 
 {% block socio %}
-  <div>
-    <h1>Alta actividad</h1>
-
-    <form method="post">{% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Update">
-    </form>
-
-</div>
+    <div>{{ object.piloto.first_name }}</div>
 {% endblock %}

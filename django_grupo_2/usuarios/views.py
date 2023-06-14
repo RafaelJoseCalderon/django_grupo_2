@@ -13,11 +13,17 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 from herramientas.mixins import MessagesSuccessMixin
+from herramientas.views import ListViewWithSearchAndPagination
 
 from .forms import UsuarioPerfilForm
+from .forms import PlanDeVueloForm
 from .forms import ActividadForm
+from .forms import PlanDeVueloSearchForm
+from .forms import ActividadSearchForm
+
 from .models import Perfil
 from .models import Actividad
+from .models import PlanDeVuelo
 
 
 def redireccion(request):
@@ -28,12 +34,14 @@ def redireccion(request):
         return redirect(reverse_lazy('actividades-p'))
 
     if request.user.groups.filter(name='Instructores').exists():
-        return redirect(reverse_lazy('actividades-i'))
+        return redirect(reverse_lazy('planes-de-vuelo'))
 
     raise Exception('Usuario sin grupo admitido')
 
 
-## ------------- Seccion Perfil -------------- ##
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                            Seccion Perfil                             %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PerfilMixin(MessagesSuccessMixin, LoginRequiredMixin):
     def user_id(self):
         return self.request.user.id
@@ -53,29 +61,93 @@ class DetallePerfil(PerfilMixin, DetailView):
 
 
 class ActualizacionPerfil(PerfilMixin, UpdateView):
-    form_class = UsuarioPerfilForm
     template_name = 'perfil-actualizacion.html'
+    form_class = UsuarioPerfilForm
+
     success_url = reverse_lazy('editar-perfil')
     messages_success = 'Se ha actualizado correctamente.'
 
 
-## ------------- Seccion Instructor ---------- ##
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                          Seccion Instructor                           %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class InstructorMixin(MessagesSuccessMixin, LoginRequiredMixin):
     extra_context = { 'es_instructor': True }
 
 
-class PlanesDeVuelo(InstructorMixin, ListView):
-    pass
+class PlanesDeVuelo(InstructorMixin, ListViewWithSearchAndPagination):
+    model = PlanDeVuelo
+    template_name = 'planes-de-vuelo.html'
+    context_object_name = 'planes_de_vuelo'
+
+    paginate_by = 2
+    ordering = 'id'
+
+    class_form = PlanDeVueloSearchForm
+    search_dict = {
+        'denominacion': 'denominacion__contains',
+        'fecha': 'fecha'
+    }
+
+    def get_queryset(self):
+        usuario = self.request.user
+        self.queryset = PlanDeVuelo.objects.filter(instructor = usuario.pk)
+
+        return super().get_queryset()
 
 
-class ActividadesInstructor(InstructorMixin, ListView):
+class DetallePlanDeVuelo(InstructorMixin, DetailView):
+    model = PlanDeVuelo
+    template_name = 'plan-de-vuelo.html'
+
+
+class AltaPlanDeVuelo(InstructorMixin, CreateView):
+    template_name = 'plan-de-vuelo-form.html'
+    form_class = PlanDeVueloForm
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+
+
+class BajaPlanDeVuelo(InstructorMixin, DeleteView):
+    model = PlanDeVuelo
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+    template_name = 'componentes/confirmacion_borrado.html'
+
+
+class ModiPlanDeVuelo(InstructorMixin, UpdateView):
+    model = PlanDeVuelo
+    template_name = 'plan-de-vuelo-form.html'
+    form_class = PlanDeVueloForm
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+    messages_success = 'Se ha actualizado correctamente.'
+
+
+class ActividadesInstructor(InstructorMixin, ListViewWithSearchAndPagination):
+    model = Actividad
     template_name = 'actividades.html'
     context_object_name = 'actividades'
+
+    paginate_by = 6
+    ordering = 'id'
+
+    class_form = ActividadSearchForm
+    search_dict = {
+        'piloto': 'piloto__first_name__contains'
+    }
+
+    def get_queryset(self):
+        usuario = self.request.user
+        self.queryset = Actividad.objects.filter(plan_de_vuelo__instructor = usuario.pk)
+
+        return super().get_queryset()
+
+
+class DetalleActividad(InstructorMixin, DetailView):
     model = Actividad
+    template_name = 'actividad.html'
 
 
 class AltaActvidad(InstructorMixin, CreateView):
-    template_name = 'actividad.html'
+    template_name = 'actividad-form.html'
     form_class = ActividadForm
     success_url = reverse_lazy('actividades-i')
 
@@ -87,14 +159,16 @@ class BajaActvidad(InstructorMixin, DeleteView):
 
 
 class ModiActvidad(InstructorMixin, UpdateView):
-    template_name = 'actividad.html'
+    template_name = 'actividad-form.html'
     form_class = ActividadForm
     success_url = reverse_lazy('actividades-i')
     model = Actividad
     messages_success = 'Se ha actualizado correctamente.'
 
 
-## ------------- Seccion Piloto -------------- ##
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                            Seccion Piloto                             %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PilotoMixin(LoginRequiredMixin):
     extra_context = { 'es_piloto': True }
 

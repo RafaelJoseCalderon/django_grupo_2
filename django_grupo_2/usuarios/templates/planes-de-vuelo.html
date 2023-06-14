@@ -1,0 +1,36 @@
+{% extends 'ss_base.html' %}
+
+{% block socio %}
+  <h1>Lista de planes de vuelo</h1>
+
+  <form method="get">
+    <div>{% csrf_token %}</div>
+    {{ form }}
+    <a class="btn btn-outline-secondary" href="{% url 'planes-de-vuelo' %}">Borrar</a>
+    <input class="btn btn-outline-secondary" id="id_ubucacion" type="submit" value="Busacar">
+  </form>
+
+  <table class="table table-striped mb-auto">
+    <tr>
+      <th>Denominacion</th>
+      <th>Fecha</th>
+    </tr>
+    {% for plan_de_vuelo in planes_de_vuelo %}
+      <tr
+        class="user-select-none"
+        style="cursor: pointer"
+        onclick="location.href = `{% url 'plan-de-vuelo' plan_de_vuelo.id %}`"
+      >
+        <td>{{plan_de_vuelo.denominacion}}</td>
+        <td>{{plan_de_vuelo.fecha}}</td>
+
+        <td><a href="{% url 'modi-plan-de-vuelo' plan_de_vuelo.id %}"><i class="far fa-edit"></i></a></td>
+        <td><a href="{% url 'baja-plan-de-vuelo' plan_de_vuelo.id %}"><i class="far fa-trash-alt"></i></a></td>
+
+      </tr>
+    {% endfor %}
+  </table>
+
+  {% include "paginacion.html" %}
+
+{% endblock %}
