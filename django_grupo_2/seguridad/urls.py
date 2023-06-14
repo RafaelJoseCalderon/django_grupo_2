@@ -8,9 +8,29 @@ from .views import PasswordResetConfirm
 
 
 urlpatterns = [
-    path('singup/', SingUp.as_view(), name = 'singup'),
-    path('password_change/', PasswordChange.as_view(), name = 'password_change'),
-    path('password_reset/', PasswordReset.as_view(), name = 'password_reset'),
-    path('password_reset/done/', PasswordResetDone.as_view(), name = 'password_reset_done'),
-    path('reset/<uidb64>/<token>/', PasswordResetConfirm.as_view(), name = 'password_reset_confirm'),
+    path(
+        route = 'singup/',
+        view = SingUp.as_view(),
+        name = 'singup'
+    ),
+    path(
+        route = 'password-change/',
+        view = PasswordChange.as_view(),
+        name = 'password-change'
+    ),
+    path(
+        route = 'password-reset/',
+        view = PasswordReset.as_view(),
+        name = 'password-reset'
+    ),
+    path(
+        route = 'password-reset/done/',
+        view = PasswordResetDone.as_view(),
+        name = 'password-reset-done'
+    ),
+    path(
+        route = 'reset/<uidb64>/<token>/',
+        view = PasswordResetConfirm.as_view(),
+        name = 'password-reset-confirm'
+    ),
 ]

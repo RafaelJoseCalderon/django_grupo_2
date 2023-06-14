@@ -11,13 +11,13 @@
   <ul class="navbar-left nav nav-pills d-flex flex-column">
     {% if es_instructor %}
       <li class="nav-item">
-        <a href="{% url 'alta_actividad' %}" class="nav-link sidebar-link link-body-emphasis">
+        <a href="{% url 'alta-actividad' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fas fa-home"></i>
           <span>Alta Actividad</span>
         </a>
       </li>
       <li class="nav-item">
-        <a href="{% url 'actividades_instructor' %}" class="nav-link sidebar-link link-body-emphasis">
+        <a href="{% url 'actividades-i' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fab fa-product-hunt"></i>
           <span>Lista de Actividades</span>
         </a>
@@ -26,7 +26,7 @@
 
     {% if es_piloto %}
       <li class="nav-item">
-        <a href="{% url 'actividades_piloto' %}" class="nav-link sidebar-link link-body-emphasis">
+        <a href="{% url 'actividades-p' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fab fa-product-hunt"></i>
           <span>Lista de Actividades</span>
         </a>
@@ -47,7 +47,7 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'editar_perfil' %}" class="link-dark text-decoration-none">
+      <a href="{% url 'editar-perfil' %}" class="link-dark text-decoration-none">
         <i class="far fa-address-card"></i>
         <span>EditarPerfil</span>
       </a>

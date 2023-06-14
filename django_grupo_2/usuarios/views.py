@@ -12,7 +12,7 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
-from herramientas.utils import messages_success
+from herramientas.mixins import MessagesSuccessMixin
 
 from .forms import UsuarioPerfilForm
 from .forms import ActividadForm
@@ -25,16 +25,16 @@ def redireccion(request):
         return redirect(f"{settings.LOGIN_URL}?next={request.path}")
 
     if request.user.groups.filter(name='Pilotos').exists():
-        return redirect(reverse_lazy('actividades_piloto'))
+        return redirect(reverse_lazy('actividades-p'))
 
     if request.user.groups.filter(name='Instructores').exists():
-        return redirect(reverse_lazy('actividades_instructor'))
+        return redirect(reverse_lazy('actividades-i'))
 
     raise Exception('Usuario sin grupo admitido')
 
 
 ## ------------- Seccion Perfil -------------- ##
-class PerfilMixin(LoginRequiredMixin):
+class PerfilMixin(MessagesSuccessMixin, LoginRequiredMixin):
     def user_id(self):
         return self.request.user.id
 
@@ -55,21 +55,17 @@ class DetallePerfil(PerfilMixin, DetailView):
 class ActualizacionPerfil(PerfilMixin, UpdateView):
     form_class = UsuarioPerfilForm
     template_name = 'perfil-actualizacion.html'
-    success_url = reverse_lazy('editar_perfil')
-
-    def form_valid(self, form):
-        messages_success(self.request, 'Se ha actualizado correctamente.')
-
-        return super().form_valid(form)
+    success_url = reverse_lazy('editar-perfil')
+    messages_success = 'Se ha actualizado correctamente.'
 
 
 ## ------------- Seccion Instructor ---------- ##
-class InstructorMixin(LoginRequiredMixin):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['es_instructor'] = True
+class InstructorMixin(MessagesSuccessMixin, LoginRequiredMixin):
+    extra_context = { 'es_instructor': True }
 
-        return context
+
+class PlanesDeVuelo(InstructorMixin, ListView):
+    pass
 
 
 class ActividadesInstructor(InstructorMixin, ListView):
@@ -81,34 +77,26 @@ class ActividadesInstructor(InstructorMixin, ListView):
 class AltaActvidad(InstructorMixin, CreateView):
     template_name = 'actividad.html'
     form_class = ActividadForm
-    success_url = 'actividades'
+    success_url = reverse_lazy('actividades-i')
 
 
 class BajaActvidad(InstructorMixin, DeleteView):
     model = Actividad
-    success_url = 'actividades'
+    success_url = reverse_lazy('actividades-i')
     template_name = 'componentes/confirmacion_borrado.html'
 
 
 class ModiActvidad(InstructorMixin, UpdateView):
     template_name = 'actividad.html'
     form_class = ActividadForm
-    success_url = 'actividades'
+    success_url = reverse_lazy('actividades-i')
     model = Actividad
-
-    def form_valid(self, form):
-        messages_success(self.request, 'Se ha actualizado correctamente.')
-
-        return super().form_valid(form)
+    messages_success = 'Se ha actualizado correctamente.'
 
 
 ## ------------- Seccion Piloto -------------- ##
 class PilotoMixin(LoginRequiredMixin):
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['es_piloto'] = True
-
-        return context
+    extra_context = { 'es_piloto': True }
 
 
 class ActividadesPiloto(PilotoMixin, ListView):

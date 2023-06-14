@@ -15,3 +15,6 @@ def get_singup_user_model():
             "AUTH_USER_MODEL refers to model '%s' that has not been installed"
             % settings.AUTH_SINGUP_USER_MODEL
         )
+
+def get_profile_edit_url():
+    return settings.PROFILE_EDIT_REDIRECT_URL

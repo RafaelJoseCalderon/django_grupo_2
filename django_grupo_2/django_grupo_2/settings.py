@@ -174,7 +174,7 @@ LOGIN_REDIRECT_URL = 'usuario'
 
 LOGOUT_REDIRECT_URL = 'home'
 
-PROFILE_EDIT_REDIRECT_URL = 'editar_perfil'
+PROFILE_EDIT_REDIRECT_URL = 'editar-perfil'
 
 
 # Default primary key field type
