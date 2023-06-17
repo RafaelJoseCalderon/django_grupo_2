@@ -3,19 +3,31 @@
 {% block socio %}
   <h1>Lista de actividades</h1>
 
-  <form method="get">
-    <div>{% csrf_token %}</div>
-    {{ form }}
-    <a class="btn btn-outline-secondary" href="{% url 'actividades-i' %}">Borrar</a>
-    <input class="btn btn-outline-secondary" id="id_ubucacion" type="submit" value="Busacar">
+  <form method="GET" novalidate>
+    {% for field in form %}
+      <div class="mb-2">
+        <label for="{{ field.id_for_label }}" class="form-label">
+          <strong class="m-0 p-0">{{field.label}}</strong>
+        </label>
+
+        {{field}}
+      </div>
+    {% endfor %}
+
+    <div class="d-grid gap-2 d-flex justify-content-end">
+      <a class="btn btn-outline-secondary" href="{{ request.get_full_path }}">Borrar</a>
+      <input class="btn btn-outline-secondary" type="submit" value="Busacar">
+    </div>
   </form>
 
-  <table class="table table-striped">
+  <hr class="my-3 mx-0">
+
+  <table class="table table-striped mb-auto">
     <tr>
       <th>Instructor</th>
       <th>Piloto</th>
       <th>Remolcador</th>
-      <th>Planeador</th>
+      <th colspan="3">Planeador</th>
     </tr>
     {% for actividad in actividades %}
       <tr

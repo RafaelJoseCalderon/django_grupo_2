@@ -1,4 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 from django.contrib.auth.models import User
 from django.views.generic import CreateView
 from django.views.generic import DeleteView
@@ -13,7 +15,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 
 from herramientas.mixins import MessagesSuccessMixin
-from herramientas.views import ListViewWithSearchAndPagination
+from herramientas.views import ListViewWithSearchAndPagination as ListViewWSAP
 
 from .forms import UsuarioPerfilForm
 from .forms import PlanDeVueloForm
@@ -56,72 +58,21 @@ class PerfilMixin(MessagesSuccessMixin, LoginRequiredMixin):
 
 
 class DetallePerfil(PerfilMixin, DetailView):
-    template_name = 'perfil-detalle.html'
     model = User
+    template_name = 'perfil-detalle.html'
 
 
 class ActualizacionPerfil(PerfilMixin, UpdateView):
-    template_name = 'perfil-actualizacion.html'
     form_class = UsuarioPerfilForm
+    template_name = 'perfil-actualizacion.html'
 
     success_url = reverse_lazy('editar-perfil')
     messages_success = 'Se ha actualizado correctamente.'
 
-
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %                          Seccion Instructor                           %
+# %                          Auxiliar Actividades                         %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class InstructorMixin(MessagesSuccessMixin, LoginRequiredMixin):
-    extra_context = { 'es_instructor': True }
-
-
-class PlanesDeVuelo(InstructorMixin, ListViewWithSearchAndPagination):
-    model = PlanDeVuelo
-    template_name = 'planes-de-vuelo.html'
-    context_object_name = 'planes_de_vuelo'
-
-    paginate_by = 2
-    ordering = 'id'
-
-    class_form = PlanDeVueloSearchForm
-    search_dict = {
-        'denominacion': 'denominacion__contains',
-        'fecha': 'fecha'
-    }
-
-    def get_queryset(self):
-        usuario = self.request.user
-        self.queryset = PlanDeVuelo.objects.filter(instructor = usuario.pk)
-
-        return super().get_queryset()
-
-
-class DetallePlanDeVuelo(InstructorMixin, DetailView):
-    model = PlanDeVuelo
-    template_name = 'plan-de-vuelo.html'
-
-
-class AltaPlanDeVuelo(InstructorMixin, CreateView):
-    template_name = 'plan-de-vuelo-form.html'
-    form_class = PlanDeVueloForm
-    success_url = reverse_lazy('alta-plan-de-vuelo')
-
-
-class BajaPlanDeVuelo(InstructorMixin, DeleteView):
-    model = PlanDeVuelo
-    success_url = reverse_lazy('alta-plan-de-vuelo')
-    template_name = 'componentes/confirmacion_borrado.html'
-
-
-class ModiPlanDeVuelo(InstructorMixin, UpdateView):
-    model = PlanDeVuelo
-    template_name = 'plan-de-vuelo-form.html'
-    form_class = PlanDeVueloForm
-    success_url = reverse_lazy('alta-plan-de-vuelo')
-    messages_success = 'Se ha actualizado correctamente.'
-
-
-class ActividadesInstructor(InstructorMixin, ListViewWithSearchAndPagination):
+class Actividades(ListViewWSAP):
     model = Actividad
     template_name = 'actividades.html'
     context_object_name = 'actividades'
@@ -134,6 +85,83 @@ class ActividadesInstructor(InstructorMixin, ListViewWithSearchAndPagination):
         'piloto': 'piloto__first_name__contains'
     }
 
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                          Seccion Instructor                           %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class InstructorMixin(
+    MessagesSuccessMixin,
+    PermissionRequiredMixin,
+    LoginRequiredMixin
+):
+    pass
+
+
+# %                          PlanesDeVuelo                                %
+class PlanesDeVuelo(InstructorMixin, ListViewWSAP):
+    permission_required = 'usuarios.view_plandevuelo'
+
+    model = PlanDeVuelo
+    template_name = 'planes-de-vuelo.html'
+    context_object_name = 'planes_de_vuelo'
+
+    paginate_by = 2
+    ordering = 'id'
+
+    class_form = PlanDeVueloSearchForm
+    search_dict = {
+        'denominacion': 'denominacion__contains',
+        'fecha_desde': 'fecha__gte',
+        'fecha_hasta': 'fecha__lte'
+    }
+
+    def get_queryset(self):
+        usuario = self.request.user
+        self.queryset = PlanDeVuelo.objects.filter(instructor = usuario.pk)
+
+        return super().get_queryset()
+
+
+class DetallePlanDeVuelo(InstructorMixin, DetailView):
+    permission_required = 'usuarios.view_plandevuelo'
+
+    model = PlanDeVuelo
+    template_name = 'plan-de-vuelo.html'
+
+
+class AltaPlanDeVuelo(InstructorMixin, CreateView):
+    permission_required = 'usuarios.add_plandevuelo'
+
+    form_class = PlanDeVueloForm
+    template_name = 'plan-de-vuelo-form.html'
+
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+
+
+class BajaPlanDeVuelo(InstructorMixin, DeleteView):
+    permission_required = 'usuarios.delete_plandevuelo'
+
+    model = PlanDeVuelo
+    template_name = 'componentes/confirmacion_borrado.html'
+
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+
+
+class ModiPlanDeVuelo(InstructorMixin, UpdateView):
+    permission_required = 'usuarios.change_plandevuelo'
+
+    model = PlanDeVuelo
+    form_class = PlanDeVueloForm
+    template_name = 'plan-de-vuelo-form.html'
+
+    success_url = reverse_lazy('alta-plan-de-vuelo')
+    messages_success = 'Se ha actualizado correctamente.'
+
+
+# %                          Actividades                                  %
+class ActividadesInstructor(InstructorMixin, Actividades):
+    permission_required = 'usuarios.view_actividad'
+
     def get_queryset(self):
         usuario = self.request.user
         self.queryset = Actividad.objects.filter(plan_de_vuelo__instructor = usuario.pk)
@@ -142,42 +170,56 @@ class ActividadesInstructor(InstructorMixin, ListViewWithSearchAndPagination):
 
 
 class DetalleActividad(InstructorMixin, DetailView):
+    permission_required = 'usuarios.view_actividad'
+
     model = Actividad
     template_name = 'actividad.html'
 
 
 class AltaActvidad(InstructorMixin, CreateView):
+    permission_required = 'usuarios.add_actividad'
+
     template_name = 'actividad-form.html'
     form_class = ActividadForm
+
     success_url = reverse_lazy('actividades-i')
 
 
 class BajaActvidad(InstructorMixin, DeleteView):
+    permission_required = 'usuarios.delete_actividad'
+
     model = Actividad
-    success_url = reverse_lazy('actividades-i')
     template_name = 'componentes/confirmacion_borrado.html'
+
+    success_url = reverse_lazy('actividades-i')
 
 
 class ModiActvidad(InstructorMixin, UpdateView):
-    template_name = 'actividad-form.html'
-    form_class = ActividadForm
-    success_url = reverse_lazy('actividades-i')
+    permission_required = 'usuarios.change_actividad'
+
     model = Actividad
+    form_class = ActividadForm
+    template_name = 'actividad-form.html'
+
+    success_url = reverse_lazy('actividades-i')
     messages_success = 'Se ha actualizado correctamente.'
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %                            Seccion Piloto                             %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class PilotoMixin(LoginRequiredMixin):
-    extra_context = { 'es_piloto': True }
+class PilotoMixin(
+    PermissionRequiredMixin,
+    LoginRequiredMixin
+):
+    pass
 
 
-class ActividadesPiloto(PilotoMixin, ListView):
-    template_name = 'actividades.html'
-    context_object_name = 'actividades'
-    model = Actividad
+class ActividadesPiloto(PilotoMixin, Actividades):
+    permission_required = 'usuarios.view_actividad'
 
     def get_queryset(self):
         usuario = self.request.user
-        return Actividad.objects.filter(piloto = usuario.pk)
+        self.queryset = Actividad.objects.filter(piloto = usuario.pk)
+
+        return super().get_queryset()

@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 from herramientas.forms import ParentWithChildrenForm
-from herramientas.widgets import ClearableFileInput
+from herramientas import widgets
 
 from .models import Perfil
 from .models import Actividad
@@ -25,7 +25,7 @@ class PerfilForm(InitFormsMixin, forms.ModelForm):
         model = Perfil
         fields = ['imagen']
         widgets = {
-            'imagen': ClearableFileInput()
+            'imagen': widgets.ClearableFileInput()
         }
 
 
@@ -51,24 +51,39 @@ class UsuarioPerfilForm(ParentWithChildrenForm):
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %                        Seccion Plan De Vuel                           %
+# %                        Seccion Plan De Vuelo                          %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class PlanDeVueloSearchForm(InitFormsMixin, forms.ModelForm):
-    class Meta:
-        model = PlanDeVuelo
-        fields = ['denominacion', 'fecha']
-        widgets = {
-            'fecha': forms.DateInput(
-                attrs = {
-                    'placeholder': 'AAAA-mm-dd'
-            })            
-        }
+class PlanDeVueloSearchForm(forms.Form):
+    denominacion = forms.CharField(
+        label = 'Denominacion', 
+        max_length = 100,
+        widget = forms.TextInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'Denominación del plan de vuelo'
+            }
+        )
+    )
 
-    def __init__(self, *args, **kwargs):
-        super(PlanDeVueloSearchForm, self).__init__(*args, **kwargs)
+    fecha_desde = forms.DateField(
+        label = 'Fecha Desde',
+        widget = widgets.DateInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
 
-        for value in self.fields.values():
-            value.required = False
+    fecha_hasta = forms.DateField(
+        label = 'Fecha Hasta',
+        widget = widgets.DateInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
 
 
 class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
@@ -80,16 +95,17 @@ class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %                          Seccion Actividad                            %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class ActividadSearchForm(InitFormsMixin, forms.ModelForm):
-    class Meta:
-        model = Actividad
-        fields = ['piloto']
-
-    def __init__(self, *args, **kwargs):
-        super(ActividadSearchForm, self).__init__(*args, **kwargs)
-
-        for value in self.fields.values():
-            value.required = False
+class ActividadSearchForm(forms.Form):
+    piloto = forms.CharField(
+        label = 'Piloto', 
+        max_length = 100,
+        widget = forms.TextInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'Primer nombre del piloto'
+            }
+        )
+    )
 
 
 class ActividadForm(InitFormsMixin, forms.ModelForm):

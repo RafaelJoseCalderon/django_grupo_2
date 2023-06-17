@@ -1,0 +1,22 @@
+<div class="input-group mb-3">
+  <input
+    id="id_{{ widget.name }}"
+    type="{{ widget.type }}"
+    name="{{ widget.name }}"
+    onchange="console.log('Hola Mundo')"
+    readonly
+    date-picker="simple"
+    {% if widget.value != None %}
+      value="{{ widget.value|stringformat:'s' }}"
+    {% endif %}
+    {% include "django/forms/widgets/attrs.html" %}
+  >
+
+  <label class="btn btn-outline-warning" onclick="cleanLebel('id_{{ widget.name }}')">
+    <i class="fas fa-broom"></i>
+  </label>
+
+  <label class="btn btn-outline-secondary" for="id_{{ widget.name }}">
+      <i class="fas fa-calendar-alt"></i>
+  </label>
+</div>

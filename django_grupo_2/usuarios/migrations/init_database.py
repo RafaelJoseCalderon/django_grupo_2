@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from ..models import *
 
 
-def setUp(apps, scheme_editor):
+def set_up(apps, scheme_editor):
     # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     # % Remolcador                                                            %
     # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -425,5 +425,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(setUp),
+        migrations.RunPython(set_up),
     ]

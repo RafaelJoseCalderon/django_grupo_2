@@ -1,19 +1,36 @@
 {% extends 'ss_base.html' %}
+{% load planeadores_mdp_extras %}
+{% load static %}
+
+{% block extra_css %}{% render_css_defer form %}{% endblock %}
+{% block script %}{% render_js_defer form %}{% endblock %}
 
 {% block socio %}
   <h1>Lista de planes de vuelo</h1>
 
-  <form method="get">
-    <div>{% csrf_token %}</div>
-    {{ form }}
-    <a class="btn btn-outline-secondary" href="{% url 'planes-de-vuelo' %}">Borrar</a>
-    <input class="btn btn-outline-secondary" id="id_ubucacion" type="submit" value="Busacar">
+  <form method="GET" novalidate>
+    {% for field in form %}
+      <div class="mb-2">
+        <label for="{{ field.id_for_label }}" class="form-label">
+          <strong class="m-0 p-0">{{field.label}}</strong>
+        </label>
+
+        {{field}}
+      </div>
+    {% endfor %}
+
+    <div class="d-grid gap-2 d-flex justify-content-end">
+      <a class="btn btn-outline-secondary" href="{% url 'planes-de-vuelo' %}">Borrar</a>
+      <input class="btn btn-outline-secondary" type="submit" value="Busacar">
+    </div>
   </form>
+
+  <hr class="my-3 mx-0">
 
   <table class="table table-striped mb-auto">
     <tr>
       <th>Denominacion</th>
-      <th>Fecha</th>
+      <th colspan="3">Fecha</th>
     </tr>
     {% for plan_de_vuelo in planes_de_vuelo %}
       <tr

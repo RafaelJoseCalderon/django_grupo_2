@@ -19,17 +19,21 @@ function reziseUsereContent(width) {
 }
 
 function horizontal() {
-    let pane = document.getElementById('ctn').classList;
+    if(document.getElementById('ctn')) {
+        let pane = document.getElementById('ctn').classList;
 
-    pane.remove('vertical')
-    pane.add('horizontal')
+        pane.remove('vertical')
+        pane.add('horizontal')
+    }
 }
 
 function vertical() {
-    let pane = document.getElementById('ctn').classList;
+    if(document.getElementById('ctn')) {
+        let pane = document.getElementById('ctn').classList;
 
-    pane.remove('horizontal')
-    pane.add('vertical')
+        pane.remove('horizontal')
+        pane.add('vertical')
+    }
 }
 
 // notas diacionales en 'ss_base.html'

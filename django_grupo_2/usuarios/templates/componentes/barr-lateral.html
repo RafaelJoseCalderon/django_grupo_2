@@ -1,33 +1,32 @@
-{% comment %}
-<a href="{% url 'home' %}" class="d-flex link-body-emphasis text-decoration-none">
-  <i class="bi fa-2x fab fa-bootstrap me-2"></i>
-  <span class="fs-4">Sidebar</span>
-</a>
-{% endcomment %}
-
-{% comment %}<hr>{% endcomment %}
+{% load planeadores_mdp_extras %}
 
 <div class="mt-0 mb-auto">
   <ul class="navbar-left nav nav-pills d-flex flex-column">
-    {% if es_instructor %}
+    {% if perms.usuarios.view_plandevuelo %}
       <li class="nav-item">
         <a href="{% url 'planes-de-vuelo' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fas fa-home"></i>
           <span>Planes de Vuelo</span>
         </a>
       </li>
+    {% endif %}
+    {% if perms.usuarios.add_plandevuelo %}
       <li class="nav-item">
         <a href="{% url 'alta-plan-de-vuelo' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fas fa-home"></i>
           <span>Alta Plan de Vuelo</span>
         </a>
       </li>
+    {% endif %}
+    {% if perms.usuarios.view_actividad and request|has_group:'Instructores' %}
       <li class="nav-item">
         <a href="{% url 'actividades-i' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fab fa-product-hunt"></i>
           <span>Actividades</span>
         </a>
       </li>
+    {% endif %}
+    {% if perms.usuarios.add_actividad %}
       <li class="nav-item">
         <a href="{% url 'alta-actividad' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fas fa-home"></i>
@@ -36,7 +35,7 @@
       </li>
     {% endif %}
 
-    {% if es_piloto %}
+    {% if perms.usuarios.view_actividad and request|has_group:'Pilotos' %}
       <li class="nav-item">
         <a href="{% url 'actividades-p' %}" class="nav-link sidebar-link link-body-emphasis">
           <i class="fab fa-product-hunt"></i>
