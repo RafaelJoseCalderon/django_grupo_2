@@ -37,8 +37,8 @@ class UserRegistrationForm(UserCreationForm):
         help_texts = {
             'first_name': 'Obligatorio. 150 caracteres o menos.',
             'last_name': 'Obligatorio. 150 caracteres o menos.',
-            'email': 'Introduzca una dirección de correo electrónico válida',
-            'dni': 'Numero enteron, sin puntos, comas o espacios'
+            'email': 'Ingresa una dirección de correo electrónico válida',
+            'dni': 'Ingresa un numero entero, sin puntos, comas o espacios'
         }
 
     def __init__(self, *args, **kwargs):
