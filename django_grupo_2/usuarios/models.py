@@ -243,7 +243,7 @@ class Actividad(models.Model):
     plan_de_vuelo = models.ForeignKey(
         related_name = 'actividades',
         to = PlanDeVuelo,
-        on_delete = models.RESTRICT
+        on_delete = models.CASCADE
     )
 
     piloto = models.ForeignKey(

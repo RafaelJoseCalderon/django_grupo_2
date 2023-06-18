@@ -21,6 +21,7 @@ from .forms import UsuarioPerfilForm
 from .forms import PlanDeVueloForm
 from .forms import ActividadForm
 from .forms import PlanDeVueloSearchForm
+from .forms import ActividadSearchBaseForm
 from .forms import ActividadSearchForm
 
 from .models import Perfil
@@ -68,22 +69,6 @@ class ActualizacionPerfil(PerfilMixin, UpdateView):
 
     success_url = reverse_lazy('editar-perfil')
     messages_success = 'Se ha actualizado correctamente.'
-
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %                          Auxiliar Actividades                         %
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class Actividades(ListViewWSAP):
-    model = Actividad
-    template_name = 'actividades.html'
-    context_object_name = 'actividades'
-
-    paginate_by = 6
-    ordering = 'id'
-
-    class_form = ActividadSearchForm
-    search_dict = {
-        'piloto': 'piloto__first_name__contains'
-    }
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +129,8 @@ class BajaPlanDeVuelo(InstructorMixin, DeleteView):
     model = PlanDeVuelo
     template_name = 'componentes/confirmacion_borrado.html'
 
-    success_url = reverse_lazy('alta-plan-de-vuelo')
+    success_url = reverse_lazy('planes-de-vuelo')
+    extra_context = {'cancel_url': 'planes-de-vuelo'}
 
 
 class ModiPlanDeVuelo(InstructorMixin, UpdateView):
@@ -159,8 +145,22 @@ class ModiPlanDeVuelo(InstructorMixin, UpdateView):
 
 
 # %                          Actividades                                  %
-class ActividadesInstructor(InstructorMixin, Actividades):
+class ActividadesInstructor(InstructorMixin, ListViewWSAP):
     permission_required = 'usuarios.view_actividad'
+
+    model = Actividad
+    template_name = 'actividades.html'
+    context_object_name = 'actividades'
+
+    paginate_by = 4
+    ordering = 'id'
+
+    class_form = ActividadSearchForm
+    search_dict = {
+        'piloto': 'piloto__first_name__contains',
+        'fecha_desde': 'plan_de_vuelo__fecha__gte',
+        'fecha_hasta': 'plan_de_vuelo__fecha__lte'
+    }
 
     def get_queryset(self):
         usuario = self.request.user
@@ -192,6 +192,8 @@ class BajaActvidad(InstructorMixin, DeleteView):
     template_name = 'componentes/confirmacion_borrado.html'
 
     success_url = reverse_lazy('actividades-i')
+    extra_context = {'cancel_url': 'actividades-i'}
+
 
 
 class ModiActvidad(InstructorMixin, UpdateView):
@@ -215,8 +217,21 @@ class PilotoMixin(
     pass
 
 
-class ActividadesPiloto(PilotoMixin, Actividades):
+class ActividadesPiloto(PilotoMixin, ListViewWSAP):
     permission_required = 'usuarios.view_actividad'
+
+    model = Actividad
+    template_name = 'actividades.html'
+    context_object_name = 'actividades'
+
+    paginate_by = 4
+    ordering = 'id'
+
+    class_form = ActividadSearchBaseForm
+    search_dict = {
+        'fecha_desde': 'plan_de_vuelo__fecha__gte',
+        'fecha_hasta': 'plan_de_vuelo__fecha__lte'
+    }
 
     def get_queryset(self):
         usuario = self.request.user

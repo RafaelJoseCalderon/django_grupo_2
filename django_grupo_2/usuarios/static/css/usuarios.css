@@ -84,3 +84,19 @@ footer {
 .vertical .profile-card-right {
     width: 100%
 }
+
+/* ------------- Estilo Tablas -------------- */
+.row-table:hover {
+    background-color: #dee2e6;
+}
+
+.btn-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    width: 30px;
+    height: 30px;
+}

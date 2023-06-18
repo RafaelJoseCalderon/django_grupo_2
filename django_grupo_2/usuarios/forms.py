@@ -95,7 +95,29 @@ class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %                          Seccion Actividad                            %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class ActividadSearchForm(forms.Form):
+class ActividadSearchBaseForm(forms.Form):
+    fecha_desde = forms.DateField(
+        label = 'Fecha Desde',
+        widget = widgets.DateInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
+
+    fecha_hasta = forms.DateField(
+        label = 'Fecha Hasta',
+        widget = widgets.DateInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
+
+
+class ActividadSearchForm(ActividadSearchBaseForm):
     piloto = forms.CharField(
         label = 'Piloto', 
         max_length = 100,

@@ -1,4 +1,9 @@
 {% extends 'ss_base.html' %}
+{% load planeadores_mdp_extras %}
+{% load static %}
+
+{% block extra_css %}{% render_css_defer form %}{% endblock %}
+{% block script %}{% render_js_defer form %}{% endblock %}
 
 {% block socio %}
   <h1>Lista de actividades</h1>
@@ -15,7 +20,7 @@
     {% endfor %}
 
     <div class="d-grid gap-2 d-flex justify-content-end">
-      <a class="btn btn-outline-secondary" href="{{ request.get_full_path }}">Borrar</a>
+      <a class="btn btn-outline-secondary" href="{{ request.path }}">Borrar</a>
       <input class="btn btn-outline-secondary" type="submit" value="Busacar">
     </div>
   </form>
@@ -31,7 +36,7 @@
     </tr>
     {% for actividad in actividades %}
       <tr
-        class="user-select-none"
+        class="user-select-none row-table"
         style="cursor: pointer"
         onclick="location.href = `{% url 'actividad' actividad.id %}`"
       >
@@ -39,9 +44,20 @@
         <td>{{actividad.piloto.first_name}}</td>
         <td>{{actividad.remolcador.nombre}}</td>
         <td>{{actividad.planeador.nombre}}</td>
-        {% if es_instructor %}
-          <td><a href="{% url 'modi-actividad' actividad.id %}"><i class="far fa-edit"></i></a></td>
-          <td><a href="{% url 'baja-actividad' actividad.id %}"><i class="far fa-trash-alt"></i></a></td>
+
+        {% if perms.usuarios.change_actividad or perms.usuarios.delete_actividad %}
+          <td class="d-flex flex-row justify-content-center">
+            {% if perms.usuarios.change_actividad %}
+              <a href="{% url 'modi-actividad' actividad.id %}">
+                <i class="btn btn-warning text-white btn-table mx-2 far fa-edit"></i>
+              </a>
+            {% endif %}
+            {% if perms.usuarios.delete_actividad %}
+              <a href="{% url 'baja-actividad' actividad.id %}">
+                <i class="btn btn-danger text-white btn-table mx-2 far fa-trash-alt"></i>
+              </a>
+            {% endif %}
+          </td>
         {% endif %}
       </tr>
     {% endfor %}
