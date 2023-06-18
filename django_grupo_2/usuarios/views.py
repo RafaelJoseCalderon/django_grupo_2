@@ -175,14 +175,34 @@ class DetalleActividad(InstructorMixin, DetailView):
     model = Actividad
     template_name = 'actividad.html'
 
-
-class AltaActvidad(InstructorMixin, CreateView):
-    permission_required = 'usuarios.add_actividad'
-
-    template_name = 'actividad-form.html'
+class ActvidadMixin:
     form_class = ActividadForm
+    template_name = 'actividad-form.html'
 
     success_url = reverse_lazy('actividades-i')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['extra_kwargs'] = self.request.user
+
+        return kwargs
+
+
+class AltaActvidad(ActvidadMixin, InstructorMixin, CreateView):
+    permission_required = 'usuarios.add_actividad'
+    extra_context = {
+        'titulo': 'Alta Actividad',
+        'boton_from': 'Crear'
+    }
+
+
+class ModiActvidad(ActvidadMixin, InstructorMixin, UpdateView):
+    permission_required = 'usuarios.change_actividad'
+    model = Actividad
+    extra_context = {
+        'titulo': 'Actualización Actividad',
+        'boton_from': 'Actualizar'
+    }
 
 
 class BajaActvidad(InstructorMixin, DeleteView):
@@ -193,18 +213,6 @@ class BajaActvidad(InstructorMixin, DeleteView):
 
     success_url = reverse_lazy('actividades-i')
     extra_context = {'cancel_url': 'actividades-i'}
-
-
-
-class ModiActvidad(InstructorMixin, UpdateView):
-    permission_required = 'usuarios.change_actividad'
-
-    model = Actividad
-    form_class = ActividadForm
-    template_name = 'actividad-form.html'
-
-    success_url = reverse_lazy('actividades-i')
-    messages_success = 'Se ha actualizado correctamente.'
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

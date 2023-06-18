@@ -45,14 +45,14 @@ urlpatterns = [
         name = 'alta-plan-de-vuelo'
     ),
     path(
-        route = 'baja-plan-de-vuelo/<int:pk>',
-        view = BajaPlanDeVuelo.as_view(),
-        name = 'baja-plan-de-vuelo'
-    ),
-    path(
         route = 'modi-plan-de-vuelo/<int:pk>',
         view = ModiPlanDeVuelo.as_view(),
         name = 'modi-plan-de-vuelo'
+    ),
+    path(
+        route = 'baja-plan-de-vuelo/<int:pk>',
+        view = BajaPlanDeVuelo.as_view(),
+        name = 'baja-plan-de-vuelo'
     ),
     path(
         route = 'actividades-i',
@@ -70,14 +70,14 @@ urlpatterns = [
         name = 'alta-actividad'
     ),
     path(
-        route = 'baja-actividad/<int:pk>',
-        view = BajaActvidad.as_view(),
-        name = 'baja-actividad'
-    ),
-    path(
         route = 'modi-actividad/<int:pk>',
         view = ModiActvidad.as_view(),
         name = 'modi-actividad'
+    ),
+    path(
+        route = 'baja-actividad/<int:pk>',
+        view = BajaActvidad.as_view(),
+        name = 'baja-actividad'
     ),
 
     # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

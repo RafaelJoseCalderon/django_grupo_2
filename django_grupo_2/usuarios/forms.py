@@ -67,7 +67,7 @@ class PlanDeVueloSearchForm(forms.Form):
 
     fecha_desde = forms.DateField(
         label = 'Fecha Desde',
-        widget = widgets.DateInput(
+        widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
@@ -77,7 +77,7 @@ class PlanDeVueloSearchForm(forms.Form):
 
     fecha_hasta = forms.DateField(
         label = 'Fecha Hasta',
-        widget = widgets.DateInput(
+        widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
@@ -98,7 +98,7 @@ class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
 class ActividadSearchBaseForm(forms.Form):
     fecha_desde = forms.DateField(
         label = 'Fecha Desde',
-        widget = widgets.DateInput(
+        widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
@@ -108,7 +108,7 @@ class ActividadSearchBaseForm(forms.Form):
 
     fecha_hasta = forms.DateField(
         label = 'Fecha Hasta',
-        widget = widgets.DateInput(
+        widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
@@ -130,7 +130,44 @@ class ActividadSearchForm(ActividadSearchBaseForm):
     )
 
 
-class ActividadForm(InitFormsMixin, forms.ModelForm):
+class UsuarioChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name}, {obj.first_name}"
+
+
+class ActividadForm(forms.ModelForm):
     class Meta:
         model = Actividad
         fields = '__all__'
+        widgets = {
+            'plan_de_vuelo': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+
+            'piloto': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+
+            'remolcador': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+            'remolque_despegue': widgets.TimePickerInput(),
+            'remolque_corte': widgets.TimePickerInput(),
+
+            'planeador': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+            'planeador_aterrizaje': widgets.TimePickerInput(),
+            'planeador_vuelo_librado': widgets.TimePickerInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
+        super().__init__(*args, **dictionary)
+
+        queryset = PlanDeVuelo.objects.filter(instructor = self.extra_kwargs.pk)
+        self.fields['plan_de_vuelo'].queryset = queryset
+
+    def get_forms_data(self, kwargs):
+        dictionary = dict(kwargs)
+        return dictionary, dictionary.pop('extra_kwargs')

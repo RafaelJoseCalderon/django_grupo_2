@@ -17,7 +17,7 @@ class ClearableFileInput(forms.ClearableFileInput):
         return context
 
 
-class DateInput(forms.DateInput):
+class DatePickerInput(forms.DateInput):
     class Media:
         js = [ 'datepicker-js/js/datepicker.js', 'js/date_input.js' ]
         css = { 'all': ['datepicker-js/css/datepicker.material.css'] }
@@ -52,3 +52,24 @@ class DateInput(forms.DateInput):
 
         if not self.exact and (self.min > value or self.max < value):
             raise forms.ValidationError('Fecha fuera de rango')
+
+
+class TimePickerInput(forms.TimeInput):
+    class Media:
+        js = [ 'js/time_input.js' ]
+
+    template_name = 'time_input.html'
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        value = context["widget"]["value"]
+
+        if not value:
+            value = '00:00:00'
+            context["widget"]["value"] = value
+
+        arrays_values = value.split(':')
+        context["widget"]["hour"] = arrays_values[0]
+        context["widget"]["min"] = arrays_values[1]
+
+        return context
