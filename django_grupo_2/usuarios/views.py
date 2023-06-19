@@ -114,13 +114,34 @@ class DetallePlanDeVuelo(InstructorMixin, DetailView):
     template_name = 'plan-de-vuelo.html'
 
 
-class AltaPlanDeVuelo(InstructorMixin, CreateView):
-    permission_required = 'usuarios.add_plandevuelo'
-
+class PlanDeVueloMixin:
     form_class = PlanDeVueloForm
     template_name = 'plan-de-vuelo-form.html'
 
-    success_url = reverse_lazy('alta-plan-de-vuelo')
+    success_url = reverse_lazy('planes-de-vuelo')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['extra_kwargs'] = self.request.user
+
+        return kwargs
+
+
+class AltaPlanDeVuelo(PlanDeVueloMixin, InstructorMixin, CreateView):
+    permission_required = 'usuarios.add_plandevuelo'
+    extra_context = {
+        'titulo': 'Alta Plan de Vuelo',
+        'boton_from': 'Crear'
+    }
+
+
+class ModiPlanDeVuelo(PlanDeVueloMixin, InstructorMixin, UpdateView):
+    permission_required = 'usuarios.change_plandevuelo'
+    model = PlanDeVuelo
+    extra_context = {
+        'titulo': 'Actualización Plan de Vuelo',
+        'boton_from': 'Actualizar'
+    }
 
 
 class BajaPlanDeVuelo(InstructorMixin, DeleteView):
@@ -131,17 +152,6 @@ class BajaPlanDeVuelo(InstructorMixin, DeleteView):
 
     success_url = reverse_lazy('planes-de-vuelo')
     extra_context = {'cancel_url': 'planes-de-vuelo'}
-
-
-class ModiPlanDeVuelo(InstructorMixin, UpdateView):
-    permission_required = 'usuarios.change_plandevuelo'
-
-    model = PlanDeVuelo
-    form_class = PlanDeVueloForm
-    template_name = 'plan-de-vuelo-form.html'
-
-    success_url = reverse_lazy('alta-plan-de-vuelo')
-    messages_success = 'Se ha actualizado correctamente.'
 
 
 # %                          Actividades                                  %

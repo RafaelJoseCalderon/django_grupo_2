@@ -100,3 +100,33 @@ footer {
     width: 30px;
     height: 30px;
 }
+
+.checkbox-select-multiple {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 6.09375rem;
+    color: #212529;
+    word-wrap: break-word;
+    background-color: fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    padding: 2.5px;
+    overflow: scroll;
+    overflow-y: scroll;
+}
+
+.checkbox-select-multiple div label {
+    display: flex;
+    flex-direction: row;
+    margin: 2.5px;
+    background-color: #dee2e6;
+}
+
+.checkbox-select-multiple div label input {
+    height: 1.5625rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}

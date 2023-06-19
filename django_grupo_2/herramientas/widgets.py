@@ -11,7 +11,7 @@ class ClearableFileInput(forms.ClearableFileInput):
         context = super().get_context(name, value, attrs)
         value = context["widget"]["value"]
 
-        if (value):
+        if value:
             context["widget"]["file_name"] = str(value).split("/")[-1]
 
         return context
@@ -46,6 +46,17 @@ class DatePickerInput(forms.DateInput):
                 self.widget_data['attrs']['date-picker-max'] = self.max
 
         return self.widget_data
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        value = context["widget"]["value"]
+
+        if value:
+            if "/" in str(value):
+                array_ = str(value).split("/")
+                context["widget"]["value"] = f'{array_[2]}-{array_[1]}-{array_[0]}'
+
+        return context
 
     def validate(self, value):
         super().validate(value)

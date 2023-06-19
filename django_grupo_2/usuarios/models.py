@@ -56,6 +56,9 @@ class Usuario(User):
         except ValueError:
             raise ValueError('Houston, tenemos un problema')
 
+    def __str__(self):
+        return f'{self.last_name},{self.first_name}|dni:|{self.dni}'
+
 
 class Instructor(Usuario):
     class Meta:
@@ -139,6 +142,9 @@ class Remolcador(models.Model):
         upload_to = 'remolcadores'
     )
 
+    def __str__(self):
+        return f'{self.id}|{self.nombre}'
+
 
 class Planeador(models.Model):
     class Meta:
@@ -183,6 +189,9 @@ class Planeador(models.Model):
         upload_to = 'planeadores'
     )
 
+    def __str__(self):
+        return f'{self.id}|{self.nombre}'
+
 
 ## ------------- Seccion PlanDeVuelo --------- ##
 class PilotoRemolcador(models.Model):
@@ -209,6 +218,9 @@ class PilotoRemolcador(models.Model):
         verbose_name = 'DNI'
     )
 
+    def __str__(self):
+        return f'{self.apellido}, {self.nombre}|dni:|{self.dni}'
+
 class PlanDeVuelo(models.Model):
     class Meta:
         verbose_name = 'Plan De Vuelo'
@@ -233,6 +245,9 @@ class PlanDeVuelo(models.Model):
         related_name = 'planes_de_vuelo',
         to = PilotoRemolcador
     )
+
+    def __str__(self):
+        return f'{self.denominacion}|Fecha:|{self.fecha}'
 
 
 class Actividad(models.Model):

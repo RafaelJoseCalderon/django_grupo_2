@@ -13,11 +13,11 @@ El PIG deberá ser un sitio web con temática a elección, orientado a la gesti�
 * [X] El PIG debe subirse a un repositorio GIT público en la nube.
 * [X] El proyecto deberá poseer al menos una aplicación de Django
 * [X] Deben existir al menos 3 rutas distintas.
-* [ ] Debe existir al menos una vista parametrizada.
+* [X] Debe existir al menos una vista parametrizada.
 * [X] Se deben utilizar templates que cumplan con las siguientes características:
 * [X] Debe haber al menos un template asociado a una vista.
 * [X] Debe existir al menos una relación de herencia entre los templates.
-* [ ] Debe existir al menos un filtro aplicado.
+* [X] Debe existir al menos un filtro aplicado.
 * [X] Debe existir al menos un template que utilice archivos estáticos (js, css, etc).
 * [X] Se deben utilizar Django Forms que cumplan con las siguientes características:
     * [X] Al menos un formulario debe poseer validaciones en el front-end y en el back-end

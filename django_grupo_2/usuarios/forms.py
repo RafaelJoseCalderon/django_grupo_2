@@ -16,6 +16,15 @@ class InitFormsMixin:
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
+class UsuarioChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.last_name}, {obj.first_name}"
+
+
+class AeronaveChoiceField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return f"{obj.nombre}"
+
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %                            Seccion Perfil                             %
@@ -86,10 +95,47 @@ class PlanDeVueloSearchForm(forms.Form):
     )
 
 
-class PlanDeVueloForm(InitFormsMixin, forms.ModelForm):
+class PlanDeVueloForm(forms.ModelForm):
     class Meta:
-        model = Actividad
+        model = PlanDeVuelo
         fields = '__all__'
+        widgets = {
+            'denominacion': forms.TextInput(
+                attrs = {
+                    'class': 'form-control',
+                }
+            ),
+            'fecha': widgets.DatePickerInput(
+                attrs = {
+                    'class': 'form-control',
+                    'placeholder': 'yyyy-mm-dd'
+                }
+            ),
+            # pensando en como no sacar esta cochinada django
+            'instructor': forms.HiddenInput(),
+            'pilotos_remolcadores': forms.CheckboxSelectMultiple(
+                attrs = {
+                    'class': 'checkbox-select-multiple'
+                }
+            )
+        }
+
+    def __init__(self, *args, **kwargs):
+        dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
+        super().__init__(*args, **dictionary)
+        self.fields['instructor'].widget.attrs['value'] = self.extra_kwargs.pk
+
+    def get_forms_data(self, kwargs):
+        dictionary = dict(kwargs)
+        return dictionary, dictionary.pop('extra_kwargs')
+
+    def clean_instructor(self):
+        instructor = self.cleaned_data.get('instructor')
+
+        if instructor != self.extra_kwargs:
+            raise forms.ValidationError('mmm, algo malo ha ocurrido')
+
+        return instructor
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -128,11 +174,6 @@ class ActividadSearchForm(ActividadSearchBaseForm):
             }
         )
     )
-
-
-class UsuarioChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return f"{obj.last_name}, {obj.first_name}"
 
 
 class ActividadForm(forms.ModelForm):
