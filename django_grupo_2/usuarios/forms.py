@@ -132,7 +132,7 @@ class PlanDeVueloForm(forms.ModelForm):
     def clean_instructor(self):
         instructor = self.cleaned_data.get('instructor')
 
-        if instructor != self.extra_kwargs:
+        if instructor.pk != self.extra_kwargs.pk:
             raise forms.ValidationError('mmm, algo malo ha ocurrido')
 
         return instructor
@@ -177,6 +177,9 @@ class ActividadSearchForm(ActividadSearchBaseForm):
 
 
 class ActividadForm(forms.ModelForm):
+    class Media:
+        js = [ 'js/input-list.js' ]
+
     class Meta:
         model = Actividad
         fields = '__all__'
