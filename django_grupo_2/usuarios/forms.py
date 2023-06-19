@@ -177,9 +177,6 @@ class ActividadSearchForm(ActividadSearchBaseForm):
 
 
 class ActividadForm(forms.ModelForm):
-    class Media:
-        js = [ 'js/input-list.js' ]
-
     class Meta:
         model = Actividad
         fields = '__all__'
