@@ -39,6 +39,9 @@ def redireccion(request):
     if request.user.groups.filter(name='Instructores').exists():
         return redirect(reverse_lazy('planes-de-vuelo'))
 
+    if request.user.is_staff:
+        return redirect(reverse_lazy('admin:index'))
+    
     raise Exception('Usuario sin grupo admitido')
 
 
