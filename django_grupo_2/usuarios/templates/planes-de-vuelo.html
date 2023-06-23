@@ -6,6 +6,7 @@
 {% block script %}{% render_js_defer form %}{% endblock %}
 
 {% block socio %}
+  {% include "componentes/mensajes.html" %}
   <h1>Lista de planes de vuelo</h1>
 
   <form method="GET" novalidate>

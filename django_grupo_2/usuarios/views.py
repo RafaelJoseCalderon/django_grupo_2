@@ -209,7 +209,7 @@ class AltaActvidad(ActvidadMixin, InstructorMixin, CreateView):
         'titulo': 'Alta Actividad',
         'boton_from': 'Crear'
     }
-
+    messages_success = 'Se creo correctamente'
 
 class ModiActvidad(ActvidadMixin, InstructorMixin, UpdateView):
     permission_required = 'usuarios.change_actividad'
@@ -218,6 +218,7 @@ class ModiActvidad(ActvidadMixin, InstructorMixin, UpdateView):
         'titulo': 'Actualización Actividad',
         'boton_from': 'Actualizar'
     }
+    messages_success = 'Se ha actualizado correctamente'
 
 
 class BajaActvidad(InstructorMixin, DeleteView):
