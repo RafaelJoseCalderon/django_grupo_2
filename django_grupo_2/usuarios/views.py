@@ -136,6 +136,7 @@ class AltaPlanDeVuelo(PlanDeVueloMixin, InstructorMixin, CreateView):
         'titulo': 'Alta Plan de Vuelo',
         'boton_from': 'Crear'
     }
+    messages_success = 'Se ha creado correctamente'
 
 
 class ModiPlanDeVuelo(PlanDeVueloMixin, InstructorMixin, UpdateView):
@@ -145,6 +146,7 @@ class ModiPlanDeVuelo(PlanDeVueloMixin, InstructorMixin, UpdateView):
         'titulo': 'Actualización Plan de Vuelo',
         'boton_from': 'Actualizar'
     }
+    messages_success = 'Se ha actualizado correctamente'
 
 
 class BajaPlanDeVuelo(InstructorMixin, DeleteView):
