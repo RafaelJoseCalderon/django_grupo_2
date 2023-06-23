@@ -8,3 +8,6 @@
 
 ## Docente
 * Luciano Pueyo
+
+## Tema elegido
+* Club de Planeadores de Mar del Plata
