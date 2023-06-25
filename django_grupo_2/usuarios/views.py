@@ -157,6 +157,7 @@ class BajaPlanDeVuelo(InstructorMixin, DeleteView):
 
     success_url = reverse_lazy('planes-de-vuelo')
     extra_context = {'cancel_url': 'planes-de-vuelo'}
+    messages_success = 'Se ha eliminado correctamente'
 
 
 # %                          Actividades                                  %
@@ -190,6 +191,7 @@ class DetalleActividad(InstructorMixin, DetailView):
     model = Actividad
     template_name = 'actividad.html'
 
+
 class ActvidadMixin:
     form_class = ActividadForm
     template_name = 'actividad-form.html'
@@ -211,6 +213,7 @@ class AltaActvidad(ActvidadMixin, InstructorMixin, CreateView):
     }
     messages_success = 'Se creo correctamente'
 
+
 class ModiActvidad(ActvidadMixin, InstructorMixin, UpdateView):
     permission_required = 'usuarios.change_actividad'
     model = Actividad
@@ -229,6 +232,7 @@ class BajaActvidad(InstructorMixin, DeleteView):
 
     success_url = reverse_lazy('actividades-i')
     extra_context = {'cancel_url': 'actividades-i'}
+    messages_success = 'Se ha eliminado correctamente'
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

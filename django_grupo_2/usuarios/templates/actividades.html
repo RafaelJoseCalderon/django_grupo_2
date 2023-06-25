@@ -31,10 +31,10 @@
 
   <table class="table table-striped mb-auto">
     <tr>
-      <th>Instructor</th>
+      <th>Id</th>
       <th>Piloto</th>
-      <th>Remolcador</th>
-      <th colspan="3">Planeador</th>
+      <th>plan de vuelo</th>
+      <th colspan="2">Fecha</th>
     </tr>
     {% for actividad in actividades %}
       <tr
@@ -42,10 +42,10 @@
         style="cursor: pointer"
         onclick="location.href = `{% url 'actividad' actividad.id %}`"
       >
-        <td>{{actividad.plan_de_vuelo.instructor.first_name}}</td>
+        <td>{{actividad.pk}}</td>
         <td>{{actividad.piloto.first_name}}</td>
-        <td>{{actividad.remolcador.nombre}}</td>
-        <td>{{actividad.planeador.nombre}}</td>
+        <td>{{actividad.plan_de_vuelo.denominacion}}</td>
+        <td>{{actividad.plan_de_vuelo.fecha}}</td>
 
         {% if perms.usuarios.change_actividad or perms.usuarios.delete_actividad %}
           <td class="d-flex flex-row justify-content-center">

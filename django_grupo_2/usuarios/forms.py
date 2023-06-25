@@ -16,14 +16,11 @@ class InitFormsMixin:
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
 
-class UsuarioChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return f"{obj.last_name}, {obj.first_name}"
 
-
-class AeronaveChoiceField(forms.ModelChoiceField):
-    def label_from_instance(self, obj):
-        return f"{obj.nombre}"
+class FormsDataMixin:
+    def get_forms_data(self, kwargs):
+        dictionary = dict(kwargs)
+        return dictionary, dictionary.pop('extra_kwargs')
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,7 +92,7 @@ class PlanDeVueloSearchForm(forms.Form):
     )
 
 
-class PlanDeVueloForm(forms.ModelForm):
+class PlanDeVueloForm(FormsDataMixin, forms.ModelForm):
     class Meta:
         model = PlanDeVuelo
         fields = '__all__'
@@ -122,12 +119,9 @@ class PlanDeVueloForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
+
         super().__init__(*args, **dictionary)
         self.fields['instructor'].widget.attrs['value'] = self.extra_kwargs.pk
-
-    def get_forms_data(self, kwargs):
-        dictionary = dict(kwargs)
-        return dictionary, dictionary.pop('extra_kwargs')
 
     def clean_instructor(self):
         instructor = self.cleaned_data.get('instructor')
@@ -164,6 +158,8 @@ class ActividadSearchBaseForm(forms.Form):
 
 
 class ActividadSearchForm(ActividadSearchBaseForm):
+    field_order = ['piloto',]
+
     piloto = forms.CharField(
         label = 'Piloto', 
         max_length = 100,
@@ -176,7 +172,7 @@ class ActividadSearchForm(ActividadSearchBaseForm):
     )
 
 
-class ActividadForm(forms.ModelForm):
+class ActividadForm(FormsDataMixin, forms.ModelForm):
     class Meta:
         model = Actividad
         fields = '__all__'
@@ -205,10 +201,3 @@ class ActividadForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
         super().__init__(*args, **dictionary)
-
-        queryset = PlanDeVuelo.objects.filter(instructor = self.extra_kwargs.pk)
-        self.fields['plan_de_vuelo'].queryset = queryset
-
-    def get_forms_data(self, kwargs):
-        dictionary = dict(kwargs)
-        return dictionary, dictionary.pop('extra_kwargs')
