@@ -201,3 +201,6 @@ class ActividadForm(FormsDataMixin, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
         super().__init__(*args, **dictionary)
+
+        queryset = PlanDeVuelo.objects.filter(instructor = self.extra_kwargs.pk)
+        self.fields['plan_de_vuelo'].queryset = queryset
