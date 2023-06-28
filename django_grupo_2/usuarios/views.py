@@ -18,7 +18,7 @@ from herramientas.mixins import MessagesSuccessMixin
 from herramientas.views import ListViewWithSearchAndPagination as ListViewWSAP
 
 from .forms import UsuarioPerfilForm
-from .forms import PlanDeVueloForm
+from .forms import PlanDeVueloInlineForm
 from .forms import ActividadForm
 from .forms import PlanDeVueloSearchForm
 from .forms import ActividadSearchBaseForm
@@ -118,7 +118,7 @@ class DetallePlanDeVuelo(InstructorMixin, DetailView):
 
 
 class PlanDeVueloMixin:
-    form_class = PlanDeVueloForm
+    form_class = PlanDeVueloInlineForm
     template_name = 'plan-de-vuelo-form.html'
 
     success_url = reverse_lazy('planes-de-vuelo')
@@ -156,7 +156,9 @@ class BajaPlanDeVuelo(InstructorMixin, DeleteView):
     template_name = 'componentes/confirmacion_borrado.html'
 
     success_url = reverse_lazy('planes-de-vuelo')
-    extra_context = {'cancel_url': 'planes-de-vuelo'}
+    extra_context = {
+        'cancel_url': 'planes-de-vuelo'
+    }
     messages_success = 'Se ha eliminado correctamente'
 
 
@@ -231,7 +233,9 @@ class BajaActvidad(InstructorMixin, DeleteView):
     template_name = 'componentes/confirmacion_borrado.html'
 
     success_url = reverse_lazy('actividades-i')
-    extra_context = {'cancel_url': 'actividades-i'}
+    extra_context = {
+        'cancel_url': 'actividades-i'
+    }
     messages_success = 'Se ha eliminado correctamente'
 
 

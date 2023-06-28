@@ -54,6 +54,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+# MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
 ROOT_URLCONF = 'django_grupo_2.urls'
 
 TEMPLATES = [

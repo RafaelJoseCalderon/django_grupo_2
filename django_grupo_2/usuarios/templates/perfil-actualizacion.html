@@ -13,17 +13,8 @@
 {% block socio %}
   <h3>Perfil de usuario</h3>
 
-  {% for message in messages %}
-    <div class="col order-lg-last">
-      <div class="alert {{ message.tags }} alert-dismissible fade show m-1" role="alert">
-        {{ message }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
-      </div>
-    </div>
-  {% endfor %}
-
   <div class="profile-card mb-3">
-    <div id="ctn" class="">
+    <div id="ctn" class="perfil">
 
       <div class="profile-card-left">
         {% include "componentes/tarj-imagen.html" with object=object %}
@@ -34,8 +25,12 @@
           <form method="post" enctype="multipart/form-data">
             <div>{% csrf_token %}</div>
 
-            {% include "componentes/cont-formulario.html" with form=form.parent %}
-            {% include "componentes/cont-formulario.html" with form=form.childrens.0 %}
+            {% for field in form.parent %}
+              {% include "componentes/input-form.html" with field=field %}
+            {% endfor %}
+            {% for field in form.childrens.0 %}
+              {% include "componentes/input-form.html" with field=field %}
+            {% endfor %}
 
             <div class="my-4">
               <a class="btn border w-100" href="{% url 'password-change' %}">Cambiar contraseña</a>

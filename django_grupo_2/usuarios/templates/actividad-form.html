@@ -3,35 +3,22 @@
 {% load static %}
 
 {% block extra_css %}{% render_css_defer form %}{% endblock %}
-{% block script %}{% render_js_defer form %}{% endblock %}
+{% block script %}
+  {% render_js_defer form %}
+  <script src="{% static 'js/usuarios.js' %}" defer></script>
+{% endblock %}
 
 {% block socio %}
-  <div>
-    <h1>{{titulo}}</h1>
+  <h1>{{titulo}}</h1>
 
-    <form action="" method="post" onctype="multipart/form-data" novalidate>
+  <form class="d-flex flex-column justify-content-between h-100" action="" method="post" onctype="multipart/form-data" novalidate>
+    <div id="ctn" class="content-form">
       <div>{% csrf_token %}</div>
       {% for field in form %}
-        <div class="pt-1 pb-2">
-          <label for="{{ field.id_for_label }}" class="form-label ps-1">
-            <strong>{{ field.label }}</strong>
-          </label>
-
-          {{ field }}
-
-          <div class="text-muted px-2 pb-1">{{ field.help_text }}</div>
-
-          {% for error in field.errors %}
-            <div class="alert alert-danger mb-1 p-2" role="alert">
-              {{ error }}
-            </div>
-          {% endfor %}
-        </div>
+        {% include "componentes/input-form.html" with field=field extra_class="field-form" %}
       {% endfor %}
+    </div>
 
-      <hr class="mb-4" />
-      <input class="btn btn-outline-success btn-lg w-100" type="submit" value="{{boton_from}}"/>
-    </form>
-
-</div>
+    {% include "componentes/btn-submit.html" with boton_from=boton_from %}
+  </form>
 {% endblock %}

@@ -35,3 +35,29 @@ class ParentWithChildrenForm:
             children.save()
 
         return self.parent.save()
+
+
+class ParentWithInlineForm:
+    structure = {}
+
+    def __init__(self, *args, **kwargs):
+        dictionary, self.user = self.get_forms_data(kwargs)
+
+        self.parent = self.structure['parent'](*args, **kwargs)
+        self.inline = self.structure['inline'](*args, **dictionary)
+
+    def get_forms_data(self, kwargs):
+        dictionary = dict(kwargs)
+        return dictionary, dictionary.pop('extra_kwargs')
+
+    def is_valid(self):
+        return self.parent.is_valid() and self.inline.is_valid()
+
+    # Nota: podria/puede haber problemas de atomicidad aca.
+    def save(self):
+        returned_object = self.parent.save()
+
+        self.inline.instance = returned_object
+        self.inline.save()
+
+        return returned_object

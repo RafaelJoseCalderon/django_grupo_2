@@ -56,15 +56,15 @@ footer {
     height: 200px;
 }
 
-.horizontal, .vertical {
+.perfil.horizontal, .perfil.vertical {
     display: flex;
 }
 
-.horizontal {
+.perfil.horizontal {
     flex-direction: row;
 }
 
-.vertical {
+.perfil.vertical {
     flex-direction: column;
 }
 
@@ -72,16 +72,16 @@ footer {
     flex: 0 0 auto;
 }
 
-.horizontal .profile-card-left {
+.perfil.horizontal .profile-card-left {
     width: 33.33333333%
 }
 
-.horizontal .profile-card-right {
+.perfil.horizontal .profile-card-right {
     width: 66.66666667%
 }
 
-.vertical .profile-card-left,
-.vertical .profile-card-right {
+.perfil.vertical .profile-card-left,
+.perfil.vertical .profile-card-right {
     width: 100%
 }
 
@@ -101,6 +101,7 @@ footer {
     height: 30px;
 }
 
+/* ------------- Estilo pdv -------------- */
 .checkbox-select-multiple {
     position: relative;
     display: flex;
@@ -130,4 +131,38 @@ footer {
     margin-left: 10px;
     margin-right: 10px;
     overflow: auto;
+}
+
+/* ------------- Estilo atv -------------- */
+.content-form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.content-form .field-form {
+    flex-wrap: nowrap;
+}
+
+.content-form.horizontal .field-form {
+    width: 50%;
+}
+
+.content-form.vertical .field-form {
+    width: 100%;
+}
+
+.content-form .field-form:nth-child(3n-1) {
+    padding-right: 0.25rem;
+}
+
+.content-form.horizontal .field-form:nth-child(3n-1) {
+    border-right: 1.75px solid gainsboro;
+}
+
+.content-form .field-form:nth-child(3n) {
+    padding-left: 0.25rem;
+}
+
+.content-form .field-form:nth-child(3n+1) {
+    width: 100%;
 }

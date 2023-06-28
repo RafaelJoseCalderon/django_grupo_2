@@ -23,12 +23,12 @@ function down_hour(id) {
 
 function up_min(id) {
     let values = get_values(id);
-    let min = values.min < 59 ? values.min + 1 : values.min;
+    let min = values.min < 59 ? values.min + 5 : values.min;
     set_values(id, values.hour, min);
 }
 
 function down_min(id) {
     let values = get_values(id);
-    let min = values.min > 0 ? values.min - 1 : values.min;
+    let min = values.min > 0 ? values.min - 5 : values.min;
     set_values(id, values.hour, min);
 }

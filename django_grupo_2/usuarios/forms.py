@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.forms.models import inlineformset_factory
 
 from herramientas.forms import ParentWithChildrenForm
+from herramientas.forms import ParentWithInlineForm
+from herramientas.utils import time_range, minutes_range
 from herramientas import widgets
 
 from .models import Perfil
@@ -45,6 +48,14 @@ class UsuarioForm(InitFormsMixin, forms.ModelForm):
                     'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
                 })
         }
+        bootstrap_messages = {
+            'first_name': "This writer's name is too long.",
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # print(self.fields['username'].error_messages)
+        # print(dir(self))
 
 
 class UsuarioPerfilForm(ParentWithChildrenForm):
@@ -57,11 +68,115 @@ class UsuarioPerfilForm(ParentWithChildrenForm):
 
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %                          Seccion Actividad                            %
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class ActividadSearchBaseForm(forms.Form):
+    fecha_desde = forms.DateField(
+        label = 'Fecha Desde',
+        required = False,
+        widget = widgets.DatePickerInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
+
+    fecha_hasta = forms.DateField(
+        label = 'Fecha Hasta',
+        required = False,
+        widget = widgets.DatePickerInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'yyyy-mm-dd'
+            }
+        )
+    )
+
+
+class ActividadSearchForm(ActividadSearchBaseForm):
+    field_order = ['piloto',]
+
+    piloto = forms.CharField(
+        label = 'Piloto', 
+        required = False,
+        max_length = 100,
+        widget = forms.TextInput(
+            attrs = {
+                'class': 'form-control',
+                'placeholder': 'Primer nombre del piloto'
+            }
+        )
+    )
+
+
+class ActividadForm(FormsDataMixin, forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+        widgets = {
+            'plan_de_vuelo': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+
+            'piloto': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+
+            'remolcador': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+            'remolque_despegue': widgets.TimePickerInput(),
+            'remolque_corte': widgets.TimePickerInput(),
+
+            'planeador': forms.Select(
+                attrs = {'class': 'form-select',}
+            ),
+            'planeador_aterrizaje': widgets.TimePickerInput(),
+            'planeador_vuelo_librado': widgets.TimePickerInput()
+        }
+
+    def __init__(self, *args, **kwargs):
+        dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
+        super().__init__(*args, **dictionary)
+
+        queryset = PlanDeVuelo.objects.filter(instructor = self.extra_kwargs.pk)
+        self.fields['plan_de_vuelo'].queryset = queryset
+
+
+class ActividadInlineForm(InitFormsMixin, forms.ModelForm):
+    class Meta:
+        model = Actividad
+        fields = '__all__'
+        widgets = {
+            'remolque_despegue': forms.Select(
+                choices = time_range()
+            ),
+            'remolque_corte': forms.Select(
+                choices = minutes_range()
+            ),
+            'planeador_aterrizaje': forms.Select(
+                choices = time_range()
+            ),
+            'planeador_vuelo_librado': forms.Select(
+                choices = minutes_range()
+            )
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-select text-truncate'
+
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 # %                        Seccion Plan De Vuelo                          %
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 class PlanDeVueloSearchForm(forms.Form):
     denominacion = forms.CharField(
-        label = 'Denominacion', 
+        label = 'Denominacion',
+        required = False,
         max_length = 100,
         widget = forms.TextInput(
             attrs = {
@@ -73,6 +188,7 @@ class PlanDeVueloSearchForm(forms.Form):
 
     fecha_desde = forms.DateField(
         label = 'Fecha Desde',
+        required = False,
         widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
@@ -83,6 +199,7 @@ class PlanDeVueloSearchForm(forms.Form):
 
     fecha_hasta = forms.DateField(
         label = 'Fecha Hasta',
+        required = False,
         widget = widgets.DatePickerInput(
             attrs = {
                 'class': 'form-control',
@@ -132,75 +249,13 @@ class PlanDeVueloForm(FormsDataMixin, forms.ModelForm):
         return instructor
 
 
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %                          Seccion Actividad                            %
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-class ActividadSearchBaseForm(forms.Form):
-    fecha_desde = forms.DateField(
-        label = 'Fecha Desde',
-        widget = widgets.DatePickerInput(
-            attrs = {
-                'class': 'form-control',
-                'placeholder': 'yyyy-mm-dd'
-            }
+class PlanDeVueloInlineForm(ParentWithInlineForm):
+    structure = {
+        'parent': PlanDeVueloForm,
+        'inline': inlineformset_factory(
+            PlanDeVuelo,
+            Actividad,
+            form=ActividadInlineForm,
+            extra=0
         )
-    )
-
-    fecha_hasta = forms.DateField(
-        label = 'Fecha Hasta',
-        widget = widgets.DatePickerInput(
-            attrs = {
-                'class': 'form-control',
-                'placeholder': 'yyyy-mm-dd'
-            }
-        )
-    )
-
-
-class ActividadSearchForm(ActividadSearchBaseForm):
-    field_order = ['piloto',]
-
-    piloto = forms.CharField(
-        label = 'Piloto', 
-        max_length = 100,
-        widget = forms.TextInput(
-            attrs = {
-                'class': 'form-control',
-                'placeholder': 'Primer nombre del piloto'
-            }
-        )
-    )
-
-
-class ActividadForm(FormsDataMixin, forms.ModelForm):
-    class Meta:
-        model = Actividad
-        fields = '__all__'
-        widgets = {
-            'plan_de_vuelo': forms.Select(
-                attrs = {'class': 'form-select',}
-            ),
-
-            'piloto': forms.Select(
-                attrs = {'class': 'form-select',}
-            ),
-
-            'remolcador': forms.Select(
-                attrs = {'class': 'form-select',}
-            ),
-            'remolque_despegue': widgets.TimePickerInput(),
-            'remolque_corte': widgets.TimePickerInput(),
-
-            'planeador': forms.Select(
-                attrs = {'class': 'form-select',}
-            ),
-            'planeador_aterrizaje': widgets.TimePickerInput(),
-            'planeador_vuelo_librado': widgets.TimePickerInput()
-        }
-
-    def __init__(self, *args, **kwargs):
-        dictionary, self.extra_kwargs = self.get_forms_data(kwargs)
-        super().__init__(*args, **dictionary)
-
-        queryset = PlanDeVuelo.objects.filter(instructor = self.extra_kwargs.pk)
-        self.fields['plan_de_vuelo'].queryset = queryset
+    }

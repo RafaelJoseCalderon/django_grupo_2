@@ -2,41 +2,69 @@
 {% load planeadores_mdp_extras %}
 {% load static %}
 
-{% block extra_css %}{% render_css_defer form %}{% endblock %}
-{% block script %}{% render_js_defer form %}{% endblock %}
+{% block extra_css %}{% render_css_defer form.parent %}{% endblock %}
+{% block script %}
+  <script src="{% static 'js/inlines.js' %}" defer></script>
+  {% render_js_defer form.parent %}
+  {% render_js_defer form.inline %}
+{% endblock %}
 
 {% block socio %}
-  <div>
-    <h1>{{titulo}}</h1>
+  <h1>{{titulo}}</h1>
 
-    <form action="" method="post" onctype="multipart/form-data" novalidate>
-      <div>{% csrf_token %}</div>
+  <form action="" method="post" onctype="multipart/form-data" novalidate>
+    <div>{% csrf_token %}</div>
 
-      {% for field in form %}
-        {% if not field.is_hidden %}
-          <div class="pt-1 pb-2">
-              <label for="{{ field.id_for_label }}" class="form-label ps-1">
-                <strong>{{ field.label }}</strong>
-              </label>
+    {% for field in form.parent %}
+      {% if not field.is_hidden %}
+        {% include "componentes/input-form.html" with field=field %}
+      {% else %}
+        {{ field }}
+      {% endif %}
+    {% endfor %}
 
-              {{ field }}
+    <div class="mt-3">
+      <span class="mx-1"><b>Actividades</b></span>
 
-              <div class="text-muted px-2 pb-1">{{ field.help_text }}</div>
+      <div class="d-grid gap-2 d-flex justify-content-end my-2">
+        <Button class="btn btn-outline-secondary w-100" type="button" onclick="inserForm()">
+          Agregar Actividad
+        </Button>
+      </div>
+  
+      <div id="management_form_id" class="visually-hidden">
+        {{form.inline.management_form}}
+      </div>
+      <div id="empty_form" class="visually-hidden">
+        {% for field in form.inline.empty_form %}{{ field }}{% endfor %}
+      </div>
 
-            {% for error in field.errors %}
-              <div class="alert alert-danger mb-1 p-2" role="alert">
-                {{ error }}
-              </div>
+      <table id="inline_formset" class="table table-striped mb-auto">
+        <thead>
+          <tr>
+            {% for field in form.inline.empty_form %}
+              {% if not field.is_hidden%}
+                <th class="text-center align-middle">{{field.label}}</th>
+              {% endif %}
             {% endfor %}
-          </div>
-        {% else %}
-          {{ field }}
-        {% endif %}
-      {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for form_inline in form.inline.forms %}
+            <tr>
+              {% for field in form_inline %}
+                {% if not field.is_hidden %}
+                  <td class="text-center align-middle">{{field}}</td>
+                {% else %}
+                  {{ field }}
+                {% endif %}
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
-      <hr class="mb-4" />
-      <input class="btn btn-outline-success btn-lg w-100" type="submit" value="{{boton_from}}"/>
-    </form>
-
-</div>
+    {% include "componentes/btn-submit.html" with boton_from=boton_from %}
+  </form>
 {% endblock %}
