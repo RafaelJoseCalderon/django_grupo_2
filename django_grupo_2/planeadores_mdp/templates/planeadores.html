@@ -1,0 +1,22 @@
+{% extends 'aeronaves.html' %}
+{% load static %}
+
+{% block aeronaves %}
+  {% for aeronave in aeronaves %}
+    <div class="ae-tarjeta">
+      <img class="ae-imagen" src="{{aeronave.imagen.url}}" alt="...">
+
+      <div class="ae-contenedor-datos">
+        <h1 class="ae-nombre">{{aeronave.nombre}}</h1>
+        <ul class="ae-datos-tecnicos">
+          <li>Envergadura: {{aeronave.envergadura}}m</li>
+          <li>Área del ala: {{aeronave.area_del_ala}}m2</li>
+          <li>Relación de aspecto: {{aeronave.relacion_de_aspecto}}</li>
+          <li>Peso máximo: {{aeronave.peso_maximo}}kg</li>
+          <li>Peso en vacío: {{aeronave.peso_minimo}}kg</li>
+          <img class="aviondepapel" src="{% static 'img/aviondepapel.png' %}" alt="...">
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="input-group mb-3">
+  <label for="id_{{ widget.name }}" class="btn btn-outline-secondary">
+    <i class="fas fa-file-upload"></i>
+  </label>
+
+  <label id="id_{{ widget.name }}_label" for="id_{{ widget.name }}" class="form-control">
+    {{ widget.file_name|default:'Archivo no Seleccionado' }}
+  </label>
+
+  <input
+    id="id_{{ widget.name }}"
+    type="{{ widget.type }}"
+    name="{{ widget.name }}"
+    style="display:none"
+    onchange="setLebel(this.id, this.files[0])"
+    {% include "django/forms/widgets/attrs.html" %}>
+
+  {% if not widget.required %}
+    <input
+      type="checkbox"
+      class="btn-check"
+      id="{{ widget.checkbox_id }}"
+      name="{{ widget.checkbox_name }}"
+      autocomplete="off"
+      {% if widget.attrs.disabled %} disabled {% endif %}
+    >
+
+    <label class="btn btn-outline-danger" for="{{ widget.checkbox_id }}">
+      <i class="fas fa-trash-alt"></i>
+    </label>
+  {% endif %}
+</div>

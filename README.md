@@ -7,7 +7,7 @@
 * Nicolas Santini
 
 ## Docente
-Luciano Pueyo
+* Luciano Pueyo
 
-## Tema Elegido
-Club de Planeadores de Mar del Plata
+## Tema elegido
+* Club de Planeadores de Mar del Plata

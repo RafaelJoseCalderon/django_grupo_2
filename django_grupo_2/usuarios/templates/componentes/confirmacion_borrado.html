@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+  <form action="" method="post" class="modal fade show" style="display: block;">
+    <div>{% csrf_token %}</div>
+
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Confirmacion para borrado</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estás seguro de que quieres borrar "{{ object }}"?</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-secondary" href="{% url cancel_url %}">Volver</a>
+          <input class="btn btn-danger" type="submit" value="Borrar"/>
+        </div>
+      </div>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block meta %}{% endblock %}
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome5/free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <link href="{% static 'css/planeadores_mdp.css' %}" rel="stylesheet" type="text/css">
+    {% block css %}{% endblock %}
+
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}" defer></script>
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+    {% block script%}{% endblock %}
+
+    {% block titulo %} {% endblock %}
+  </head>
+
+  <body>
+    <header id="header" class="fixed-top">{% include "componentes/header.html" %}</header>
+
+    <main>
+      {% block img_fondo %}{% endblock %}
+      {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="text-center text-lg-start text-white">
+      {% include "componentes/footer.html" %}
+    </footer>
+</html>

@@ -1,0 +1,310 @@
+html, body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  /* overflow-y: scroll; */
+}
+
+main {
+  flex: 1;
+}
+
+/* ------------- Estilo Base -------------- */
+/* Fondo */
+.fondo {
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+}
+
+/* ------------- Estilo Header -------------- */
+.logo {
+  margin: 2px 0;
+  margin-left: 20px;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+@media (min-width:992px) {
+  .logo {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .hd-position-center {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  .hd-position-right {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0 !important;
+    transform: translateY(-50%) !important;
+  }
+}
+
+.navbar-color {
+  background-color: #45526e !important;
+}
+
+a.hd-nav-link {
+  font-size: 1.4rem;
+  margin-right: 10px;
+  text-shadow: 0.05px  0px 0px #7991c5, 0px  0.05px 0px #7991c5, -0.05px  0px 0px #7991c5, 0px -0.05px 0px #7991c5;
+}
+
+a.hd-nav-link.active {
+  color: #24d9fe !important;
+  font-weight: 600;
+}
+
+a.hd-nav-link.active:hover {
+  color: #81eaff !important;
+}
+
+/* ------------- Estilo Footer -------------- */
+footer {
+  margin-top: 4.5rem;
+  background-color: #45526e
+}
+
+/* ------------- Estilo Home -------------- */
+.text-align-justify, .hm-card-text{
+  text-align: justify;
+}
+
+.hm-card {
+  height: 100% !important;
+  margin: 1.25rem;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  cursor: default;
+  transition: all 400ms;
+}
+
+.hm-card-img-top {
+  display: block;
+  margin: 0 auto;
+  object-fit: cover;
+  height: 17.5rem;
+}
+
+.hm-card-body {
+  text-align: center;
+}
+
+.hm-card:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3%);
+}
+
+.hm-card-text {
+  line-height: 1.5;
+  color: #6a6a6a;
+}
+
+.button-enlace {
+  width: 100px;
+  align-items: center;
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #7d8cfd 100%);
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 50px;
+  justify-content: center;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.button-enlace:focus {
+  box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+}
+
+.button-enlace:hover {
+  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+  transform: translateY(-6px);
+}
+
+.button-enlace:active {
+  box-shadow: #0a0a0a 0 3px 7px inset;
+  transform: translateY(6px);
+}
+
+/* ------------- Estilo Aeronaves -------------- */
+.ae-tarjeta {
+  display: flex;
+  width: 80%;
+  margin: 10rem auto;
+  padding: 0;
+}
+
+.ae-tarjeta:nth-child(even) {
+  flex-direction: row;
+}
+
+.ae-tarjeta:nth-child(odd) {
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+
+.ae-imagen {
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  width: 50%;
+}
+
+.ae-contenedor-datos {
+  color: #eae3d2;
+  background-color: #292929;
+  width: 50%;
+  height: 50%;
+}
+
+.ae-tarjeta:nth-child(odd) .ae-imagen,
+.ae-tarjeta:nth-child(even) .ae-contenedor-datos {
+  border-radius: 0 4% 4% 0;
+}
+
+.ae-tarjeta:nth-child(even) .ae-imagen,
+.ae-tarjeta:nth-child(odd) .ae-contenedor-datos {
+  border-radius: 4% 0 0 4%;
+}
+
+.ae-nombre {
+  font-family: 'dosis';
+  font-size: 2rem;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 5rem;
+  font-style: inherit;
+}
+
+.ae-datos-tecnicos {
+  font-size: 15px;
+  line-height: 30px;
+  margin: 50px 0;
+  margin-left: 90px;
+  font-style: oblique;
+}
+
+.aviondepapel {
+  width: 200px;
+  margin-left: 80px;
+  padding-top: 40px;
+}
+
+/* ------------- Estilo Institucion -------------- */
+.container-institucion {
+  margin: 10%;
+  margin-left: 30%;
+  width: 50%;
+}
+
+.in-imagen {
+  object-fit: cover;
+  aspect-ratio: 1/0.65;
+  width: 100%;
+}
+
+.in-contenedor-boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.in-boton {
+  display: inline-block;
+  padding: 19px;
+  font-size: 27px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fafafa;
+  background-color: #eb94d0;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
+  background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 6px 5px 24px #666666;
+  font-family: Arial;
+}
+
+.in-boton:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+/* ------------- Estilo Solo Socios -------------- */
+
+
+/* ------------- Estilo Contacto -------------- */
+.contacto {
+  border: 1px solid #dee2e6;
+  border-radius: 0.375rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contacto-textarea {
+  resize: none;
+  height: 8em;
+}
+
+.contacto-icono {
+  background-color: #45526e;
+  border-radius: 50%;
+
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+}
+
+.map {
+  margin: 0;
+  padding: 0;
+  border: 0 0.375rem 0.375rem 0;
+  min-height: 50vh !important
+}
+
+@media (min-width:992px) {
+  .map {
+    border: 0 0 0.375rem 0.375rem;
+    height: auto !important;
+  }
+
+  .contacto-icono {
+    margin: 10px auto;
+  }
+}

@@ -1,0 +1,56 @@
+{% extends 'ss_base.html' %}
+{% load planeadores_mdp_extras %}
+
+{% block socio %}
+  <h2>Detalle Plan De Vuelo</h2>
+
+  <div class="card f-flex flex-row my-3">
+    <div class="flex-fill border-end p-3 col-6">
+      <h5 class="mb-2">Denominacion</h5>
+      <p class="mb-0">{{ object.denominacion }}</p>
+      <hr>
+
+      <h5 class="mb-2">Fecha</h5>
+      <p class="mb-0">{{ object.fecha }}</p>
+      <hr>
+
+      <h5 class="mb-2">Instructor</h5>
+      <p class="mb-0">{{object.instructor.first_name}} - {{object.instructor.last_name}}</p>
+    </div>
+
+    <div class="flex-fill border-start p-3 col-6">
+      <h5 class="mb-2">Pilotos-Remolcador</h5>
+      <table class="table table-striped mb-auto">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+        </tr>
+        {% for piloto in object.pilotos_remolcadores.all %}
+          <tr class="user-select-none">
+            <td>{{piloto.nombre}}</td>
+            <td>{{piloto.apellido}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <table class="table table-striped mb-auto">
+    <tr>
+      <th>Nombre y Apellido</th>
+      <th colspan="2">Remolque</th>
+      <th colspan="2">Planeador</th>
+    </tr>
+    {% for actividad in object.actividades.all %}
+    <tr class="user-select-none">
+      <td>{{actividad.piloto.first_name}} / {{actividad.piloto.last_name}}</td>
+
+      <td>{{actividad.remolque_despegue}}</td>
+      <td>{{actividad.remolque_corte}}</td>
+
+      <td>{{actividad.planeador_aterrizaje}}</td>
+      <td>{{actividad.planeador_vuelo_librado}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

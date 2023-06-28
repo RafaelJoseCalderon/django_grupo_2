@@ -1,0 +1,2 @@
+Draw.io Integration -> der.drawio
+ERD Editor          -> der.vuerd.json

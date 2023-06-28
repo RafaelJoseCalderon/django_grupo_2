@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block img_fondo %}
+  <img id="imgfond" src="{% static 'img/institucion.jpg' %}" alt="imagen de fondo" class="fondo">
+{% endblock %}
+
+{% block contenido %}
+  <div class="container my-5">
+    <h1>Vuelo de Bautismo en Planeador</h1>
+    <p class="text-align-justify">
+      Todos los sábados, domingos y feriados del año podes experimentar la maravillosa sensación de volar en planeador.
+    </p>
+    <p class="text-align-justify">
+      Volarás en uno de nuestros planeadores Biplaza, al mando de un piloto de reconocida experiencia.
+    </p>
+    <p class="text-align-justify">
+      Un avión de remolque te llevará a una altura considerable de 500mts y allí emprenderá un apacible vuelo, y si las
+      condiciones meteorológicas lo permiten el piloto encontrará alguna corriente de aire ascendente c(térmica) y te
+      permitirá comprobar el vuelo a vela en un vehículo más pesado que el aire y sin motor, el vuelo terminará con un
+      suave aterrizaje en nuestra pista.
+    </p>
+
+    <h3 class="mt-5">Requisitos</h3>
+    <ul>
+      <li class="text-align-justify">
+        Ser mayor de edad
+      </li>
+      <li class="text-align-justify">
+        Edad mínima de 15 años y 9 meses
+      </li>
+      <li class="text-align-justify">
+        Asociarse al Club Argentino de Planeadores de Mar del Plata
+      </li>
+      <li class="text-align-justify">
+        Los menores de edad (menos de 18 años) deberán contar con una autorización de los padres certificada ante un
+        escribano y poseer la Certificación Médica Aeronáutica (CMA) que es un examen psicofísico
+      </li>
+      <li class="text-align-justify">
+        Aprobar el examen psicofísico de alumno de piloto de planeador, el cual se puede efectuar en el Instituto Nacional
+        de Medicina Aeroespacial (INMAE), en Médicos Examinadores Aeronáuticos (AME) o en el Centros Médicos Aeronáuticos
+        Examinadores (CMAE).
+      </li>
+    </ul>
+
+    <h3 class="mt-5">Vestimenta Sugerida</h3>
+    <p class="text-align-justify">
+      Vestirse con ropa cómoda en verano, preferiblemente zapatillas, bermudas o shorts, remeras claras, gorro, anteojos
+      de sol, utilizar protector solar y repelente para insectos.
+    </p>
+    <p class="text-align-justify">
+      En invierno vestirse con ropa abrigada, preferiblemente borceguíes o zapatillas de trecking impermeables, gorro,
+      anteojos de sol, utilizar protector solar y repelente para insectos. 
+    </p>
+
+    <div class="in-contenedor-boton">
+      <a href="{% url 'contacto' %}" class="in-boton mt-2 mb-5">Escribeme</a>
+    </div>
+
+    <img class="in-imagen" src="{% static 'img/aeronaves/home-pic1.jpg' %}" alt="imagen de fondo">
+  </div>
+
+  <div class="container">
+    <h1>Curso de Piloto de Planeador</h1>
+    <p class="text-align-justify">
+      El curso se lleva a cabo los fines de semana, sobre todo, los sábados y los domingos, tanto por la mañana como por la
+      tarde mientras que las condiciones climáticas sean favorables. Se lleva a cabo con un mínimo de tres alumnos por
+      brigada y a cada una se le asigna un planeador biplaza con su instructor debidamente acreditado.
+    </p>
+    <p class="text-align-justify">
+      El curso consta de aproximadamente 50 remolques, se realizan 2 o 3 remolques por día de clase práctica. Promediando el
+      curso, una vez que el alumno haya adquirido la capacidad y los conocimientos necesarios para conducir el planeador en
+      forma eficiente y segura, adquiere el título “Primer Vuelo Solo”.
+    </p>
+    <p class="text-align-justify">
+      El curso se complementa con instrucción teórica, que incluye la teoría del vuelo en aparatos más pesados que el aire,
+      teoría del vuelo a vela, micro meteorología, normas aeronáuticas, manuales de vuelo de los planeadores utilizados.
+    </p>
+    <p class="text-align-justify">
+      Una vez aprobado el curso, el club solicita el examen respectivo y un inspector, en fecha prefijada, concurre al club
+      para tomar el mismo. Con su aprobación se emite una licencia provisoria, que posteriormente es reemplaza por la licencia
+      definitiva de “Piloto de Planeador” de validez internacional.
+    </p>
+
+    <h3 class="mt-5">Requisitos</h3>
+    <ul>
+      <li class="text-align-justify">
+        Ser mayor de edad
+      </li>
+      <li class="text-align-justify">
+        Edad mínima de 15 años y 9 meses
+      </li>
+      <li class="text-align-justify">
+        Asociarse al Club Argentino de Planeadores de Mar del Plata
+      </li>
+      <li class="text-align-justify">
+        Los menores de edad (menos de 18 años) deberán contar con una autorización de los padres certificada ante un escribano y
+        poseer la Certificación Médica Aeronáutica (CMA) que es un examen psicofísico
+      </li>
+      <li class="text-align-justify">
+        Aprobar el examen psicofísico de alumno de piloto de planeador, el cual se puede efectuar en el Instituto Nacional de
+        Medicina Aeroespacial (INMAE), en Médicos Examinadores Aeronáuticos (AME) o en el Centros Médicos Aeronáuticos
+        Examinadores (CMAE).
+      </li>
+    </ul>
+
+    <h3 class="mt-5">Vestimenta Sugerida</h3>
+    <p class="text-align-justify">
+      Vestirse con ropa cómoda en verano, preferiblemente zapatillas, bermudas o shorts, remeras claras, gorro, anteojos de sol,
+      utilizar protector solar y repelente para insectos.
+    </p>
+    <p class="text-align-justify">
+      En invierno vestirse con ropa abrigada, preferiblemente borceguíes o zapatillas de trecking impermeables, gorro, anteojos
+      de sol, utilizar protector solar y repelente para insectos. 
+    </p>
+
+    <div class="in-contenedor-boton">
+      <a href="{% url 'contacto' %}" class="in-boton mt-2 mb-5">Escribeme</a>
+    </div>
+
+  </div>
+{% endblock %}
+

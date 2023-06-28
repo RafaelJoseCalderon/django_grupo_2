@@ -1,0 +1,46 @@
+{% if page_obj.paginator.num_pages > 1 %}
+  <div class="align-self-end">
+    <ul class="pagination m-2">
+
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_params }}={{ page_obj.previous_page_number }}" aria-label="Previo">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">&laquo;</span>
+        </li>
+      {% endif %}
+
+      {% for index in page_list %}
+        {% if index == page_obj.number %}
+          <li class="page-item active">
+            <span class="page-link">{{ index }}</span>
+          </li>
+        {% elif index == paginator.ELLIPSIS %}
+          <li class="page-item">
+            <span class="page-link">{{ index }}</span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="{{ url_params }}={{ index }}">{{ index }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="{{ url_params }}={{ page_obj.next_page_number }}" aria-label="Proximo">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">&raquo;</span>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endif %}

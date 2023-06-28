@@ -1,0 +1,78 @@
+{% load static %}
+{% load planeadores_mdp_extras %}
+
+<nav id="navbar" class="navbar navbar-expand-lg {{eClass}}" data-bs-theme="dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img class="logo" src="{% static 'img/logoclub.png' %}" alt="...">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <ul class="navbar-nav hd-position-center">
+        <li class="nav-item">
+          <a class="hd-nav-link nav-link {% link_activate 'home' %}" href="{% url 'home' %}">
+            Home
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="hd-nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Aeronaves
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'planeadores' %}">Planeadores</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'remolcadores' %}">Remolcadores</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="hd-nav-link nav-link {% link_activate 'institucion' %}" href="{% url 'institucion' %}">
+            Institucion
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="hd-nav-link nav-link {% link_activate 'contacto' %}" href="{% url 'contacto' %}">
+            Contacto
+          </a>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav me-3 hd-position-right">
+        {% if not request.user.is_authenticated %}
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'login' %}">
+              Acceder
+            </a>
+          </li>
+
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'singup' %}">
+              Registrarse
+            </a>
+          </li>
+        {% else %}
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'usuario' %}">
+              Principal
+            </a>
+          </li>
+          <li class="nav-item p-1">
+            <a class="w-100 btn btn-outline-light border border-white" href="{% url 'logout' %}">
+              Salir
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+
+    </div>
+  </div>
+</nav>

@@ -1,5 +1,9 @@
 .venv
+virtualenv
+virtualtp
+TP
+
+.vscode
 
 *__pycache__*
 *.pyc
-

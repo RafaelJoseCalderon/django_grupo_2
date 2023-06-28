@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+  <link href="{% static 'css/seguridad.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block contenido %}
+  <div class="container">
+    <div class="row mt-3">
+      <form method="post" class="col-md-9 mx-auto mb-5">{% csrf_token %}
+
+        <h3 class="mb-4">Restablecer contraseña</h3>
+        <p>¿Ha olvidado su clave? Introduzca su dirección de correo a continuación y le enviaremos por correo electrónico las instrucciones para establecer una nueva.</p>
+
+        {{ form.email.errors }}
+        <p><input type="email" name="email" maxlength="254" required="" id="id_email" class="form-control" placeholder="Introduce tu email" /></p>
+
+        <p><input type="submit" class="btn btn-primary btn-block" value="Confirmar"></p>
+
+      </form>
+    </div>
+  </div>
+{% endblock %}

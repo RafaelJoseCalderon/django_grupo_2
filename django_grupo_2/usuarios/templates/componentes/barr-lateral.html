@@ -1,0 +1,78 @@
+{% load planeadores_mdp_extras %}
+
+<div class="mt-0 mb-auto">
+  <ul class="navbar-left nav nav-pills d-flex flex-column">
+    {% if perms.usuarios.view_plandevuelo %}
+      <li class="nav-item">
+        <a href="{% url 'planes-de-vuelo' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fas fa-home"></i>
+          <span>Planes de Vuelo</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if perms.usuarios.add_plandevuelo %}
+      <li class="nav-item">
+        <a href="{% url 'alta-plan-de-vuelo' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fas fa-home"></i>
+          <span>Alta Plan de Vuelo</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if perms.usuarios.view_actividad and request|has_group:'Instructores' %}
+      <li class="nav-item">
+        <a href="{% url 'actividades-i' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fab fa-product-hunt"></i>
+          <span>Actividades</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if perms.usuarios.add_actividad %}
+      <li class="nav-item">
+        <a href="{% url 'alta-actividad' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fas fa-home"></i>
+          <span>Alta Actividad</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if perms.usuarios.view_actividad and request|has_group:'Pilotos' %}
+      <li class="nav-item">
+        <a href="{% url 'actividades-p' %}" class="nav-link sidebar-link link-body-emphasis">
+          <i class="fab fa-product-hunt"></i>
+          <span>Actividades</span>
+        </a>
+      </li>
+    {% endif %}
+
+  </ul>
+</div>
+
+<hr>
+
+<div class="collapse" id="account-collapse">
+  <ul class="toggle-nav list-unstyled fw-normal pb-1 small">
+    <li>
+      <a href="{% url 'perfil' %}" class="link-dark text-decoration-none">
+        <i class="far fa-address-card"></i>
+        <span>Perfil</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'editar-perfil' %}" class="link-dark text-decoration-none">
+        <i class="far fa-address-card"></i>
+        <span>EditarPerfil</span>
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}" class="link-dark text-decoration-none">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="d-inline-block"></i>Cerrar Sesión</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse"
+  data-bs-target="#account-collapse" aria-expanded="false">
+  <span>Cuentas</span>
+</button>
