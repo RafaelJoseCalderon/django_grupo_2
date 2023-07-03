@@ -19,39 +19,40 @@
   <hr class="my-3 mx-0">
 
   <table class="table table-striped mb-auto">
-    <tr>
-      <th>Id</th>
-      <th>Piloto</th>
-      <th>plan de vuelo</th>
-      <th colspan="2">Fecha</th>
-    </tr>
-    {% for actividad in actividades %}
-      <tr
-        class="user-select-none row-table"
-        style="cursor: pointer"
-        onclick="location.href = `{% url 'actividad' actividad.id %}`"
-      >
-        <td>{{actividad.pk}}</td>
-        <td>{{actividad.piloto.first_name}}</td>
-        <td>{{actividad.plan_de_vuelo.denominacion}}</td>
-        <td>{{actividad.plan_de_vuelo.fecha}}</td>
-
-        {% if perms.usuarios.change_actividad or perms.usuarios.delete_actividad %}
-          <td class="d-flex flex-row justify-content-center">
-            {% if perms.usuarios.change_actividad %}
-              <a href="{% url 'modi-actividad' actividad.id %}">
-                <i class="btn btn-warning text-white btn-table mx-2 far fa-edit"></i>
-              </a>
-            {% endif %}
-            {% if perms.usuarios.delete_actividad %}
-              <a href="{% url 'baja-actividad' actividad.id %}">
-                <i class="btn btn-danger text-white btn-table mx-2 far fa-trash-alt"></i>
-              </a>
-            {% endif %}
-          </td>
-        {% endif %}
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Piloto</th>
+        <th>plan de vuelo</th>
+        <th colspan="2">Fecha</th>
       </tr>
-    {% endfor %}
+    </thead>
+
+    <tbody>
+      {% for actividad in actividades %}
+        <tr class="row-table" onclick="location.href = `{% url 'actividad' actividad.id %}`">
+          <td>{{actividad.pk}}</td>
+          <td>{{actividad.piloto.first_name}}</td>
+          <td>{{actividad.plan_de_vuelo.denominacion}}</td>
+          <td>{{actividad.plan_de_vuelo.fecha}}</td>
+
+          {% if perms.usuarios.change_actividad or perms.usuarios.delete_actividad %}
+            <td class="d-flex flex-row justify-content-center">
+              {% if perms.usuarios.change_actividad %}
+                <a href="{% url 'modi-actividad' actividad.id %}">
+                  <i class="btn btn-warning text-white btn-table mx-2 far fa-edit"></i>
+                </a>
+              {% endif %}
+              {% if perms.usuarios.delete_actividad %}
+                <a href="{% url 'baja-actividad' actividad.id %}">
+                  <i class="btn btn-danger text-white btn-table mx-2 far fa-trash-alt"></i>
+                </a>
+              {% endif %}
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
   </table>
 
   {% include "paginacion.html" %}

@@ -86,6 +86,13 @@ footer {
 }
 
 /* ------------- Estilo Tablas -------------- */
+.row-table {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    user-select: none !important;
+    cursor: pointer;
+}
+
 .row-table:hover {
     background-color: #dee2e6;
 }

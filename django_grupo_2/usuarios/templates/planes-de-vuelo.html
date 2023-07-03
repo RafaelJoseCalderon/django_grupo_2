@@ -19,30 +19,31 @@
   <hr class="my-3 mx-0">
 
   <table class="table table-striped mb-auto">
-    <tr>
-      <th>Denominacion</th>
-      <th colspan="2">Fecha</th>
-    </tr>
-    {% for plan_de_vuelo in planes_de_vuelo %}
-      <tr
-        class="user-select-none row-table"
-        style="cursor: pointer"
-        onclick="location.href = `{% url 'plan-de-vuelo' plan_de_vuelo.id %}`"
-      >
-        <td>{{plan_de_vuelo.denominacion}}</td>
-        <td>{{plan_de_vuelo.fecha}}</td>
-
-        <td class="d-flex flex-row justify-content-center">
-          <a href="{% url 'modi-plan-de-vuelo' plan_de_vuelo.id %}">
-            <i class="btn btn-warning text-white btn-table mx-2 far fa-edit"></i>
-          </a>
-          <a href="{% url 'baja-plan-de-vuelo' plan_de_vuelo.id %}">
-            <i class="btn btn-danger text-white btn-table mx-2 far fa-trash-alt"></i>
-          </a>
-        </td>
-
+    <thead>
+      <tr>
+        <th>Denominacion</th>
+        <th colspan="2">Fecha</th>
       </tr>
-    {% endfor %}
+    </thead>
+
+    <tbody>
+      {% for plan_de_vuelo in planes_de_vuelo %}
+        <tr class="row-table" onclick="location.href = `{% url 'plan-de-vuelo' plan_de_vuelo.id %}`">
+          <td>{{plan_de_vuelo.denominacion}}</td>
+          <td>{{plan_de_vuelo.fecha}}</td>
+
+          <td class="d-flex flex-row justify-content-center">
+            <a href="{% url 'modi-plan-de-vuelo' plan_de_vuelo.id %}">
+              <i class="btn btn-warning text-white btn-table mx-2 far fa-edit"></i>
+            </a>
+            <a href="{% url 'baja-plan-de-vuelo' plan_de_vuelo.id %}">
+              <i class="btn btn-danger text-white btn-table mx-2 far fa-trash-alt"></i>
+            </a>
+          </td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
   </table>
 
   {% include "paginacion.html" %}

@@ -1,39 +1,19 @@
-<div class="d-flex flex-row w-100">
-    <div class="input-group mb-3">
-        <button class="btn btn-secondary" type="button" onclick="up_hour('id_{{ widget.name }}')">
-            <i class="fas fa-angle-left"></i>
-        </button>
-
-        <span class="input-group-text" style="width: 60px;">Hora</span>
-        <span id="id_{{ widget.name }}_hour" class="form-control">{{widget.hour}}</span>
-
-        <button class="btn btn-secondary" type="button" onclick="down_hour('id_{{ widget.name }}')">
-            <i class="fas fa-angle-right"></i>
-        </button>
-    </div>
-
-    <div class="mx-1"></div>
-
-    <div class="input-group mb-3">
-        <button class="btn btn-secondary" type="button" onclick="up_min('id_{{ widget.name }}')">
-            <i class="fas fa-angle-left"></i>
-        </button>
-
-        <span class="input-group-text" style="width: 60px;">Min</span>
-        <span id="id_{{ widget.name }}_min" class="form-control">{{widget.min}}</span>
-
-        <button class="btn btn-secondary" type="button" onclick="down_min('id_{{ widget.name }}')">
-            <i class="fas fa-angle-right"></i>
-        </button>
-    </div>
-
+<div class="timepicker mb-3 w-100">
+  <div class="input-group">
     <input
-        id="id_{{ widget.name }}"
-        name="{{ widget.name }}"
-        value="{{ widget.value }}"
-        type="text"
-        time-picker="simple"
-        style="display:none"
-        {% include "django/forms/widgets/attrs.html" %}
+      id="id_{{ widget.name }}"
+      name="{{ widget.name }}"
+      value="{{ widget.value }}"
+      type="text" readonly
+      class="form-control dropdown"
+      onclick="showTimepicker(this)"
+      onshow="showTimepicker(this)"
+      {% include "django/forms/widgets/attrs.html" %}
     >
+
+    <label for="id_{{ widget.name }}" class="btn btn-outline-secondary">
+      <i class="fas fa-clock"></i>
+    </label>
+  </div>
+
 </div>

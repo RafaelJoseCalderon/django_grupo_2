@@ -68,6 +68,7 @@ class DatePickerInput(forms.DateInput):
 class TimePickerInput(forms.TimeInput):
     class Media:
         js = [ 'js/time_input.js' ]
+        css = { 'all': ['css/widgets.css'] }
 
     template_name = 'time_input.html'
 
