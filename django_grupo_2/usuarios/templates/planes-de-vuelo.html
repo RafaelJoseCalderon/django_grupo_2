@@ -3,16 +3,17 @@
 {% load static %}
 
 {% block extra_css %}{% render_css_defer form %}{% endblock %}
-{% block script %}{% render_js_defer form %}{% endblock %}
+{% block extra_script %}{% render_js_defer form %}{% endblock %}
 
 {% block socio %}
   <h1>Lista de planes de vuelo</h1>
 
   <form method="GET" novalidate>
-    {% for field in form %}
-      {% include "componentes/input-form.html" with field=field %}
-    {% endfor %}
-
+    <div id="panel" class="pv-instructor">
+      {% for field in form %}
+        {% include "componentes/input-form.html" with field=field %}
+      {% endfor %}
+    </div>
     {% include "componentes/btn-search.html" %}
   </form>
 

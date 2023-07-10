@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}{% render_css_defer form.parent %}{% endblock %}
-{% block script %}
+{% block extra_script %}
   <script src="{% static 'js/inlines.js' %}" defer></script>
   {% render_js_defer form.parent %}
   {% render_js_defer form.inline %}

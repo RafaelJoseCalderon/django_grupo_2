@@ -2,9 +2,9 @@
 
 <div class="d-flex justify-content-center flex-nowrap flex-column">
   {% if object.perfil.imagen %}
-    <img src="{{ object.perfil.imagen.url }}" class="profile-card-image rounded-circle my-5 mx-auto" alt="...">
+    <img src="{{ object.perfil.imagen.url }}" class="profile-image rounded-circle my-5 mx-auto" alt="...">
   {% else %}
-    <img src="{% static 'img/avatar_2x.png' %}" class="profile-card-image rounded-circle my-5 mx-auto" alt="...">
+    <img src="{% static 'img/avatar_2x.png' %}" class="profile-image rounded-circle my-5 mx-auto" alt="...">
   {% endif %}
 
   <h3 class="mx-auto">{{ object.username }}</h3>

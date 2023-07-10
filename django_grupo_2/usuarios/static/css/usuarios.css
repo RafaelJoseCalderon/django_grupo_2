@@ -1,4 +1,4 @@
-/* ------------- Estilo ss_base -------------- */
+/* ----------- Estilo ss_base ------------ */
 main {
     display: flex;
     flex-direction: column;
@@ -8,7 +8,21 @@ footer {
     margin-top: 0;
 }
 
-/* ------------- Estilo Sidebar -------------- */
+.message-frame {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 0;
+}
+
+.message-content {
+    position: absolute;
+    width: calc(100% - 0.65rem);
+    margin: 0.25rem;
+    z-index: 1000;
+}
+
+/* ----------- Estilo Sidebar ------------ */
 :root {
     --marg--btn-extra: 20px;
     --zise--btn-extra: 50px;
@@ -26,7 +40,8 @@ footer {
     transition: width 0.25s linear !important;
 }
 
-.toggle-nav, .navbar-left {
+.toggle-nav,
+.navbar-left {
     width: 230px; /*a ojo*/
 }
 
@@ -38,77 +53,182 @@ footer {
     margin-top: calc(-1 * var(--marg--btn-extra) - var(--zise--btn-extra));
 }
 
-/* ------------- Estilo Profile -------------- */
-.profile-card {
+/* ------------- Estilo user ------------- */
+.usuer-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.usuer-container.width-5 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    max-width: 540px
+}
+
+.usuer-container.width-4 {
+    padding-left: 2.375rem;
+    padding-right: 2.375rem;
+    max-width: 720px
+}
+
+.usuer-container.width-3 {
+    padding-left: 3.84375rem;
+    padding-right: 3.84375rem;
+    max-width: 960px
+}
+
+.usuer-container.width-2 {
+    padding-left: 4.84375rem;
+    padding-right: 4.84375rem;
+    max-width: 1140px
+}
+
+.usuer-container.width-1,
+.usuer-container.width-0 {
+    padding-left: 6.71875rem;
+    padding-right: 6.71875rem;
+    max-width: 1320px
+}
+
+/* ----------- Estilo Profile ------------ */
+.profile {
+    display: flex;
+    flex-direction: column;
+
     border: 1px solid #dee2e6;
     border-radius: 0.375rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.profile-card-left {
+.profile.panel-1 {
+    flex-direction: row;
+}
+
+.profile .profile-left,
+.profile .profile-right {
+    flex: 0 0 auto;
+    width: 100%
+}
+
+.profile-left {
     padding-bottom: 1rem;
     background-color: rgb(200, 200, 200);
+    border-radius: 0.375rem 0.375rem 0 0;
+}
+
+.profile.panel-1 .profile-left {
+    width: calc(100/3 * 1%);
     border-radius: 0.375rem 0 0 0.375rem;
 }
 
-.profile-card-image {
+.profile.panel-1 .profile-right {
+    width: calc(200/3 * 1%);
+}
+
+.profile-image {
     width: 200px;
     height: 200px;
 }
 
-.perfil.horizontal, .perfil.vertical {
-    display: flex;
-}
+/* --------- Estilo Plan de Vuelo -------- */
 
-.perfil.horizontal {
+
+/* ---------- Estilo Actividad ----------- */
+.ac-detalle {
+    display: flex;
     flex-direction: row;
 }
 
-.perfil.vertical {
+.ac-detalle-nombre,
+.ac-detalle-descripcion {
+    flex: 0 0 auto;
+    margin: 0;
+    padding: .5rem;
+}
+
+.card .ac-detalle:first-child .ac-detalle-nombre {
+    border-radius: 0.375rem 0 0 0;
+}
+
+.ac-detalle-nombre {
+    background-color: #cecece;
+    width: 33.33333333%;
+}
+
+.ac-detalle-descripcion {
+    width: 66.66666667%;
+}
+
+.width-5 .ac-detalle {
     flex-direction: column;
 }
 
-.profile-card-left, .profile-card-right {
-    flex: 0 0 auto;
+.width-5 .card .ac-detalle:first-child .ac-detalle-nombre {
+    border-radius: 0.375rem 0.375rem 0 0;
 }
 
-.perfil.horizontal .profile-card-left {
-    width: 33.33333333%
+.width-5 .ac-detalle-nombre {
+    width: 100%;
 }
 
-.perfil.horizontal .profile-card-right {
-    width: 66.66666667%
+.width-5 .ac-detalle-descripcion {
+    width: 100%;
 }
 
-.perfil.vertical .profile-card-left,
-.perfil.vertical .profile-card-right {
-    width: 100%
-}
-
-/* ------------- Estilo Tablas -------------- */
-.row-table {
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    user-select: none !important;
-    cursor: pointer;
-}
-
-.row-table:hover {
-    background-color: #dee2e6;
-}
-
-.btn-table {
+/* ------------ Estilo inputs ------------ */
+.pv-instructor,
+.ac-instructor,
+.ac-piloto,
+.ac-form {
+    --ac-padding: 0.5rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    border-radius: 50%;
-
-    width: 30px;
-    height: 30px;
+    flex-wrap: wrap;
 }
 
-/* ------------- Estilo pdv -------------- */
+.pv-instructor .field-form,
+.ac-instructor .field-form,
+.ac-piloto .field-form,
+.ac-form .field-form {
+    flex-wrap: nowrap;
+}
+
+.pv-instructor.panel-1 .field-form,
+.ac-instructor.panel-1 .field-form,
+.ac-piloto.panel-1 .field-form,
+.ac-form.panel-1 .field-form {
+    width: 50%;
+}
+
+.pv-instructor .field-form,
+.ac-instructor .field-form,
+.ac-piloto .field-form,
+.ac-form .field-form {
+    width: 100%;
+}
+
+.pv-instructor .field-form:nth-child(1),
+.ac-instructor .field-form:nth-child(1),
+.ac-form .field-form:nth-child(3n+1) {
+    width: 100%;
+}
+
+.pv-instructor.panel-1 .field-form:nth-child(2),
+.ac-instructor.panel-1 .field-form:nth-child(2),
+.ac-piloto.panel-1 .field-form:nth-child(1),
+.ac-form.panel-1 .field-form:nth-child(3n-1) {
+    border-right: 1.75px solid gainsboro;
+    padding-right: var(--ac-padding);
+}
+
+.pv-instructor.panel-1 .field-form:nth-child(3),
+.ac-instructor.panel-1 .field-form:nth-child(3),
+.ac-piloto.panel-1 .field-form:nth-child(2),
+.ac-form.panel-1 .field-form:nth-child(3n) {
+    padding-left: var(--ac-padding);
+}
+
+/* ------ Estilo form plan de vuelo ------ */
 .checkbox-select-multiple {
     position: relative;
     display: flex;
@@ -140,36 +260,25 @@ footer {
     overflow: auto;
 }
 
-/* ------------- Estilo atv -------------- */
-.content-form {
+/* ------------ Estilo Tablas ------------- */
+.row-table {
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    user-select: none !important;
+    cursor: pointer;
+}
+
+.row-table:hover {
+    background-color: #dee2e6;
+}
+
+.btn-table {
     display: flex;
-    flex-wrap: wrap;
-}
+    justify-content: center;
+    align-items: center;
 
-.content-form .field-form {
-    flex-wrap: nowrap;
-}
+    border-radius: 50%;
 
-.content-form.horizontal .field-form {
-    width: 50%;
-}
-
-.content-form.vertical .field-form {
-    width: 100%;
-}
-
-.content-form .field-form:nth-child(3n-1) {
-    padding-right: 0.25rem;
-}
-
-.content-form.horizontal .field-form:nth-child(3n-1) {
-    border-right: 1.75px solid gainsboro;
-}
-
-.content-form .field-form:nth-child(3n) {
-    padding-left: 0.25rem;
-}
-
-.content-form .field-form:nth-child(3n+1) {
-    width: 100%;
+    width: 30px;
+    height: 30px;
 }

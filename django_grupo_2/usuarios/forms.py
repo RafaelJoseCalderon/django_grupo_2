@@ -76,7 +76,6 @@ class ActividadSearchBaseForm(forms.Form):
         required = False,
         widget = widgets.DatePickerInput(
             attrs = {
-                'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
             }
         )
@@ -87,7 +86,6 @@ class ActividadSearchBaseForm(forms.Form):
         required = False,
         widget = widgets.DatePickerInput(
             attrs = {
-                'class': 'form-control',
                 'placeholder': 'yyyy-mm-dd'
             }
         )

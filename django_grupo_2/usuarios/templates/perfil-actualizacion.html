@@ -1,50 +1,39 @@
 {% extends "ss_base.html" %}
 {% load static %}
 
-{% block css %}
-  <link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block script %}
-  {{ form.childrens.0.media }}
-  <script src="{% static 'js/usuarios.js' %}" defer></script>
-{% endblock %}
+{% block extra_script %}{{ form.childrens.0.media }}{% endblock %}
 
 {% block socio %}
   <h3>Perfil de usuario</h3>
 
-  <div class="profile-card mb-3">
-    <div id="ctn" class="perfil">
+  <div id="panel" class="profile mb-3">
+    <div class="profile-left">
+      {% include "componentes/tarj-imagen.html" with object=object %}
+    </div>
 
-      <div class="profile-card-left">
-        {% include "componentes/tarj-imagen.html" with object=object %}
+    <div class="profile-right">
+      <div class="flex-fill p-3">
+        <form method="post" enctype="multipart/form-data">
+          <div>{% csrf_token %}</div>
+
+          {% for field in form.parent %}
+            {% include "componentes/input-form.html" with field=field %}
+          {% endfor %}
+          {% for field in form.childrens.0 %}
+            {% include "componentes/input-form.html" with field=field %}
+          {% endfor %}
+
+          <div class="my-4">
+            <a class="btn border w-100" href="{% url 'password-change' %}">Cambiar contraseña</a>
+          </div>
+
+          <hr class="mb-4" />
+          <div class="d-grid gap-2 d-flex justify-content-end">
+            <input class="btn btn-primary btn-form" type="submit" value="Guardar" />
+          </div>
+        </form>
+
       </div>
-
-      <div class="profile-card-right">
-        <div class="flex-fill p-3">
-          <form method="post" enctype="multipart/form-data">
-            <div>{% csrf_token %}</div>
-
-            {% for field in form.parent %}
-              {% include "componentes/input-form.html" with field=field %}
-            {% endfor %}
-            {% for field in form.childrens.0 %}
-              {% include "componentes/input-form.html" with field=field %}
-            {% endfor %}
-
-            <div class="my-4">
-              <a class="btn border w-100" href="{% url 'password-change' %}">Cambiar contraseña</a>
-            </div>
-
-            <hr class="mb-4" />
-            <div class="d-grid gap-2 d-flex justify-content-end">
-              <input class="btn btn-primary btn-form" type="submit" value="Guardar" />
-            </div>
-          </form>
-
-        </div>
-      </div>
-
     </div>
   </div>
 {% endblock %}

@@ -3,19 +3,16 @@
 {% load static %}
 
 {% block extra_css %}{% render_css_defer form %}{% endblock %}
-{% block script %}
-  {% render_js_defer form %}
-  <script src="{% static 'js/usuarios.js' %}" defer></script>
-{% endblock %}
+{% block extra_script %}{% render_js_defer form %}{% endblock %}
 
 {% block socio %}
   <h1>{{titulo}}</h1>
 
   <form class="d-flex flex-column justify-content-between h-100" action="" method="post" onctype="multipart/form-data" novalidate>
-    <div id="ctn" class="content-form">
+    <div id="panel" class="ac-form">
       <div>{% csrf_token %}</div>
       {% for field in form %}
-        {% include "componentes/input-form.html" with field=field extra_class="field-form" %}
+        {% include "componentes/input-form.html" with field=field %}
       {% endfor %}
     </div>
 

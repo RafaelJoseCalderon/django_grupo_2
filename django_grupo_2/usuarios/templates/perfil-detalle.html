@@ -1,39 +1,28 @@
 {% extends "ss_base.html" %}
 {% load static %}
 
-{% block css %}
-  <link href="{% static 'css/usuarios.css' %}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block script %}
-  <script src="{% static 'js/usuarios.js' %}" defer></script>
-{% endblock %}
-
 {% block socio %}
   <h3>Perfil de usuario</h3>
 
-  <div class="profile-card">
-    <div id="ctn" class="perfil">
-
-      <div class="profile-card-left">
-        {% include "componentes/tarj-imagen.html" with object=object %}
-      </div>
-
-      <div class="profile-card-right">
-        <div class="flex-fill p-3">
-          <h5 class="mb-2">Nombre</h5>
-          <p class="mb-0">{{ object.first_name }}</p>
-          <hr>
-
-          <h5 class="mb-2">Apelido</h5>
-          <p class="mb-0">{{ object.last_name }}</p>
-          <hr>
-
-          <h5 class="mb-2">Email</h5>
-          <p class="mb-0">{{ object.email }}</p>
-        </div>
-      </div>
-
+  <div id="panel" class="profile mb-3">
+    <div class="profile-left">
+      {% include "componentes/tarj-imagen.html" with object=object %}
     </div>
+
+    <div class="profile-right">
+      <div class="flex-fill p-3">
+        <h5 class="mb-2">Nombre</h5>
+        <p class="mb-0">{{ object.first_name }}</p>
+        <hr>
+
+        <h5 class="mb-2">Apelido</h5>
+        <p class="mb-0">{{ object.last_name }}</p>
+        <hr>
+
+        <h5 class="mb-2">Email</h5>
+        <p class="mb-0">{{ object.email }}</p>
+      </div>
+    </div>
+
   </div>
 {% endblock %}
