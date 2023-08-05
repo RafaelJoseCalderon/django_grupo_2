@@ -1,18 +1,18 @@
 {% load static %}
 {% load planeadores_mdp_extras %}
 
-<nav id="navbar" class="navbar navbar-expand-lg {{eClass}}" data-bs-theme="dark">
-  <div class="container-fluid">
+<nav id="navbar" class="navbar navbar-expand-lg" data-bs-theme="dark">
+  <div id="navbar-container" class="container-fluid">
 
     <a class="navbar-brand" href="{% url 'home' %}">
       <img class="logo" src="{% static 'img/logoclub.png' %}" alt="...">
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button id="button-toggler" class="navbar-toggler" data-collapsed="true" type="button" >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <div id="navbar-collapse" class="navbar-collapse collapse">
 
       <ul class="navbar-nav hd-position-center">
         <li class="nav-item">
@@ -22,14 +22,16 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="hd-nav-link nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button id="button-dropdown" class="hd-nav-link nav-link dropdown-toggle" data-collapsed="true" type="button">
             Aeronaves
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'planeadores' %}">Planeadores</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="{% url 'remolcadores' %}">Remolcadores</a></li>
-          </ul>
+          </button>
+          <div id="dropdown-collapse" class="dropdown-collapse collapse">
+            <ul class="dropdown-menu position-relative show">
+              <li><a class="dropdown-item" href="{% url 'planeadores' %}">Planeadores</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'remolcadores' %}">Remolcadores</a></li>
+            </ul>
+          </div>
         </li>
 
         <li class="nav-item">

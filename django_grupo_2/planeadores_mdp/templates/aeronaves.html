@@ -2,7 +2,12 @@
 {% load static %}
 
 {% block img_fondo %}
-  <img id="imgfond" src="{% static 'img/aeronaves.jpg' %}" alt="imagen de fondo" class="fondo">
+  <div id="img-head" class="position-relative">
+    <img src="{% static 'img/aeronaves.jpg' %}" alt="imagen de fondo" class="fondo">
+    <div class="texto-fondo position-absolute top-50 start-50 translate-middle">
+      Aeronaves
+    </div>
+  </div>
 {% endblock %}
 
 {% block contenido %}

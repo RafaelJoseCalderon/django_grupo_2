@@ -6,7 +6,13 @@
 {% endblock %}
 
 {% block img_fondo %}
-  <img id="imgfond" src="{% static 'img/home.jpg' %}" alt="imagen de fondo" class="fondo">
+  <div id="img-head" class="position-relative">
+    <img src="{% static 'img/home.jpg' %}" alt="imagen de fondo" class="fondo">
+    <div class="texto-fondo position-absolute top-50 start-50 translate-middle">
+      <p>Planeadores</p>
+      <p>Mar Del Plata</p>
+    </div>
+  </div>
 {% endblock %}
 
 {% block contenido %}

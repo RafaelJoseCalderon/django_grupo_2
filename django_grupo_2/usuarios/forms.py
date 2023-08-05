@@ -54,8 +54,6 @@ class UsuarioForm(InitFormsMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # print(self.fields['username'].error_messages)
-        # print(dir(self))
 
 
 class UsuarioPerfilForm(ParentWithChildrenForm):
